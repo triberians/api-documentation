@@ -6,10 +6,17 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='mailto:dev@tribe.so'>Request API Key</a>
 
 includes:
+  - answers
+  - feed
+  - notifications
+  - portal
+  - posts
   - questions
+  - topics
+  - users
   - errors
 
 search: true
@@ -40,7 +47,7 @@ let api = tribe.authorize('<YourAccessToken>');
 
 > Make sure to replace `<YourAccessToken>` with your API key.
 
-Tribe uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](https://tribe.so).
+Tribe uses API keys to allow access to the API. You can request a new Tribe API key by [contacting us](dev@tribe.so).
 
 Tribe expects for the API key to be included in all API requests to the server in a header that looks like the following:
 
