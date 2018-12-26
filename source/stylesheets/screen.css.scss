@@ -552,6 +552,25 @@ html, body {
   }
 }
 
+table {
+  max-width: 50%;
+}
+
+.img {
+  border: 1px solid #e1e1e1;
+  border-radius: 3px;
+}
+
+.content {
+  .center-column + pre {    
+    position: static;
+    float: none;
+    clear: none;
+    margin: 20px 0;
+    left: 0;
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 // RESPONSIVE DESIGN
 ////////////////////////////////////////////////////////////////////////////////
@@ -579,6 +598,10 @@ html, body {
     padding-top: 0.3em;
     padding-bottom: 0.3em;
   }
+
+  table {
+    max-width: 100%;
+  }  
 }
 
 @media (max-width: $phone-width) {

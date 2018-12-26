@@ -18,6 +18,8 @@ includes:
   - topics
   - users
   - errors
+  - widgets.md.erb
+
 
 search: true
 ---
