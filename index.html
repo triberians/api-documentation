@@ -376,6 +376,23 @@
           <li>
             <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
           </li>
+          <li>
+            <a href="#widgets" class="toc-h1 toc-link" data-title="Widgets">Widgets</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#getting-started" class="toc-h2 toc-link" data-title="Getting Started">Getting Started</a>
+                  </li>
+                  <li>
+                    <a href="#form-widget" class="toc-h2 toc-link" data-title="Form Widget">Form Widget</a>
+                  </li>
+                  <li>
+                    <a href="#questions-widget" class="toc-h2 toc-link" data-title="Questions Widget">Questions Widget</a>
+                  </li>
+                  <li>
+                    <a href="#user-authentication" class="toc-h2 toc-link" data-title="User Authentication">User Authentication</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='mailto:dev@tribe.so'>Request API Key</a></li>
@@ -2951,6 +2968,186 @@ You must replace <code>&lt;YourAccessToken&gt;</code> with your personal API key
 <td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
 </tr>
 </tbody></table>
+<h1 id='widgets'>Widgets</h1><h2 id='getting-started'>Getting Started</h2>
+<p>Tribe widgets are components from community which you can easily embed in your product, website, or service.</p>
+
+<p>Using Tribe widgets is super simple. Start by pasting following script in your website&#39;s <code>&lt;head&gt;</code> tag.</p>
+
+<div class="center-column"></div>
+<pre class="highlight html tab-html"><code><span class="c">&lt;!-- Tribe Tag --&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="nx">r</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">e</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Tribe</span><span class="o">===</span><span class="s1">'function'</span><span class="p">){</span><span class="nx">t</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'reload'</span><span class="p">,{</span><span class="na">portal</span><span class="p">:</span><span class="nx">i</span><span class="p">});}</span>
+    <span class="k">else</span><span class="p">{</span><span class="nx">b</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="nx">b</span><span class="p">.</span><span class="nx">r</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);};</span><span class="nx">b</span><span class="p">.</span><span class="nx">q</span><span class="o">=</span><span class="p">[];</span><span class="nx">b</span><span class="p">.</span><span class="nx">r</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span><span class="nx">b</span><span class="p">.</span><span class="nx">q</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">args</span><span class="p">);};</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nx">Tribe</span><span class="o">=</span><span class="nx">b</span><span class="p">;</span> <span class="nx">e</span><span class="o">=</span><span class="nx">r</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'script'</span><span class="p">);</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="o">=</span><span class="s1">'text/javascript'</span><span class="p">;</span><span class="nx">e</span><span class="p">.</span><span class="nx">async</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="nx">i</span><span class="o">+</span><span class="s1">'/widget/v1/main.js?t='</span><span class="o">+</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">/</span> <span class="mi">3</span><span class="nx">e5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="nx">e5</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">x</span><span class="o">=</span><span class="nx">r</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'script'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span><span class="nx">x</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">x</span><span class="p">);</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'boot'</span><span class="p">,{</span><span class="na">portal</span><span class="p">:</span><span class="nx">i</span><span class="p">});}</span>
+  <span class="p">})(</span><span class="nb">window</span><span class="p">,</span><span class="nb">document</span><span class="p">,</span><span class="s1">'{YourCommunityAddress}'</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+<p>Make sure to replace {YourCommunityAddress} with the root address to your community, including https://. For instance if your community url is <code>https://community.tribe.so</code>, the script should look like this:</p>
+
+<div class="center-column"></div>
+<pre class="highlight html tab-html"><code><span class="c">&lt;!-- Tribe Tag --&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">t</span><span class="p">,</span><span class="nx">r</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">b</span><span class="p">,</span><span class="nx">e</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">t</span><span class="p">.</span><span class="nx">Tribe</span><span class="o">===</span><span class="s1">'function'</span><span class="p">){</span><span class="nx">t</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'reload'</span><span class="p">,{</span><span class="na">portal</span><span class="p">:</span><span class="nx">i</span><span class="p">});}</span>
+    <span class="k">else</span><span class="p">{</span><span class="nx">b</span><span class="o">=</span><span class="kd">function</span><span class="p">(){</span><span class="nx">b</span><span class="p">.</span><span class="nx">r</span><span class="p">(</span><span class="nx">arguments</span><span class="p">);};</span><span class="nx">b</span><span class="p">.</span><span class="nx">q</span><span class="o">=</span><span class="p">[];</span><span class="nx">b</span><span class="p">.</span><span class="nx">r</span><span class="o">=</span><span class="kd">function</span><span class="p">(</span><span class="nx">args</span><span class="p">){</span><span class="nx">b</span><span class="p">.</span><span class="nx">q</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">args</span><span class="p">);};</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nx">Tribe</span><span class="o">=</span><span class="nx">b</span><span class="p">;</span> <span class="nx">e</span><span class="o">=</span><span class="nx">r</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">'script'</span><span class="p">);</span><span class="nx">e</span><span class="p">.</span><span class="nx">type</span><span class="o">=</span><span class="s1">'text/javascript'</span><span class="p">;</span><span class="nx">e</span><span class="p">.</span><span class="nx">async</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
+    <span class="nx">e</span><span class="p">.</span><span class="nx">src</span><span class="o">=</span><span class="nx">i</span><span class="o">+</span><span class="s1">'/widget/v1/main.js?t='</span><span class="o">+</span><span class="nb">Math</span><span class="p">.</span><span class="nx">ceil</span><span class="p">(</span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span> <span class="o">/</span> <span class="mi">3</span><span class="nx">e5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">3</span><span class="nx">e5</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">x</span><span class="o">=</span><span class="nx">r</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">'script'</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span><span class="nx">x</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">x</span><span class="p">);</span>
+    <span class="nx">t</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'boot'</span><span class="p">,{</span><span class="na">portal</span><span class="p">:</span><span class="nx">i</span><span class="p">});}</span>
+  <span class="p">})(</span><span class="nb">window</span><span class="p">,</span><span class="nb">document</span><span class="p">,</span><span class="s1">'https://community.tribe.so'</span><span class="p">);</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+<p>After the script is in place you can use <code>window.Tribe</code> function to add widgets to your website.</p>
+
+<p><code>window.Tribe</code> accepts one or two arguments. The first argument is the widget type or action that you want to perform, and the second argument is an object which defines widget&#39;s options.</p>
+
+<div class="center-column"></div>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'widgetType'</span><span class="p">,</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="s1">'test'</span><span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre><h2 id='form-widget'>Form Widget</h2>
+<p>Using form widgets you can display community signup or login form in your website. Since this widget injects HTML into your page it&#39;ll automatically adapts look and feel of your webpage. You can additionaly customize it using your website&#39;s CSS.</p>
+
+<div class="center-column"></div>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"signup-form"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'form'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'signup-form'</span><span class="p">,</span> 
+    <span class="na">type</span><span class="p">:</span> <span class="s1">'signup'</span>
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+<p>The script above results in a form like this:</p>
+
+<p><img src="images/signup-widget.png" class="img" alt="Signup widget" /></p>
+<h3 id='widget-options'>Widget Options</h3>
+<table>
+  <thead>
+    <th>Option</th><th>Default</th><th>Description</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>id</code></td>
+      <td><code>null</code></td>
+      <td>The ID of the div to append the widget</td>
+    </tr>
+    <tr>
+      <td><code>type</code></td>
+      <td><code>signup</code></td>
+      <td>The type of the form. Can be <code>signup</code> or <code>login</code>.</td>
+    </tr>
+    <tr>
+      <td><code>labels</code></td>
+      <td><code>{<br />email: 'Email', <br />password: 'Password', <br />name: 'Name'<br />}</code></td>
+      <td>The form labels for each field.</td>
+    </tr>
+    <tr>
+      <td><code>fields</code></td>
+      <td><code>['name', 'email', 'password']</code></td>
+      <td>Defines the order and visibility of fields.</td>
+    </tr>
+    <tr>
+      <td><code>redirect</code></td>
+      <td><code>null</code></td>
+      <td>Where to go after the form is submitted successfully.</td>
+    </tr>  
+  </tbody>
+</table>
+<h2 id='questions-widget'>Questions Widget</h2>
+<p>Using questions widget you can embed a feed of questions around certain topic(s) right into your website. Visitors can ask new questions, follow them and find answers to the questions.</p>
+
+<p>Using components option you&#39;re able to define which items should be visible inside the widget. For instance you can display or hide the breadcrumb, topic header, sidebar, question input, etc.</p>
+
+<div class="center-column"></div>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"questions-widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'questions'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">topicId</span><span class="p">:</span> <span class="s1">'5babe5eb3d9228aa7c423c66'</span><span class="p">,</span> 
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'questions-widget'</span><span class="p">,</span> 
+    <span class="na">components</span><span class="p">:</span> <span class="p">[</span><span class="s1">'input'</span><span class="p">]</span>
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+<p>The script above results in the following widget:</p>
+
+<p><img src="images/questions-widget.png" class="img" alt="Questions widget" /></p>
+<h3 id='widget-options-2'>Widget Options</h3>
+<table>
+  <thead>
+    <th>Option</th><th>Default</th><th>Description</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>id</code></td>
+      <td><code>null</code></td>
+      <td>The ID of the div to append the widget.</td>
+    </tr>
+    <tr>
+      <td><code>topicId</code></td>
+      <td><code>null</code></td>
+      <td>The widget will show only questions with the defined topic ID.</td>
+    </tr>
+    <tr>
+      <td><code>components</code></td>
+      <td><code>[<br />'breadcrumb', 'sidebar', <br />'header', 'input', <br />'suggestions'<br />]</code></td>
+      <td>Defines which elements should be displayed in the widget.</td>
+    </tr>
+    <tr>
+      <td><code>fields</code></td>
+      <td><code>['name', 'email', 'password']</code></td>
+      <td>Defines the order and visibility of fields.</td>
+    </tr>
+    <tr>
+      <td><code>redirect</code></td>
+      <td><code>null</code></td>
+      <td>Where to go after the form is submitted successfully.</td>
+    </tr>  
+  </tbody>
+</table>
+<h2 id='user-authentication'>User Authentication</h2>
+<p>In Tribe, there are three different authentication methods available for widgets.</p>
+<h3 id='session'>Session</h3>
+<p>If you don&#39;t have a separate userbase or want Tribe to handle authentication this is the right authentication method.</p>
+
+<p>The widget will check Tribe Community to see if the user is logged in there. If they are not, we&#39;ll show a Signup/Login button inside the widgets.</p>
+
+<p>User can click on the button and login in a new window. The platform will return user to the previous page after user is logged in.</p>
+<h3 id='jwt-json-web-token'>JWT (JSON Web Token)</h3>
+<p>In this method you&#39;ll sign a JSON token with User&#39;s information using a private key and pass it as an option to the widget.</p>
+
+<p>You should login to your community as an Admin and go to Single Sign-On section under Admin Panel to access your private key. In the Single Sign-On section you can find examples on how to generate the JWT in Node.js, PHP, Java, Python and Ruby programming languages.</p>
+
+<p>You can use JWT to pass widget-specific data as well.</p>
+
+<p>Here is how a Question Widget script looks like with JWT:</p>
+
+<div class="center-column"></div>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"questions-widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'questions'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">topicId</span><span class="p">:</span> <span class="s1">'5babe5eb3d9228aa7c423c66'</span><span class="p">,</span> 
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'questions-widget'</span><span class="p">,</span> 
+    <span class="na">components</span><span class="p">:</span> <span class="p">[</span><span class="s1">'input'</span><span class="p">],</span>
+    <span class="na">jwt</span><span class="p">:</span> <span class="s1">'&lt;The JWT generated in backend goes here&gt;'</span>
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre><h3 id='oauth2'>OAuth2</h3>
+<p>To enable OAuth2 on your widgets you need to create an OAuth2 app for Tribe on your side and email us the following information to dev@tribe.so:</p>
+
+<ul>
+<li>Client ID</li>
+<li>Client Secret</li>
+<li>Authorization URL</li>
+<li>Callback URL</li>
+<li>Token URL</li>
+<li>Scopes</li>
+</ul>
+
+<p>We will setup the OAuth2 Single Sign-On for your community on our side. Any time a user accesses a widget which needs authentication, we&#39;ll redirect user to the authorization URL. If user is already logged in on your application, they&#39;ll get logged in right away. Otherwise, they&#39;ll see your login screen and will be redirected to the widget after they&#39;re signed in.</p>
 
       </div>
       <div class="dark-box">
