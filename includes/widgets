@@ -138,6 +138,21 @@
     </tr>  
   </tbody>
 </table>
+<h2 id='custom-widgets'>Custom Widgets</h2>
+<p>In many cases, Tribe builds a very custom widget which suites your company&#39;s needs. Tribe provides a widget ID to your company and you can insert the widget using following script:</p>
+
+<div class="center-column"></div>
+<pre class="highlight html tab-html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">"custom-widget"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;script&gt;</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">Tribe</span><span class="p">(</span><span class="s1">'widget'</span><span class="p">,</span> <span class="p">{</span>
+    <span class="na">id</span><span class="p">:</span> <span class="s1">'custom-widget'</span><span class="p">,</span> 
+    <span class="na">widgetId</span><span class="p">:</span> <span class="s1">'&lt;Custom Widgets ID&gt;'</span><span class="p">,</span>
+    <span class="na">optionA</span><span class="p">:</span> <span class="nx">valueA</span><span class="p">,</span>
+    <span class="na">optionB</span><span class="p">:</span> <span class="nx">valueB</span>
+  <span class="p">})</span>
+<span class="nt">&lt;/script&gt;</span>
+</code></pre>
+<p>Please note that <code>optionA</code> and <code>optionB</code> are sample names. Each custom widget has different sets of options. Tribe team email you a detailed instruction about your custom widget which includes all available options.</p>
 <h2 id='user-authentication'>User Authentication</h2>
 <p>In Tribe, there are three different authentication methods available for widgets.</p>
 <h3 id='session'>Session</h3>
