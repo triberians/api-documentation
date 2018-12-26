@@ -165,6 +165,25 @@ The script above results in the following widget:
 </table>
 
 
+## Custom Widgets
+
+In many cases, Tribe builds a very custom widget which suites your company's needs. Tribe provides a widget ID to your company and you can insert the widget using following script:
+
+<div class="center-column"></div>
+```html
+<div id="custom-widget"></div>
+<script>
+  window.Tribe('widget', {
+    id: 'custom-widget', 
+    widgetId: '<Custom Widgets ID>',
+    optionA: valueA,
+    optionB: valueB
+  })
+</script>
+```
+
+Please note that `optionA` and `optionB` are sample names. Each custom widget has different sets of options. Tribe team email you a detailed instruction about your custom widget which includes all available options.
+
 ## User Authentication
 
 In Tribe, there are three different authentication methods available for widgets.
