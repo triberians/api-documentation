@@ -157,6 +157,72 @@ Parameter | Description
 id | The ID of the item
 
 
+
+
+## Create a Topic
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --DATA '{"name":"Test Topic"}'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.topics.create({name: 'Test Topic'});
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_id": "5b88264d3d9228aa7c41f693",
+  "name": "Test Topic",
+  "portal": "5a73b1fcc48071e4c4dc1cae",
+  "updatedAt": "2018-11-29T06:16:08.223Z",
+  "__v": 8,
+  "createdAt": "2018-08-30T17:15:57.884Z",
+  "aliases": [],
+  "children": [],
+  "counts": {
+    "questions": 0,
+    "followers": 0,
+    "subquestions": 0,
+    "children": 0
+  },
+  "definitions": [],
+  "paths": [],
+  "shortId": "5oqoy",
+  "user": "5b881b2a90ecbe6751123d7e",
+  "experts": {},
+  "about": "",
+  "followed": false
+}
+```
+
+This endpoint creates a new topic.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/topics</code>
+
+
+### Request Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+name | null | The name of the Topic
+about | null | The description of the Topic
+picture | null | Url to a picture for this Topic
+definitions | [] | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
+aliases | [] | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
+externalId | null | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
+
 ## Delete a Specific Topic
 
 
