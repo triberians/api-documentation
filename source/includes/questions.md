@@ -300,7 +300,7 @@ questy | "" | Keywords or title of a question
 
 
 
-## Create a Questions
+## Create a Question
 
 
 ```shell
