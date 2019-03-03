@@ -431,6 +431,59 @@ Parameter | Description
 id | The ID of the item
 
 
+## Update a Specific Answer
+
+
+```shell
+curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  -H 'Content-Type: application/json; charset=utf-8'
+  --DATA '{"content":"Test answer","anonymous": false,"status":"published"}'
+```
+
+<!-- ```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.answers.delete('5bf0e89ada3be54c190b78ba');
+``` -->
+
+<!-- > The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+``` -->
+
+This endpoint update a specific answer.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/answers/{id}</code>
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the answer to update
+
+### Request body Fields
+
+Field | Description
+--------- | -----------
+content | The content of the answer
+anonymous | Is it an anonymous answer or not
+
+### Extra Request Body Fields for Moderators
+
+Field | Description | Values
+--------- | ----------- | ------
+verified | Is this a verified answer or not | `true` `false`
+status | Status of the answer | `draft` `published` `unapproved` `collapsed` `archived`
+
 ## Delete a Specific Answer
 
 
