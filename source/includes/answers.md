@@ -1132,6 +1132,46 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the answer to delete
 
+// TODO:
+
+## Delete a Specific Draft Answer
+
+
+```shell
+curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/draft"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+
+<!-- ```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.answers.delete('5bf0e89ada3be54c190b78ba');
+``` -->
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint deletes a specific draft answer.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/answers/{id}/draft</code>
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the answer to delete
+
+
 ## Add a Vote for a Specific Answer
 
 
@@ -1149,7 +1189,7 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
 }
 ``` -->
 
-This endpoint add a vote for a specific answer.
+This endpoint adds a vote for a specific answer.
 
 ### HTTP Request
 
@@ -1161,3 +1201,122 @@ This endpoint add a vote for a specific answer.
 Parameter | Description
 --------- | -----------
 ID | The ID of the answer to add a vote
+
+## Delete a Vote for a Specific Answer
+
+
+```shell
+curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint removes a vote for a specific answer.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/answers/:id/votes</code>
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the answer to remove a vote
+
+## Get List of Votes for a Specific Answer
+
+```shell
+  curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
+  -H "Authorization: Bearer {access_token}"
+```
+> The above command returns JSON structured like this:
+
+```json
+  {
+  "upvotes": [
+    {
+      "_id": "5bc64d97a8c76d6d771ae914",
+      "profile": {
+        "title": "Customer Success @Tribe",
+        "picture": "https://gravatar.com/avatar/1ec94547651bb4e27ce2bdd0113f7487?s=200&d=retro",
+        "name": "Mo Malayeri",
+        "username": "mo11832"
+      },
+      "id": "5bc64d97a8c76d6d771ae914"
+    },
+    {
+      "_id": "5b881b2a90ecbe6751123d7e",
+      "profile": {
+        "title": "Community Manager at Tribe",
+        "picture": "/files/users/d7e/5b881b2a90ecbe6751123d7e_88402.png",
+        "name": "Eli Najafi",
+        "username": "elnaz"
+      },
+      "id": "5b881b2a90ecbe6751123d7e"
+    },
+    {
+      "_id": "5b912f01f19a473232026862",
+      "profile": {
+        "title": "Marketing Manager",
+        "picture": "/files/users/862/5b912f01f19a473232026862_29979.png",
+        "name": "Melanie Jones",
+        "username": "mike2"
+      },
+      "id": "5b912f01f19a473232026862"
+    },
+    {
+      "_id": "5bacc9ff630b876a1e9785f7",
+      "profile": {
+        "title": "",
+        "picture": "/files/users/5f7/5bacc9ff630b876a1e9785f7_15302.png",
+        "name": "Robert D",
+        "username": "robertd"
+      },
+      "id": "5bacc9ff630b876a1e9785f7"
+    },
+    {
+      "_id": "5ba95b5c630b876a1e9785a5",
+      "profile": {
+        "title": "Community Manager at BHD",
+        "picture": "/files/users/5a5/5ba95b5c630b876a1e9785a5_41926.png",
+        "name": "Eddie Reid",
+        "username": "ereid"
+      },
+      "id": "5ba95b5c630b876a1e9785a5"
+    },
+    {
+      "_id": "5b8ff4190607d4174e2eb73b",
+      "profile": {
+        "title": "Community Moderator at Acondo",
+        "picture": "/files/users/73b/5b8ff4190607d4174e2eb73b_29849.png",
+        "name": "Kenneth Jensen",
+        "username": "mike1"
+      },
+      "id": "5b8ff4190607d4174e2eb73b"
+    }
+  ],
+  "downvotes": []
+}
+```
+
+This endpoint retrieves all answers for a specific answer.
+
+### HTTP Request
+
+<code class="request">GET /api/v1/answers/:id/votes</code>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the answer to receive the votes
+
