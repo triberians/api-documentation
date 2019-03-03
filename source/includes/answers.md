@@ -520,3 +520,33 @@ This endpoint deletes a specific answer.
 Parameter | Description
 --------- | -----------
 ID | The ID of the answer to delete
+
+## Add a Vote for a Specific Answer
+
+
+```shell
+curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+<!-- 
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+``` -->
+
+This endpoint add a vote for a specific answer.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/answers/:id/votes</code>
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the answer to add a vote
