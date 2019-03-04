@@ -430,180 +430,7 @@ Parameter | Description
 --------- | -----------
 id | The ID of the item
 
-## Get All Answers for a Specific Question
 
-```shell
-curl "https://community.tribe.so/api/v1/questions/5c7bfc7a157c2c34f735a53e/answers"
-  -H "Authorization: Bearer {access_token}"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "_id": "5c7bfc9a157c2c34f735a540",
-    "shortId": "PEENP",
-    "updatedAt": "2019-03-03T16:11:06.517Z",
-    "createdAt": "2019-03-03T16:11:06.517Z",
-    "content": "<p>The first answer</p>",
-    "publishedAt": "2019-03-03T16:11:06.500Z",
-    "portal": "5c7bf24f157c2c34f735a539",
-    "question": {
-      "_id": "5c7bfc7a157c2c34f735a53e",
-      "shortId": "5ogL5",
-      "lang": "en",
-      "updatedAt": "2019-03-03T16:11:06.542Z",
-      "createdAt": "2019-03-03T16:10:34.005Z",
-      "title": "I don't want to ask anonymously. What should I do?",
-      "publishedAt": "2019-03-03T16:10:34.003Z",
-      "portal": "5c7bf24f157c2c34f735a539",
-      "lastAskedAt": "2019-03-03T16:10:34.003Z",
-      "user": {
-        "_id": "5c7bf251157c2c34f735a53a",
-        "profile": {
-          "counts": {
-            "requests": 0,
-            "edits": 0,
-            "questionsFollowers": 0,
-            "questions": 2,
-            "comments": 0,
-            "answersWords": 3,
-            "answersVotes": 0,
-            "answersViews": 0,
-            "answers": 1,
-            "views": 0,
-            "followings": 0,
-            "followers": 0
-          },
-          "score": 10,
-          "verified": false,
-          "description": "",
-          "title": "",
-          "picture": "https://gravatar.com/avatar/b7711ecd91aebb5dd1b7c153dbfd92d0?s=200&d=retro",
-          "website": "",
-          "location": "",
-          "gender": "",
-          "name": "Admin",
-          "username": "admin"
-        },
-        "id": "5c7bf251157c2c34f735a53a"
-      },
-      "__v": 0,
-      "lastAnsweredAt": "2019-03-03T16:11:06.541Z",
-      "referrers": [],
-      "rewards": [],
-      "hasReward": false,
-      "downvotes": [],
-      "upvotes": [],
-      "followers": [],
-      "askers": [],
-      "comments": [],
-      "topics": [],
-      "score": 0,
-      "status": "published",
-      "counts": {
-        "asks": 1,
-        "downvotes": 0,
-        "upvotes": 0,
-        "edits": 1,
-        "comments": 0,
-        "hiddenAnswers": 0,
-        "answers": 1,
-        "views": 1,
-        "followers": 0
-      },
-      "type": "general",
-      "privacy": "public",
-      "anonymous": false,
-      "verified": false,
-      "locked": false,
-      "id": "5c7bfc7a157c2c34f735a53e"
-    },
-    "user": {
-      "_id": "5c7bf251157c2c34f735a53a",
-      "profile": {
-        "counts": {
-          "requests": 0,
-          "edits": 0,
-          "questionsFollowers": 0,
-          "questions": 2,
-          "comments": 0,
-          "answersWords": 3,
-          "answersVotes": 0,
-          "answersViews": 0,
-          "answers": 1,
-          "views": 0,
-          "followings": 0,
-          "followers": 0
-        },
-        "score": 10,
-        "verified": false,
-        "description": "",
-        "title": "",
-        "picture": "https://gravatar.com/avatar/b7711ecd91aebb5dd1b7c153dbfd92d0?s=200&d=retro",
-        "website": "",
-        "location": "",
-        "gender": "",
-        "name": "Admin",
-        "username": "admin"
-      },
-      "id": "5c7bf251157c2c34f735a53a",
-      "followed": false
-    },
-    "__v": 0,
-    "downvotes": [],
-    "upvotes": [],
-    "comments": [],
-    "rewards": [],
-    "images": [],
-    "links": [],
-    "score": 0,
-    "global": true,
-    "status": "published",
-    "media": [],
-    "counts": {
-      "reasks": 0,
-      "edits": 1,
-      "downvotes": 0,
-      "upvotes": 0,
-      "comments": 0,
-      "views": 0
-    },
-    "privacy": "public",
-    "anonymous": false,
-    "verified": false,
-    "summary": "The first answer",
-    "id": "5c7bfc9a157c2c34f735a540",
-    "upvoted": false,
-    "downvoted": false
-  }
-]
-```
-
-
-
-This endpoint retrieves all answers for a sepcific question using ID.
-
-### HTTP Request
-
-<code class="request">GET /api/v1/questions/:questionId/answers</code>
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-questionId | The ID of the question
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
-
-<!-- // TODO: -->
 <!-- 
 ## Get All Answers for a Specific Topic
 
@@ -625,212 +452,7 @@ Parameter | Description
 --------- | -----------
 topicId | The ID of the topic -->
 
-## Get All Answers for a Specific User
 
-```shell
-  curl "https://community.tribe.so/api/v1/users/5c7bf251157c2c34f735a53a/answers"
-    -H "Authorization: Bearer {access_token}"
-```
-> The above command returns JSON structured like this:
-
-```json
-  [
-  {
-    "_id": "5c7bfc9a157c2c34f735a540",
-    "shortId": "PEENP",
-    "updatedAt": "2019-03-03T16:22:35.729Z",
-    "createdAt": "2019-03-03T16:11:06.517Z",
-    "content": "<p>The first answer</p>",
-    "publishedAt": "2019-03-03T16:11:06.500Z",
-    "portal": "5c7bf24f157c2c34f735a539",
-    "question": {
-      "_id": "5c7bfc7a157c2c34f735a53e",
-      "shortId": "5ogL5",
-      "lang": "en",
-      "updatedAt": "2019-03-03T16:22:35.741Z",
-      "createdAt": "2019-03-03T16:10:34.005Z",
-      "title": "I don't want to ask anonymously. What should I do?",
-      "publishedAt": "2019-03-03T16:10:34.003Z",
-      "portal": "5c7bf24f157c2c34f735a539",
-      "lastAskedAt": "2019-03-03T16:10:34.003Z",
-      "user": {
-        "_id": "5c7bf251157c2c34f735a53a",
-        "profile": {
-          "counts": {
-            "requests": 0,
-            "edits": 1,
-            "questionsFollowers": 0,
-            "questions": 2,
-            "comments": 0,
-            "answersWords": 3,
-            "answersVotes": 0,
-            "answersViews": 0,
-            "answers": 1,
-            "views": 0,
-            "followings": 0,
-            "followers": 0
-          },
-          "score": 10,
-          "verified": false,
-          "description": "",
-          "title": "",
-          "picture": "https://gravatar.com/avatar/b7711ecd91aebb5dd1b7c153dbfd92d0?s=200&d=retro",
-          "website": "",
-          "location": "",
-          "gender": "",
-          "name": "Admin",
-          "username": "admin"
-        },
-        "id": "5c7bf251157c2c34f735a53a"
-      },
-      "__v": 1,
-      "lastAnsweredAt": "2019-03-03T16:11:06.541Z",
-      "referrers": [],
-      "rewards": [],
-      "hasReward": false,
-      "downvotes": [],
-      "upvotes": [],
-      "followers": [],
-      "askers": [],
-      "comments": [],
-      "topics": [
-        {
-          "_id": "5c7bff4bc389b77bdf1f2726",
-          "name": "test",
-          "user": {
-            "_id": "5c7bf251157c2c34f735a53a",
-            "profile": {
-              "counts": {
-                "requests": 0,
-                "edits": 1,
-                "questionsFollowers": 0,
-                "questions": 2,
-                "comments": 0,
-                "answersWords": 3,
-                "answersVotes": 0,
-                "answersViews": 0,
-                "answers": 1,
-                "views": 0,
-                "followings": 0,
-                "followers": 0
-              },
-              "score": 10,
-              "verified": false,
-              "description": "",
-              "title": "",
-              "picture": "https://gravatar.com/avatar/b7711ecd91aebb5dd1b7c153dbfd92d0?s=200&d=retro",
-              "website": "",
-              "location": "",
-              "gender": "",
-              "name": "Admin",
-              "username": "admin"
-            },
-            "id": "5c7bf251157c2c34f735a53a"
-          },
-          "id": "5c7bff4bc389b77bdf1f2726"
-        }
-      ],
-      "score": 0,
-      "status": "published",
-      "counts": {
-        "asks": 1,
-        "downvotes": 0,
-        "upvotes": 0,
-        "edits": 2,
-        "comments": 0,
-        "hiddenAnswers": 0,
-        "answers": 1,
-        "views": 1,
-        "followers": 0
-      },
-      "type": "general",
-      "privacy": "public",
-      "anonymous": false,
-      "verified": false,
-      "locked": false,
-      "id": "5c7bfc7a157c2c34f735a53e"
-    },
-    "user": {
-      "_id": "5c7bf251157c2c34f735a53a",
-      "profile": {
-        "counts": {
-          "requests": 0,
-          "edits": 1,
-          "questionsFollowers": 0,
-          "questions": 2,
-          "comments": 0,
-          "answersWords": 3,
-          "answersVotes": 0,
-          "answersViews": 0,
-          "answers": 1,
-          "views": 0,
-          "followings": 0,
-          "followers": 0
-        },
-        "score": 10,
-        "verified": false,
-        "description": "",
-        "title": "",
-        "picture": "https://gravatar.com/avatar/b7711ecd91aebb5dd1b7c153dbfd92d0?s=200&d=retro",
-        "website": "",
-        "location": "",
-        "gender": "",
-        "name": "Admin",
-        "username": "admin"
-      },
-      "id": "5c7bf251157c2c34f735a53a",
-      "followed": false
-    },
-    "__v": 0,
-    "downvotes": [],
-    "upvotes": [],
-    "comments": [],
-    "rewards": [],
-    "images": [],
-    "links": [],
-    "score": 0,
-    "global": true,
-    "status": "published",
-    "media": [],
-    "counts": {
-      "reasks": 0,
-      "edits": 1,
-      "downvotes": 0,
-      "upvotes": 0,
-      "comments": 0,
-      "views": 1
-    },
-    "privacy": "public",
-    "anonymous": false,
-    "verified": false,
-    "summary": "The first answer",
-    "id": "5c7bfc9a157c2c34f735a540",
-    "upvoted": false,
-    "downvoted": false
-  }
-]
-```
-
-This endpoint retrieves all answers from a sepecific user using ID.
-
-### HTTP Request
-
-<code class="request">GET /api/v1/users/:userId/answer</code>
-
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-userId | The ID of the user
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
 
 ## Create an Answer for a Specific Question
 
@@ -855,7 +477,7 @@ curl "https://community.tribe.so/api/v1/questions/5c7bfc7a157c2c34f735a53e/answe
     "lang": "en",
     "updatedAt": "2019-03-03T16:47:35.149Z",
     "createdAt": "2019-03-03T16:10:34.005Z",
-    "title": "I don't want to ask anonymously. What should I do?",
+    "title": "My anonymous question",
     "publishedAt": "2019-03-03T16:10:34.003Z",
     "portal": "5c7bf24f157c2c34f735a539",
     "lastAskedAt": "2019-03-03T16:10:34.003Z",
@@ -1132,8 +754,6 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the answer to delete
 
-// TODO:
-
 ## Delete a Specific Draft Answer
 
 
@@ -1172,7 +792,7 @@ Parameter | Description
 ID | The ID of the answer to delete
 
 
-## Add a Vote for a Specific Answer
+## Upvote a Specific Answer
 
 
 ```shell
@@ -1189,7 +809,7 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
 }
 ``` -->
 
-This endpoint adds a vote for a specific answer.
+This endpoint upvotes for a specific answer.
 
 ### HTTP Request
 
@@ -1202,7 +822,7 @@ Parameter | Description
 --------- | -----------
 ID | The ID of the answer to add a vote
 
-## Delete a Vote for a Specific Answer
+## Remove Upvote for a Specific Answer
 
 
 ```shell
@@ -1219,7 +839,7 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
 }
 ```
 
-This endpoint removes a vote for a specific answer.
+This endpoint removes an upvote for a specific answer.
 
 ### HTTP Request
 
