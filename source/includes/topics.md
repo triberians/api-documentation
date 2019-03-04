@@ -163,7 +163,7 @@ id | The ID of the item
 
 
 ```shell
-curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692"
+curl "https://community.tribe.so/api/v1/topics"
   -X POST
   -H "Authorization: Bearer {access_token}"
   -H 'Content-Type: application/json; charset=utf-8' \
@@ -222,6 +222,45 @@ picture | null | Url to a picture for this Topic
 definitions | [] | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
 aliases | [] | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
 externalId | null | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
+
+## Update a Specific Topic
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --DATA '{data}'
+```
+
+This endpoint updates a specific topic.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/topics/:id</code>
+
+### URL Parameters
+
+Parameter | Default
+--------- | -------
+ID | The ID of the topic to update
+
+### Request Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+name | null | The name of the Topic
+about | null | The description of the Topic
+definitions | [] | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
+aliases | [] | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
+
+### Extra Request Parameters
+
+Parameter | Default | Description
+--------- | ------- | -----------
+picture | `null` | Url to a picture for this Topic
+externalId | `null` | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
 
 ## Delete a Specific Topic
 
