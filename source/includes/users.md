@@ -135,6 +135,36 @@ Parameter | Description
 id | The ID of the user
 
 
+## Update a Specific User
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+```
+
+This endpoint updates a specific user using ID.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/users/{id}</code>
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+id | The ID of the user to update
+
+### Request Parameters
+
+Parameter | Description | type
+--------- | ----------- | -----------
+name | Name of the user | `string`
+@todo | @todo
+
+
 ## Delete a Specific User
 
 
