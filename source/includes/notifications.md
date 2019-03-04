@@ -206,3 +206,32 @@ This endpoint marks all user notifications as read.
 <code class="request">POST /api/v1/notifications/read</code>
 
 
+
+## Mark a Specific Notification as Read
+
+
+```shell
+  curl "https://community.tribe.so/api/v1/notifications/5b913111f19a473232026877/read"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint marks a specific notification as read.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/notifications/:id/read</code>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the notification to mark as read
