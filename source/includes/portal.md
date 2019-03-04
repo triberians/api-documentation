@@ -311,6 +311,32 @@ This endpoint retrieves portal information.
 <code class="request">GET /api/v1/portal</code>
 
 
+## Create a new Portal
+
+
+```shell
+curl "https://community.tribe.so/api/v1/portal"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{"name": "Test Portal","domain":"test.com"}'
+```
+
+This endpoint creates a new portal.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/portal</code>
+
+
+### Request Parameters
+
+Field | Description | Type
+--------- | ----------- | -----------
+name | Thea name of the portal | `string`
+domain | The domain of the portal | `string`
+subdomain | The subdomain of the portal | `string`
+
+
 ## Get Trending Items
 
 
@@ -464,3 +490,4 @@ This endpoint retrieves users leaderboard in portal.
 ### HTTP Request
 
 <code class="request">GET /api/v1/stats/users/leaderboard</code>
+
