@@ -320,6 +320,76 @@ Parameter | Description
 --------- | -----------
 id | The ID of the item
 
+## Create a new Post
+
+
+```shell
+curl "https://community.tribe.so/api/v1/posts"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{data}"
+```
+
+This endpoint creates a new post.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/posts</code>
+
+### Request Parameters
+
+Field | Description | Type
+--------- | ----------- | -----------
+title | Thea title of the post | `string`
+content | The content of the post | `string`
+type | The type of the post | @todo
+parent | The id of the parent post | `string`
+replyTo | The id of the post to reply | `string`
+
+### Extra Request Parameters for Moderators
+
+Field | Description | Type
+--------- | ----------- | -----------
+locked | Is the post locked? | `boolean`
+verified | Is the post verified? | `boolean`
+status | The status of the post | `string`
+
+## Update a Specific Post
+
+
+```shell
+curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{data}"
+```
+
+This endpoint updates a specific post.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/posts/:id</code>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the post to update
+
+### Request Parameters
+
+Field | Description | Type
+--------- | ----------- | -----------
+title | Thea title of the post | `string`
+content | The content of the post | `string`
+
+### Extra Request Parameters for Moderators
+
+Field | Description | Type
+--------- | ----------- | -----------
+locked | Is the post locked? | `boolean`
+verified | Is the post verified? | `boolean`
+status | The status of the post | `string`
 
 ## Delete a Specific Post
 
@@ -483,4 +553,55 @@ page | 1 | Intended page
 limit | 20 | Number of items per page
 sort | createdAt.desc | The field to sort on
 
+## Upvote for a Specific Post
 
+
+```shell
+curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/votes"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+
+This endpoint upvotes a specific post.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/posts/{id}/votes</code>
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the post to upvote
+
+## Remove an Upvote for a Specific Post
+
+
+```shell
+curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/votes"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint removes an upvote a specific post.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/posts/{id}/votes</code>
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the post to remove an upvote
