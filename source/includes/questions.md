@@ -241,7 +241,7 @@ id | The ID of the question
 
 
 
-## Get Question Recommendations
+## Get a Question's Recommendations
 
 
 ```shell
@@ -316,9 +316,65 @@ let api = tribe.authorize('{access_token}');
 let question = api.questions.create({ title: 'What is life?'});
 ```
 
-This endpoint creates a question.
+This endpoint creates a new question.
 
 ### HTTP Request
 
 <code class="request">POST /api/v1/questions</code>
 
+### Query Parameters
+
+Parameter | Description | type
+--------- | ----------- | -----------
+title | The title of the question to create | `string`
+description | The description of the question to create | `string`
+anonymous | Is this an anonymous question? | `boolean`
+from | @todo | `string`
+topics | @todo | `string`
+
+### Extra Query Parameters for Moderators
+
+Parameter | Description | type
+--------- | ----------- | -----------
+type | The type of the question to create | `string`
+locked | Is the question locked? | `boolean`
+verified | Is the question verified? | `boolean`
+status | Status of the question to create | `string`
+
+## Update a Specific Question
+
+
+```shell
+curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+```
+
+This endpoint updates a specific question.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/questions/:id</code>
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the question to update
+
+### Query Parameters
+
+Parameter | Description | type
+--------- | ----------- | -----------
+title | The title of the question to create | `string`
+description | The description of the question to create | `string`
+anonymous | Is this an anonymous question? | `boolean`
+
+### Extra Query Parameters for Moderators
+
+Parameter | Description | type
+--------- | ----------- | -----------
+type | The type of the question to create | `string`
+locked | Is the question locked? | `boolean`
+verified | Is the question verified? | `boolean`
+status | Status of the question to create | `string`
