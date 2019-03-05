@@ -234,4 +234,4 @@ This endpoint marks a specific notification as read.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the notification to mark as read
+id | `string` | The ID of the notification to mark as read

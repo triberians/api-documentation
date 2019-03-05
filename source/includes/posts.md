@@ -374,7 +374,7 @@ This endpoint updates a specific post.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the post to update
+id | `string` | The ID of the post to update
 
 ### Request Parameters
 
@@ -426,7 +426,7 @@ This endpoint deletes a specific post.
 
 Parameter | Type | Description
 --------- | ----------- | ----------- 
-ID | `string` | The ID of the post to delete
+id | `string` | The ID of the post to delete
 
 
 
@@ -573,7 +573,7 @@ This endpoint upvotes a specific post.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the post to upvote
+id | `string` | The ID of the post to upvote
 
 ## Remove an Upvote for a Specific Post
 
@@ -604,4 +604,4 @@ This endpoint removes an upvote a specific post.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the post to remove an upvote
+id | `string` | The ID of the post to remove an upvote

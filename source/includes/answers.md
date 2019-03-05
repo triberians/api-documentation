@@ -701,7 +701,7 @@ This endpoint update a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the answer to update
+id | `string` | The ID of the answer to update
 
 ### Request body Fields
 
@@ -752,7 +752,7 @@ This endpoint deletes a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the answer to delete
+id | `string` | The ID of the answer to delete
 
 ## Delete a Specific Draft Answer
 
@@ -789,7 +789,7 @@ This endpoint deletes a specific draft answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the answer to delete
+id | `string` | The ID of the answer to delete
 
 
 ## Upvote a Specific Answer
@@ -820,7 +820,7 @@ This endpoint upvotes for a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the answer to add a vote
+id | `string` | The ID of the answer to add a vote
 
 ## Remove Upvote for a Specific Answer
 
@@ -850,7 +850,7 @@ This endpoint removes an upvote for a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the answer to remove a vote
+id | `string` | The ID of the answer to remove a vote
 
 ## Get List of Votes for a Specific Answer
 
@@ -938,5 +938,5 @@ This endpoint retrieves all answers for a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the answer to receive the votes
+id | `string` | The ID of the answer to receive the votes
 

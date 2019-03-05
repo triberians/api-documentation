@@ -244,7 +244,7 @@ This endpoint updates a specific topic.
 
 Parameter | Type | Default
 --------- | ------- | -------
-ID | `string` | The ID of the topic to update
+id | `string` | The ID of the topic to update
 
 ### Request Parameters
 
@@ -297,7 +297,7 @@ This endpoint deletes a specific topic.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the topic to delete
+id | `string` | The ID of the topic to delete
 
 
 

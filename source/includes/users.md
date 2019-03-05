@@ -200,7 +200,7 @@ This endpoint deletes a specific user.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the user to delete
+id | `string` | The ID of the user to delete
 
 
 

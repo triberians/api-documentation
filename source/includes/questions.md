@@ -170,7 +170,7 @@ This endpoint deletes a specific question.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the question to delete
+id | `string` | The ID of the question to delete
 
 
 
@@ -360,7 +360,7 @@ This endpoint updates a specific question.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-ID | `string` | The ID of the question to update
+id | `string` | The ID of the question to update
 
 ### Query Parameters
 
