@@ -78,6 +78,18 @@ curl "https://community.tribe.so/api/v1/users"
   -H "Authorization: Bearer {access_token}"
   --DATA '{data}'
 ```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.users.create({
+  username: "info",
+  name:"Mr Support",
+  email: "info@tribe.so",
+  password: ...,
+  confirmPassword: ...
+});
+```
 
 This endpoint creates a new user.
 
@@ -169,6 +181,15 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
   -X PUT
   -H "Authorization: Bearer {access_token}"
   --DATA '{data}'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.users.update("5b1f99a7478dd3768d84b646",{
+  name:"Ms. Support"
+});
 ```
 
 This endpoint updates a specific user using ID.

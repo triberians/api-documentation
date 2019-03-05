@@ -388,10 +388,13 @@ status | `String` | Status of the question to create. Should be one of the follo
   -H "Authorization: Bearer {access_token}"
   --DATA "{'body':'New comment'}"
 ```
-> The above command returns JSON structured like this:
+```javascript
+const tribe = require('tribe');
 
-```json
- @todo
+let api = tribe.authorize('{access_token}');
+let users = api.questions.comments.create('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2", {
+  body: "New Comment"
+});
 ```
 
 This endpoint adds a comment for a specific question.
@@ -420,10 +423,14 @@ body | `String` | The content of the comment
   -H "Authorization: Bearer {access_token}"
   --DATA "{'body':'Updated comment'}"
 ```
-> The above command returns JSON structured like this:
 
-```json
- @todo
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.questions.comments.update('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2",{
+  body: "Updated Comment"
+});
 ```
 
 This endpoint updates a specific comment.
@@ -452,6 +459,13 @@ body | `String` | The content of the comment
   -X DELETE
   -H "Authorization: Bearer {access_token}"
 ```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.questions.comments.delete('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2");
+```
+
 > The above command returns JSON structured like this:
 
 ```json

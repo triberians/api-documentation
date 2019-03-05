@@ -463,6 +463,14 @@ curl "https://community.tribe.so/api/v1/questions/5c7bfc7a157c2c34f735a53e/answe
   -H 'Content-Type: application/json; charset=utf-8'
   --DATA '{"content":""<p>Very good answer!</p>","anonymous": false,"status":"published"}'
 ```
+
+```javascript
+  const tribe = require('tribe');
+
+  let api = tribe.authorize('{access_token}');
+  let result = api.questions.answer("5c7bfc7a157c2c34f735a53e",{conent: "Very good answer", anonymous: false, status: "published"})
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -681,15 +689,12 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"
   --DATA '{"content":"Test answer","anonymous": false,"status":"published"}'
 ```
 
-<!-- ```javascript
-const tribe = require('tribe');
+```javascript
+  const tribe = require('tribe');
 
-let api = tribe.authorize('{access_token}');
-let result = api.answers.delete('5bf0e89ada3be54c190b78ba');
-``` -->
-
-> The above command returns JSON structured like this:
-
+  let api = tribe.authorize('{access_token}');
+  let result = api.answers.update("5c7bfc7a157c2c34f735a53e",{conent: "Very good answer", anonymous: false)
+```
 
 This endpoint update a specific answer.
 
@@ -764,12 +769,12 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/draft"
   -H "Authorization: Bearer {access_token}"
 ```
 
-<!-- ```javascript
+```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let result = api.answers.delete('5bf0e89ada3be54c190b78ba');
-``` -->
+let result = api.answers.drafts.delete('5bf0e89ada3be54c190b78ba');
+```
 
 > The above command returns JSON structured like this:
 
@@ -800,6 +805,13 @@ id | `String` | The ID of the answer to delete
 curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
   -X POST
   -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.answers.upvote('5bf0e89ada3be54c190b78ba');
 ```
 <!-- 
 > The above command returns JSON structured like this:
@@ -832,6 +844,13 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
   -H "Authorization: Bearer {access_token}"
 ```
 
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.answers.downvote('5bf0e89ada3be54c190b78ba');
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -859,6 +878,14 @@ id | `String` | The ID of the answer to remove a vote
   curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
   -H "Authorization: Bearer {access_token}"
 ```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.answers.votes.get('5bf0e89ada3be54c190b78ba');
+```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -951,10 +978,14 @@ id | `String` | The ID of the answer to receive the votes
   -H "Authorization: Bearer {access_token}"
   --DATA "{'body':'New comment'}"
 ```
-> The above command returns JSON structured like this:
 
-```json
- @todo
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.answers.comment('5bf0e89ada3be54c190b78ba',{ 
+  body: "New comment" 
+});
 ```
 
 This endpoint adds a comment for a specific answer.
@@ -983,10 +1014,13 @@ body | `String` | The content of the comment
   -H "Authorization: Bearer {access_token}"
   --DATA "{'body':'Updated comment'}"
 ```
-> The above command returns JSON structured like this:
+```javascript
+const tribe = require('tribe');
 
-```json
- @todo
+let api = tribe.authorize('{access_token}');
+let result = api.answers.comments.update('5bf0e89ada3be54c190b78ba',"4sf0e89ada3be54c190b78b2",{ 
+  body: "Updated comment" 
+});
 ```
 
 This endpoint updates a specific comment.
@@ -1015,6 +1049,13 @@ body | `String` | The content of the comment
   -X DELETE
   -H "Authorization: Bearer {access_token}"
 ```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.answers.comments.delete('5bf0e89ada3be54c190b78ba',"4sf0e89ada3be54c190b78b2");
+```
+
 > The above command returns JSON structured like this:
 
 ```json

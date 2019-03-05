@@ -12,7 +12,7 @@ curl "https://community.tribe.so/api/v1/portal"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.portal.get();
+let portals = api.portal.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -321,6 +321,16 @@ curl "https://community.tribe.so/api/v1/portal"
   --DATA '{"name": "Test Portal","domain":"test.com"}'
 ```
 
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let portal = api.portal.create({ 
+  name: "Test Portal",
+  domain: "test.com"
+});
+```
+
 This endpoint creates a new portal.
 
 ### HTTP Request
@@ -349,7 +359,7 @@ curl "https://community.tribe.so/api/v1/trends"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.portal.trends();
+let portals = api.portal.trends();
 ```
 
 > The above command returns JSON structured like this:
@@ -385,7 +395,7 @@ curl "https://community.tribe.so/api/v1/stats/portal"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.portal.stats();
+let stats = api.portal.stats();
 ```
 
 > The above command returns JSON structured like this:
@@ -422,7 +432,7 @@ curl "https://community.tribe.so/api/v1/stats/users/leaderboard"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.portal.leaderboard();
+let leaderboard = api.portal.leaderboard();
 ```
 
 > The above command returns JSON structured like this:

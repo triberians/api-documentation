@@ -234,6 +234,18 @@ curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692"
   --DATA '{data}'
 ```
 
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.topics.update({name: 'Test Topic'}, {
+  name: "Updated name",
+  about: "Updated description",
+  definitions: ["Location","School"]
+});
+```
+
+
 This endpoint updates a specific topic.
 
 ### HTTP Request

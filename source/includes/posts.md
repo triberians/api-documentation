@@ -330,6 +330,16 @@ curl "https://community.tribe.so/api/v1/posts"
   --DATA "{data}"
 ```
 
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let post = api.posts.create({ 
+  title: "New Post",
+  content: "New Post's content",
+});
+```
+
 This endpoint creates a new post.
 
 ### HTTP Request
@@ -363,6 +373,15 @@ curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"
   -X PUT
   -H "Authorization: Bearer {access_token}"
   --DATA "{data}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let post = api.posts.update("5c0621864cb2b119dc174a63",{ 
+  title: "New Post",
+  content: "New Post's content",
+});
 ```
 
 This endpoint updates a specific post.
@@ -563,6 +582,13 @@ curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/votes"
   -H "Authorization: Bearer {access_token}"
 ```
 
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.posts.upvote('5c0621864cb2b119dc174a63');
+```
+
 This endpoint upvotes a specific post.
 
 ### HTTP Request
@@ -584,6 +610,14 @@ curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/votes"
   -X DELETE
   -H "Authorization: Bearer {access_token}"
 ```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.posts.downvote('5c0621864cb2b119dc174a63');
+```
+
 
 
 > The above command returns JSON structured like this:
@@ -608,8 +642,6 @@ Parameter | Type | Description
 id | `String` | The ID of the post to remove an upvote
 
 
-// TODO:
-
 ## Add a Comment for a Specific Post
 
 ```shell
@@ -618,10 +650,13 @@ id | `String` | The ID of the post to remove an upvote
   -H "Authorization: Bearer {access_token}"
   --DATA "{'body':'New comment'}"
 ```
-> The above command returns JSON structured like this:
+```javascript
+const tribe = require('tribe');
 
-```json
- @todo
+let api = tribe.authorize('{access_token}');
+let users = api.posts.comment('5c0621864cb2b119dc174a63',{
+  body: "New Comment"
+});
 ```
 
 This endpoint adds a comment for a specific post.
@@ -650,10 +685,13 @@ body | `String` | The content of the comment
   -H "Authorization: Bearer {access_token}"
   --DATA "{'body':'Updated comment'}"
 ```
-> The above command returns JSON structured like this:
+```javascript
+const tribe = require('tribe');
 
-```json
- @todo
+let api = tribe.authorize('{access_token}');
+let users = api.posts.comments.update('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2",{
+  body: "New Comment"
+});
 ```
 
 This endpoint updates a specific comment.
@@ -682,6 +720,14 @@ body | `String` | The content of the comment
   -X DELETE
   -H "Authorization: Bearer {access_token}"
 ```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.posts.comments.delete('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2");
+```
+
 > The above command returns JSON structured like this:
 
 ```json
