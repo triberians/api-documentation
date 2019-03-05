@@ -214,7 +214,7 @@ Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
-sort | `String` @todo | `createdAt.desc` | The field to sort on
+sort | `String` | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Answer
@@ -659,14 +659,14 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 content | `String` | The content of the answer
 anonymous | `Boolean` | Is it an anonymous answer or not
-status | `String` | Status of the answer (@todo)
+status | `String` | Status of the answer. Should be one of the followings: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new`
 
 ### Extra Request Parameters for Moderators
 
 Parameter | Type | Description
 --------- | ----------- | -----------
 verified | `Boolean` | Is this answer verified or not
-user | `String` @todo | The ID of the user to create an answer on behalf @todo
+user | `String` | The ID of the user to create an answer on behalf
 
 ### 
 
@@ -716,7 +716,7 @@ anonymous | `String` | Is it an anonymous answer or not
 Parameter | Type | Description
 --------- | ----------- | ------
 verified | `String` | Is this a verified answer or not
-status | `String` | Status of the answer. Should be one of the following values: `draft` `published` `unapproved` `collapsed` `archived`
+status | `String` | Status of the answer. Should be one of the following values: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new`
 
 ## Delete a Specific Answer
 

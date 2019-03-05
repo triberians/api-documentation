@@ -77,7 +77,7 @@ Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
-sort | `String` @todo | `createdAt.desc` | The field to sort on
+sort | `String` | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Topic
@@ -219,7 +219,7 @@ Parameter | Type | Default | Description
 name | `String` | `null` | The name of the Topic
 about | `String` | `null` | The description of the Topic
 picture | `String` | `null` | Url to a picture for this Topic
-definitions | `[String]` | `[]` | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code> @todo
+definitions | `[String]` | `[]` | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
 aliases | `[String]` | `[]` | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
 externalId | `String` | `null` | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
 

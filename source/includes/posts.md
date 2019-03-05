@@ -159,7 +159,7 @@ Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
-sort | `String` @todo | `createdAt.desc` | The field to sort on
+sort | `String` | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Post
@@ -342,7 +342,7 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 title | `String` | The title of the post
 content | `String` | The content of the post
-type | @todo | The type of the post
+type | `String` | The type of the post
 parent | `String` | The ID of the parent post
 replyTo | `String` | The ID of the post to reply
 
@@ -352,8 +352,8 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 locked | `Boolean` | Is the post locked?
 verified | `Boolean` | Is the post verified?
-status | `String` | The status of the post
-user | `String` @todo | The ID of the user to post on behalf @todo
+status | `String` | The status of the post. Should be one of the followings: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
+user | `String` | The ID of the user to post on behalf
 
 ## Update a Specific Post
 
@@ -390,7 +390,7 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 locked | `Boolean` | Is the post locked?
 verified | `Boolean` | Is the post verified?
-status | `String` | The status of the post
+status | `String` | The status of the post. Should be one of the followings: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
 
 ## Delete a Specific Post
 
@@ -552,7 +552,7 @@ Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
-sort | `String` @todo | `createdAt.desc` | The field to sort on
+sort | `String` | `createdAt.desc` | The field to sort on
 
 ## Upvote for a Specific Post
 

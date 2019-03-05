@@ -66,7 +66,7 @@ Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
-sort | `String` @todo | `createdAt.desc` | The field to sort on
+sort | `String` | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Question
@@ -295,7 +295,7 @@ This endpoint find related questions to keywords or a question title.
 
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
-questy @todo | `String` | `""` | Keywords or title of a question
+query | `String` | `""` | Keywords or title of a question
 
 
 
@@ -329,8 +329,8 @@ Parameter | Type | Description
 title | `String` | The title of the question to create
 description | `String` | The description of the question to create
 anonymous | `Boolean` | Is this an anonymous question?
-from | `String` | @todo
-topics | `String` | @todo
+from | `String` | The ID of the user who has beend asked from
+topics | `[String]` | The IDs of the topics related to the question
 
 ### Extra Query Parameters for Moderators
 
@@ -339,8 +339,8 @@ Parameter | Type | Description
 type | `String` | The type of the question to create
 locked | `Boolean` | Is the question locked?
 verified | `Boolean` | Is the question verified?
-status | `String` | Status of the question to create
-user | `String` @todo | The ID of the user to ask a question on behalf @todo
+status | `String` | Status of the question to create. Should be one of the followings: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
+user | `String` | The ID of the user to ask a question on behalf 
 
 ## Update a Specific Question
 
@@ -378,4 +378,4 @@ Parameter | Type | Description
 type | `String` | The type of the question to create
 locked | `Boolean` | Is the question locked?
 verified | `Boolean` | Is the question verified?
-status | `String` | Status of the question to create
+status | `String` | Status of the question to create. Should be one of the followings: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
