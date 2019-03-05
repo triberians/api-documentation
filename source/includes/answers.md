@@ -212,9 +212,9 @@ This endpoint retrieves all answers.
 
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
-page | `number` | `1` | Intended page
-limit | `number` | `20` | Number of items per page
-sort | `string` @todo | `createdAt.desc` | The field to sort on
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` @todo | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Answer
@@ -428,7 +428,7 @@ This endpoint retrieves a specific answer using ID.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the item
+id | `String` | The ID of the item
 
 
 <!-- 
@@ -651,21 +651,21 @@ The endpoint creates an answer for a specific question.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-questionId | `string` | The ID of the question
+questionId | `String` | The ID of the question
 
 ### Request body Fields
 
 Field | Type | Description
 --------- | ----------- | -----------
-content | `string` | The content of the answer
-anonymous | `boolean` | Is it an anonymous answer or not
-status | `string` | Status of the answer (@todo)
+content | `String` | The content of the answer
+anonymous | `Boolean` | Is it an anonymous answer or not
+status | `String` | Status of the answer (@todo)
 
 ### Extra Request body Fields for Moderators
 
 Field | Type | Description
 --------- | ----------- | -----------
-verified | `boolean` | Is this answer verified or not
+verified | `Boolean` | Is this answer verified or not
 
 ### 
 
@@ -701,21 +701,21 @@ This endpoint update a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the answer to update
+id | `String` | The ID of the answer to update
 
 ### Request body Fields
 
 Field | Type | Description
 --------- | ----------- | -----------
-content | `string` | The content of the answer
-anonymous | `string` | Is it an anonymous answer or not
+content | `String` | The content of the answer
+anonymous | `String` | Is it an anonymous answer or not
 
 ### Extra Request Body Fields for Moderators
 
 Field | Type | Description
 --------- | ----------- | ------
-verified | `string` | Is this a verified answer or not
-status | `string` | Status of the answer. Should be one of the following values: `draft` `published` `unapproved` `collapsed` `archived`
+verified | `String` | Is this a verified answer or not
+status | `String` | Status of the answer. Should be one of the following values: `draft` `published` `unapproved` `collapsed` `archived`
 
 ## Delete a Specific Answer
 
@@ -752,7 +752,7 @@ This endpoint deletes a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the answer to delete
+id | `String` | The ID of the answer to delete
 
 ## Delete a Specific Draft Answer
 
@@ -789,7 +789,7 @@ This endpoint deletes a specific draft answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the answer to delete
+id | `String` | The ID of the answer to delete
 
 
 ## Upvote a Specific Answer
@@ -820,7 +820,7 @@ This endpoint upvotes for a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the answer to add a vote
+id | `String` | The ID of the answer to add a vote
 
 ## Remove Upvote for a Specific Answer
 
@@ -850,7 +850,7 @@ This endpoint removes an upvote for a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the answer to remove a vote
+id | `String` | The ID of the answer to remove a vote
 
 ## Get List of Votes for a Specific Answer
 
@@ -938,5 +938,5 @@ This endpoint retrieves all answers for a specific answer.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the answer to receive the votes
+id | `String` | The ID of the answer to receive the votes
 

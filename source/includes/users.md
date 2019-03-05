@@ -64,9 +64,9 @@ This endpoint retrieves all users.
 
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
-page | `number` | `1` | Intended page
-limit | `number` | `20` | Number of items per page
-sort | `number` | `createdAt.desc` | The field to sort on
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `Number` | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific User
@@ -132,7 +132,7 @@ This endpoint retrieves a specific user using ID.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the user
+id | `String` | The ID of the user
 
 
 ## Update a Specific User
@@ -155,13 +155,13 @@ This endpoint updates a specific user using ID.
 
 Parameter | Type | Description
 --------- | -----------  | -----------
-id | `string` | The ID of the user to update
+id | `String` | The ID of the user to update
 
 ### Request Parameters
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-name | `string` | Name of the user
+name | `String` | Name of the user
 @todo | @todo | @todo
 
 
@@ -200,7 +200,7 @@ This endpoint deletes a specific user.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the user to delete
+id | `String` | The ID of the user to delete
 
 
 
@@ -271,7 +271,7 @@ This endpoint retrieves a specific user's followers using ID.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the user
+id | `String` | The ID of the user
 
 
 ## Get User's Following
@@ -339,7 +339,7 @@ This endpoint retrieves a specific user's followings using ID.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the user
+id | `String` | The ID of the user
 
 
 
@@ -437,7 +437,7 @@ This endpoint retrieves a specific user's expertise using ID.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the user
+id | `String` | The ID of the user
 
 
 
@@ -467,7 +467,7 @@ let users = api.users.questions('5b1f99a7478dd3768d84b646');
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the user
+id | `String` | The ID of the user
 
 
 
@@ -496,4 +496,4 @@ let users = api.users.answers('5b1f99a7478dd3768d84b646');
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the user
+id | `String` | The ID of the user

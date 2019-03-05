@@ -332,9 +332,9 @@ This endpoint creates a new portal.
 
 Field | Type | Description
 --------- | ----------- | -----------
-name | `string` | The name of the portal
-domain | `string` | The domain of the portal
-subdomain | `string` | The subdomain of the portal
+name | `String` | The name of the portal
+domain | `String` | The domain of the portal
+subdomain | `String` | The subdomain of the portal
 
 
 ## Get Trending Items

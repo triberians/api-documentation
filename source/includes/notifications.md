@@ -139,8 +139,8 @@ This endpoint retrieves user notifications.
 
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
-page | `number` | `1` | Intended page
-limit | `number` | `20` | Number of items per page
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
 
 
 
@@ -234,4 +234,4 @@ This endpoint marks a specific notification as read.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the notification to mark as read
+id | `String` | The ID of the notification to mark as read

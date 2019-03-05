@@ -64,9 +64,9 @@ This endpoint retrieves all questions.
 
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
-page | `number` | `1` | Intended page
-limit | `number` | `20` | Number of items per page
-sort | `string` @todo | `createdAt.desc` | The field to sort on
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` @todo | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Question
@@ -132,7 +132,7 @@ This endpoint retrieves a specific question using ID.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the item
+id | `String` | The ID of the item
 
 
 ## Delete a Specific Question
@@ -170,7 +170,7 @@ This endpoint deletes a specific question.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the question to delete
+id | `String` | The ID of the question to delete
 
 
 
@@ -199,15 +199,15 @@ let users = api.questions.answers('5a816275f8030b3bdd655b0d');
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the question
+id | `String` | The ID of the question
 
 ### Query Parameters
 
 Parameter | Type | Default | Description
 --------- | ----------- | ------- | -----------
-page | `number` | `1` | Intended page
-limit | `number` | `20` | Number of items per page
-sort | `number` | `createdAt.desc` | The field to sort on
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `Number` | `createdAt.desc` | The field to sort on
 
 
 
@@ -237,7 +237,7 @@ let users = api.questions.experts('5a816275f8030b3bdd655b0d');
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the question
+id | `String` | The ID of the question
 
 
 
@@ -266,7 +266,7 @@ let users = api.questions.recommendations('5a816275f8030b3bdd655b0d');
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the question
+id | `String` | The ID of the question
 
 
 ## Get Similar Questions
@@ -295,7 +295,7 @@ This endpoint find related questions to keywords or a question title.
 
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
-questy @todo | `string` | `""` | Keywords or title of a question
+questy @todo | `String` | `""` | Keywords or title of a question
 
 
 
@@ -326,20 +326,20 @@ This endpoint creates a new question.
 
 Parameter | Type | Description
 --------- | ----------- | ----------- | -----------
-title | `string` | The title of the question to create
-description | `string` | The description of the question to create
-anonymous | `boolean` | Is this an anonymous question?
-from | `string` | @todo
-topics | `string` | @todo
+title | `String` | The title of the question to create
+description | `String` | The description of the question to create
+anonymous | `Boolean` | Is this an anonymous question?
+from | `String` | @todo
+topics | `String` | @todo
 
 ### Extra Query Parameters for Moderators
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-type | `string` | The type of the question to create
-locked | `boolean` | Is the question locked?
-verified | `boolean` | Is the question verified?
-status | `string` | Status of the question to create
+type | `String` | The type of the question to create
+locked | `Boolean` | Is the question locked?
+verified | `Boolean` | Is the question verified?
+status | `String` | Status of the question to create
 
 ## Update a Specific Question
 
@@ -360,21 +360,21 @@ This endpoint updates a specific question.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-id | `string` | The ID of the question to update
+id | `String` | The ID of the question to update
 
 ### Query Parameters
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-title | `string` | The title of the question to create
-description | `string` | The description of the question to create
-anonymous | `boolean` | Is this an anonymous question?
+title | `String` | The title of the question to create
+description | `String` | The description of the question to create
+anonymous | `Boolean` | Is this an anonymous question?
 
 ### Extra Query Parameters for Moderators
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-type | `string` | The type of the question to create
-locked | `boolean` | Is the question locked?
-verified | `boolean` | Is the question verified?
-status | `string` | Status of the question to create
+type | `String` | The type of the question to create
+locked | `Boolean` | Is the question locked?
+verified | `Boolean` | Is the question verified?
+status | `String` | Status of the question to create
