@@ -69,6 +69,32 @@ limit | `Number` | `20` | Number of items per page
 sort | `Number` | `createdAt.desc` | The field to sort on
 
 
+## Create a new User
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{data}'
+```
+
+This endpoint creates a new user.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/users/</code>
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+username | `String` | Username of the user
+name | `String` | Name of the user
+email | `String` | Email of the user
+password | `String` | Password of the user
+confirmPassword | `String` | Confirm password of the user
+
 ## Get a Specific User
 
 
@@ -142,6 +168,7 @@ id | `String` | The ID of the user
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
   -X PUT
   -H "Authorization: Bearer {access_token}"
+  --DATA '{data}'
 ```
 
 This endpoint updates a specific user using ID.
@@ -161,9 +188,11 @@ id | `String` | The ID of the user to update
 
 Parameter | Type | Description
 --------- | ----------- | -----------
+username | `String` | Username of the user
 name | `String` | Name of the user
-@todo | @todo | @todo
-
+email | `String` | Email of the user
+password | `String` | Password of the user
+confirmPassword | `String` | Confirm password of the user
 
 ## Delete a Specific User
 
