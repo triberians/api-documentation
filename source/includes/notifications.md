@@ -137,10 +137,10 @@ This endpoint retrieves user notifications.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `number` | `1` | Intended page
+limit | `number` | `20` | Number of items per page
 
 
 
@@ -232,6 +232,6 @@ This endpoint marks a specific notification as read.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the notification to mark as read
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the notification to mark as read

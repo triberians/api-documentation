@@ -210,11 +210,11 @@ This endpoint retrieves all answers.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `number` | `1` | Intended page
+limit | `number` | `20` | Number of items per page
+sort | `string` @todo | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Answer
@@ -426,9 +426,9 @@ This endpoint retrieves a specific answer using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the item
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `string` | The ID of the item
 
 
 <!-- 
@@ -649,23 +649,23 @@ The endpoint creates an answer for a specific question.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-questionId | The ID of the question
+Parameter | Type | Description
+--------- | ----------- | -----------
+questionId | `string` | The ID of the question
 
 ### Request body Fields
 
-Field | Description | Type
+Field | Type | Description
 --------- | ----------- | -----------
-content | The content of the answer | `string`
-anonymous | Is it an anonymous answer or not | `boolean`
-status | Status of the answer (@todo) | `string`
+content | `string` | The content of the answer
+anonymous | `boolean` | Is it an anonymous answer or not
+status | `string` | Status of the answer (@todo)
 
 ### Extra Request body Fields for Moderators
 
-Field | Description | Type
+Field | Type | Description
 --------- | ----------- | -----------
-verified | Is this answer verified or not | `boolean`
+verified | `boolean` | Is this answer verified or not
 
 ### 
 
@@ -699,23 +699,23 @@ This endpoint update a specific answer.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the answer to update
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the answer to update
 
 ### Request body Fields
 
-Field | Description
---------- | -----------
-content | The content of the answer
-anonymous | Is it an anonymous answer or not
+Field | Type | Description
+--------- | ----------- | -----------
+content | `string` | The content of the answer
+anonymous | `string` | Is it an anonymous answer or not
 
 ### Extra Request Body Fields for Moderators
 
-Field | Description | Values
+Field | Type | Description
 --------- | ----------- | ------
-verified | Is this a verified answer or not | `true` `false`
-status | Status of the answer | `draft` `published` `unapproved` `collapsed` `archived`
+verified | `string` | Is this a verified answer or not
+status | `string` | Status of the answer. Should be one of the following values: `draft` `published` `unapproved` `collapsed` `archived`
 
 ## Delete a Specific Answer
 
@@ -750,9 +750,9 @@ This endpoint deletes a specific answer.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the answer to delete
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the answer to delete
 
 ## Delete a Specific Draft Answer
 
@@ -787,9 +787,9 @@ This endpoint deletes a specific draft answer.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the answer to delete
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the answer to delete
 
 
 ## Upvote a Specific Answer
@@ -818,9 +818,9 @@ This endpoint upvotes for a specific answer.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the answer to add a vote
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the answer to add a vote
 
 ## Remove Upvote for a Specific Answer
 
@@ -848,9 +848,9 @@ This endpoint removes an upvote for a specific answer.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the answer to remove a vote
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the answer to remove a vote
 
 ## Get List of Votes for a Specific Answer
 
@@ -936,7 +936,7 @@ This endpoint retrieves all answers for a specific answer.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the answer to receive the votes
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the answer to receive the votes
 

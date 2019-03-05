@@ -55,8 +55,8 @@ This endpoint retrieves user feed.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `number` | `1` | Intended page
+limit | `number` | `20` | Number of items per page
+sort | `string` | `createdAt.desc` | The field to sort on

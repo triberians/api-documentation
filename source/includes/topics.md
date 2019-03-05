@@ -73,11 +73,11 @@ This endpoint retrieves all topics.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `number` | `1` | Intended page
+limit | `number` | `20` | Number of items per page
+sort | `string` @todo | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Topic
@@ -152,9 +152,9 @@ This endpoint retrieves a specific topic using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the item
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `string` | The ID of the item
 
 
 
@@ -214,14 +214,14 @@ This endpoint creates a new topic.
 
 ### Request Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-name | null | The name of the Topic
-about | null | The description of the Topic
-picture | null | Url to a picture for this Topic
-definitions | [] | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
-aliases | [] | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
-externalId | null | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+name | `string` | `null` | The name of the Topic
+about | `string` | `null` | The description of the Topic
+picture | `string` | `null` | Url to a picture for this Topic
+definitions | `[string]` | `[]` | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code> @todo
+aliases | `[string]` | `[]` | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
+externalId | `string` | `null` | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
 
 ## Update a Specific Topic
 
@@ -242,25 +242,25 @@ This endpoint updates a specific topic.
 
 ### URL Parameters
 
-Parameter | Default
---------- | -------
-ID | The ID of the topic to update
+Parameter | Type | Default
+--------- | ------- | -------
+ID | `string` | The ID of the topic to update
 
 ### Request Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-name | null | The name of the Topic
-about | null | The description of the Topic
-definitions | [] | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
-aliases | [] | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+name | `string` | `null` | The name of the Topic
+about | `string` | `null` | The description of the Topic
+definitions | `[string]` | `[]` | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
+aliases | `[string]` | `[]` | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
 
 ### Extra Request Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-picture | `null` | Url to a picture for this Topic
-externalId | `null` | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
+Parameter | Type | Default | Description
+--------- | ------- | -----------  | -----------
+picture | `string` | `null` | Url to a picture for this Topic
+externalId | `string` | `null` | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
 
 ## Delete a Specific Topic
 
@@ -295,9 +295,9 @@ This endpoint deletes a specific topic.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the topic to delete
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the topic to delete
 
 
 
@@ -324,9 +324,9 @@ let users = api.topics.questions('5b88264d3d9228aa7c41f692');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the topic
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `string` | The ID of the topic
 
 
 
@@ -354,6 +354,6 @@ let users = api.topics.experts('5b88264d3d9228aa7c41f692');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the topic
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `string` | The ID of the topic

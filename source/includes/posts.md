@@ -155,11 +155,11 @@ This endpoint retrieves all posts.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `number` | `1` | Intended page
+limit | `number` | `20` | Number of items per page
+sort | `string` @todo | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Post
@@ -316,9 +316,9 @@ This endpoint retrieves a specific post using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the item
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `string` | The ID of the item
 
 ## Create a new Post
 
@@ -338,21 +338,21 @@ This endpoint creates a new post.
 
 ### Request Parameters
 
-Field | Description | Type
+Field | Type | Description 
 --------- | ----------- | -----------
-title | The title of the post | `string`
-content | The content of the post | `string`
-type | The type of the post | @todo
-parent | The id of the parent post | `string`
-replyTo | The id of the post to reply | `string`
+title | `string` | The title of the post
+content | `string` | The content of the post
+type | @todo | The type of the post
+parent | `string` | The id of the parent post
+replyTo | `string` | The id of the post to reply
 
 ### Extra Request Parameters for Moderators
 
-Field | Description | Type
+Field | Type | Description
 --------- | ----------- | -----------
-locked | Is the post locked? | `boolean`
-verified | Is the post verified? | `boolean`
-status | The status of the post | `string`
+locked | `boolean` | Is the post locked?
+verified | `boolean` | Is the post verified?
+status | `string` | The status of the post
 
 ## Update a Specific Post
 
@@ -372,24 +372,24 @@ This endpoint updates a specific post.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the post to update
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the post to update
 
 ### Request Parameters
 
-Field | Description | Type
+Field | Type | Description
 --------- | ----------- | -----------
-title | The title of the post | `string`
-content | The content of the post | `string`
+title | `string` | The title of the post
+content | `string` | The content of the post
 
 ### Extra Request Parameters for Moderators
 
-Field | Description | Type
+Field | Type | Description
 --------- | ----------- | -----------
-locked | Is the post locked? | `boolean`
-verified | Is the post verified? | `boolean`
-status | The status of the post | `string`
+locked | `boolean` | Is the post locked?
+verified | `boolean` | Is the post verified?
+status | `string` | The status of the post
 
 ## Delete a Specific Post
 
@@ -424,9 +424,9 @@ This endpoint deletes a specific post.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the post to delete
+Parameter | Type | Description
+--------- | ----------- | ----------- 
+ID | `string` | The ID of the post to delete
 
 
 
@@ -541,17 +541,17 @@ let users = api.posts.responses('5c0621864cb2b119dc174a63');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the question
+Parameter | Type | Description
+--------- | ----------- | ----------- 
+id | `string` | The ID of the question
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `number` | `1` | Intended page
+limit | `number` | `20` | Number of items per page
+sort | `string` @todo | `createdAt.desc` | The field to sort on
 
 ## Upvote for a Specific Post
 
@@ -571,9 +571,9 @@ This endpoint upvotes a specific post.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the post to upvote
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the post to upvote
 
 ## Remove an Upvote for a Specific Post
 
@@ -602,6 +602,6 @@ This endpoint removes an upvote a specific post.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the post to remove an upvote
+Parameter | Type | Description
+--------- | ----------- | -----------
+ID | `string` | The ID of the post to remove an upvote

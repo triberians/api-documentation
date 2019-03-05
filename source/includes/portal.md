@@ -330,11 +330,11 @@ This endpoint creates a new portal.
 
 ### Request Parameters
 
-Field | Description | Type
+Field | Type | Description
 --------- | ----------- | -----------
-name | The name of the portal | `string`
-domain | The domain of the portal | `string`
-subdomain | The subdomain of the portal | `string`
+name | `string` | The name of the portal
+domain | `string` | The domain of the portal
+subdomain | `string` | The subdomain of the portal
 
 
 ## Get Trending Items
