@@ -606,3 +606,99 @@ This endpoint removes an upvote a specific post.
 Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the post to remove an upvote
+
+
+// TODO:
+
+## Add a Comment for a Specific Post
+
+```shell
+  curl "https://community.tribe.so/api/v1/posts/5bf0e89ada3be54c190b78ba/comments"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{'body':'New comment'}"
+```
+> The above command returns JSON structured like this:
+
+```json
+ @todo
+```
+
+This endpoint adds a comment for a specific post.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/posts/:id/comments</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the post to add a comment
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+body | `String` | The content of the comment
+
+## Update a Specific Comment for a Specific Post
+
+```shell
+  curl "https://community.tribe.so/api/v1/posts/5bf0e89ada3be54c190b78ba/comments/4sf0e89ada3be54c190b78b2"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{'body':'Updated comment'}"
+```
+> The above command returns JSON structured like this:
+
+```json
+ @todo
+```
+
+This endpoint updates a specific comment.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/posts/:postId/comments/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the comment to update
+postId | `String` | The ID of the post to add a comment
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+body | `String` | The content of the comment
+
+## Remove a Specific Comment from Specific Post
+
+```shell
+  curl "https://community.tribe.so/api/v1/posts/5bf0e89ada3be54c190b78ba/comments/4sf0e89ada3be54c190b78b2"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint removes a specific comment.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/posts/:postId/comments/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the comment to remove
+postId | `String` | The ID of the post to remove a comment
