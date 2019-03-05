@@ -340,7 +340,7 @@ This endpoint creates a new post.
 
 Field | Description | Type
 --------- | ----------- | -----------
-title | Thea title of the post | `string`
+title | The title of the post | `string`
 content | The content of the post | `string`
 type | The type of the post | @todo
 parent | The id of the parent post | `string`
@@ -380,7 +380,7 @@ ID | The ID of the post to update
 
 Field | Description | Type
 --------- | ----------- | -----------
-title | Thea title of the post | `string`
+title | The title of the post | `string`
 content | The content of the post | `string`
 
 ### Extra Request Parameters for Moderators

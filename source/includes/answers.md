@@ -454,7 +454,7 @@ topicId | The ID of the topic -->
 
 
 
-## Create an Answer for a Specific Question
+## Create an Answer
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5c7bfc7a157c2c34f735a53e/answers"

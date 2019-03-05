@@ -332,7 +332,7 @@ This endpoint creates a new portal.
 
 Field | Description | Type
 --------- | ----------- | -----------
-name | Thea name of the portal | `string`
+name | The name of the portal | `string`
 domain | The domain of the portal | `string`
 subdomain | The subdomain of the portal | `string`
 
