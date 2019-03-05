@@ -330,7 +330,7 @@ This endpoint creates a new portal.
 
 ### Request Parameters
 
-Field | Type | Description
+Parameter | Type | Description
 --------- | ----------- | -----------
 name | `String` | The name of the portal
 domain | `String` | The domain of the portal

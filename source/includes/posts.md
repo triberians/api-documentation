@@ -338,7 +338,7 @@ This endpoint creates a new post.
 
 ### Request Parameters
 
-Field | Type | Description 
+Parameter | Type | Description 
 --------- | ----------- | -----------
 title | `String` | The title of the post
 content | `String` | The content of the post
@@ -348,7 +348,7 @@ replyTo | `String` | The ID of the post to reply
 
 ### Extra Request Parameters for Moderators
 
-Field | Type | Description
+Parameter | Type | Description
 --------- | ----------- | -----------
 locked | `Boolean` | Is the post locked?
 verified | `Boolean` | Is the post verified?
@@ -378,14 +378,14 @@ id | `String` | The ID of the post to update
 
 ### Request Parameters
 
-Field | Type | Description
+Parameter | Type | Description
 --------- | ----------- | -----------
 title | `String` | The title of the post
 content | `String` | The content of the post
 
 ### Extra Request Parameters for Moderators
 
-Field | Type | Description
+Parameter | Type | Description
 --------- | ----------- | -----------
 locked | `Boolean` | Is the post locked?
 verified | `Boolean` | Is the post verified?

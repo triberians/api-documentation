@@ -653,17 +653,17 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 questionId | `String` | The ID of the question
 
-### Request body Fields
+### Request Parameters
 
-Field | Type | Description
+Parameter | Type | Description
 --------- | ----------- | -----------
 content | `String` | The content of the answer
 anonymous | `Boolean` | Is it an anonymous answer or not
 status | `String` | Status of the answer (@todo)
 
-### Extra Request body Fields for Moderators
+### Extra Request Parameters for Moderators
 
-Field | Type | Description
+Parameter | Type | Description
 --------- | ----------- | -----------
 verified | `Boolean` | Is this answer verified or not
 
@@ -703,16 +703,16 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the answer to update
 
-### Request body Fields
+### Request Parameters
 
-Field | Type | Description
+Parameter | Type | Description
 --------- | ----------- | -----------
 content | `String` | The content of the answer
 anonymous | `String` | Is it an anonymous answer or not
 
-### Extra Request Body Fields for Moderators
+### Extra Request Parameters for Moderators
 
-Field | Type | Description
+Parameter | Type | Description
 --------- | ----------- | ------
 verified | `String` | Is this a verified answer or not
 status | `String` | Status of the answer. Should be one of the following values: `draft` `published` `unapproved` `collapsed` `archived`
