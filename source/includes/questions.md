@@ -340,6 +340,7 @@ type | `String` | The type of the question to create
 locked | `Boolean` | Is the question locked?
 verified | `Boolean` | Is the question verified?
 status | `String` | Status of the question to create
+user | `String` @todo | The ID of the user to ask a question on behalf @todo
 
 ## Update a Specific Question
 

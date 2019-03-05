@@ -666,6 +666,7 @@ status | `String` | Status of the answer (@todo)
 Parameter | Type | Description
 --------- | ----------- | -----------
 verified | `Boolean` | Is this answer verified or not
+user | `String` @todo | The ID of the user to create an answer on behalf @todo
 
 ### 
 

@@ -353,6 +353,7 @@ Parameter | Type | Description
 locked | `Boolean` | Is the post locked?
 verified | `Boolean` | Is the post verified?
 status | `String` | The status of the post
+user | `String` @todo | The ID of the user to post on behalf @todo
 
 ## Update a Specific Post
 
