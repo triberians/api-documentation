@@ -676,7 +676,6 @@ Parameter | Type | Description
 verified | `Boolean` | Is this answer verified or not
 user | `String` | The ID of the user to create an answer on behalf
 
-### 
 
 ## Update a Specific Answer
 
@@ -1005,6 +1004,12 @@ id | `String` | The ID of the answer to add a comment
 Parameter | Type | Description
 --------- | ----------- | -----------
 body | `String` | The content of the comment
+
+### Extra Request Parameters for Moderators
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+user | `String` | The ID of the user to comment on behalf
 
 ## Update a Specific Comment for a Specific Answer
 

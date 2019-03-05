@@ -677,6 +677,12 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 body | `String` | The content of the comment
 
+### Extra Request Parameters for Moderators
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+user | `String` | The ID of the user to comment on behalf
+
 ## Update a Specific Comment for a Specific Post
 
 ```shell
