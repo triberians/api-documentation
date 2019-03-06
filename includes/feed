@@ -42,23 +42,27 @@
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>page</td>
-<td>1</td>
+<td><code>Number</code></td>
+<td><code>1</code></td>
 <td>Intended page</td>
 </tr>
 <tr>
 <td>limit</td>
-<td>20</td>
+<td><code>Number</code></td>
+<td><code>20</code></td>
 <td>Number of items per page</td>
 </tr>
 <tr>
 <td>sort</td>
-<td>createdAt.desc</td>
+<td><code>String</code></td>
+<td><code>createdAt.desc</code></td>
 <td>The field to sort on</td>
 </tr>
 </tbody></table>
