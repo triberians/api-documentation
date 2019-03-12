@@ -99,13 +99,13 @@ This endpoint creates a new user.
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-username | `String` | Username of the user
-name | `String` | Name of the user
-email | `String` | Email of the user
-password | `String` | Password of the user
-confirmPassword | `String` | Confirm password of the user
+Parameter | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+username | `String` | Username of the user | `Yes`
+name | `String` | Name of the user | `Yes`
+email | `String` | Email of the user | `Yes`
+password | `String` | Password of the user | `Yes`
+confirmPassword | `String` | Confirm password of the user | `No`
 
 ## Get a Specific User
 
@@ -207,13 +207,53 @@ id | `String` | The ID of the user to update
 
 ### Request Parameters
 
+Parameter | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+username | `String` | Username of the user | `Yes`
+name | `String` | Name of the user | `Yes`
+email | `String` | Email of the user | `Yes`
+password | `String` | Password of the user | `Yes`
+confirmPassword | `String` | Confirm password of the user | `No`
+links | `Object` | List of user's social network accounts | `No`
+bankAccount | `Object` | User's bank account | `No`
+location | `String` | Location of the user | `No`
+website | `String` | Website owned by user | `No`
+gender | `String` | Gender of the user | `No`
+title | `String` | Title of the user | `No`
+description | `String` | A short description of user | `No`
+notifications | @todo | @todo | @todo
+
+### Bank Account Parameters
 Parameter | Type | Description
 --------- | ----------- | -----------
-username | `String` | Username of the user
-name | `String` | Name of the user
-email | `String` | Email of the user
-password | `String` | Password of the user
-confirmPassword | `String` | Confirm password of the user
+holderName | `String` | Name of the holder
+accountNumber | `String` | Account number
+type | `String` | Type of the account @todo
+routingNumber | `String` | Routing number for the bank account
+bankName | `String` | Name of the bank related to account
+
+### Links Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+telegram | `String` | Telegram account of the user
+instagram | `String` | Instagram account of the user
+twitter | `String` | Twitter account of the user
+facebook | `String` | Facebook account of the user
+linkedin | `String` | Twitter account of the user
+homepage | `String` | The url of homepage of user
+
+### Extra Request Parameters for Moderators
+Parameter | Type | Description
+--------- | ----------- | -----------
+verified | `Boolean` | Is the user verified or not
+status | `String` | Status of the user
+
+### Extra Request Parameters for Admin
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+role | `String` | Role of the user
+
 
 ## Delete a Specific User
 
