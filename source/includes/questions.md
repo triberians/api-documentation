@@ -492,3 +492,72 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the comment to remove
 questionId | `String` | The ID of the question to remove a comment
+
+## Get Stats of Specific User for Questions
+
+```shell
+  curl "https://community.tribe.so/api/v1/user/stats/questions/views"
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.user.stats('question','views')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "values": {
+    "2019-02-10": 0,
+    "2019-02-11": 0,
+    "2019-02-12": 0,
+    "2019-02-13": 0,
+    "2019-02-14": 0,
+    "2019-02-15": 0,
+    "2019-02-16": 0,
+    "2019-02-17": 0,
+    "2019-02-18": 0,
+    "2019-02-19": 0,
+    "2019-02-20": 0,
+    "2019-02-21": 0,
+    "2019-02-22": 0,
+    "2019-02-23": 0,
+    "2019-02-24": 0,
+    "2019-02-25": 0,
+    "2019-02-26": 0,
+    "2019-02-27": 0,
+    "2019-02-28": 0,
+    "2019-03-01": 0,
+    "2019-03-02": 0,
+    "2019-03-03": 0,
+    "2019-03-04": 0,
+    "2019-03-05": 0,
+    "2019-03-06": 0,
+    "2019-03-07": 0,
+    "2019-03-08": 0,
+    "2019-03-09": 0,
+    "2019-03-10": 0,
+    "2019-03-11": 0,
+    "2019-03-12": 0,
+    "2019-03-13": 0
+  },
+  "type": "user_question_viewed",
+  "timestamp": "2019-03-01"
+}
+```
+
+This endpoint returns statistics of a specific user for questions.
+
+### HTTP Request
+
+<code class="request">GET /api/v1/user/stats/questions/:metric</code>
+
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+metric | `String` | Metric for the statistics. Should be one of the followings: [`views`,`votes`,`follows`]

@@ -1116,3 +1116,72 @@ This endpoint adds a log for a specific answer.
 Parameter | Type | Description
 --------- | ----------- | -----------
 logs | `Array<String>` | The ID of answers to add log
+
+## Get Stats of Specific User for Answers
+
+```shell
+  curl "https://community.tribe.so/api/v1/user/stats/answers/views"
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.user.stats('answer','views')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "values": {
+    "2019-02-10": 0,
+    "2019-02-11": 0,
+    "2019-02-12": 0,
+    "2019-02-13": 0,
+    "2019-02-14": 0,
+    "2019-02-15": 0,
+    "2019-02-16": 0,
+    "2019-02-17": 0,
+    "2019-02-18": 0,
+    "2019-02-19": 0,
+    "2019-02-20": 0,
+    "2019-02-21": 0,
+    "2019-02-22": 0,
+    "2019-02-23": 0,
+    "2019-02-24": 0,
+    "2019-02-25": 0,
+    "2019-02-26": 0,
+    "2019-02-27": 0,
+    "2019-02-28": 0,
+    "2019-03-01": 0,
+    "2019-03-02": 0,
+    "2019-03-03": 0,
+    "2019-03-04": 0,
+    "2019-03-05": 0,
+    "2019-03-06": 0,
+    "2019-03-07": 0,
+    "2019-03-08": 0,
+    "2019-03-09": 0,
+    "2019-03-10": 0,
+    "2019-03-11": 0,
+    "2019-03-12": 0,
+    "2019-03-13": 0
+  },
+  "type": "user_answer_viewed",
+  "timestamp": "2019-03-01"
+}
+```
+
+This endpoint returns statistics of a specific user for answers.
+
+### HTTP Request
+
+<code class="request">GET /api/v1/user/stats/answers/:metric</code>
+
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+metric | `String` | Metric for the statistics. Should be one of the followings: [`views`,`votes`,`follows`]
