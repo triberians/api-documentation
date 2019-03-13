@@ -501,3 +501,121 @@ This endpoint retrieves users leaderboard in portal.
 
 <code class="request">GET /api/v1/stats/users/leaderboard</code>
 
+
+## Update the Portal
+
+
+```shell
+curl "https://community.tribe.so/api/v1/portal"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{"name": "Test Portal","domain":"test.com"}'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let portal = api.portal.update({ 
+  name: "Test Portal",
+  domain: "test.com"
+});
+```
+
+This endpoint updates the portal.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/portal</code>
+
+### Request Parameters
+
+Parameter | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+name | `String` | The name of the portal | `Yes`
+domain | `String` | The domain of the portal | `Yes`
+subdomain | `String` | The subdomain of the portal | `No`
+announcement | `Object` | @todo | `No`
+banner | `String` | @todo | `No`
+description | `String` | Description of the portal | `No`
+email | `String` | Email of the portal | `No`
+englishName | `String` | Name of the portal in English | `No`
+favicon | `String` | Icon of the portal | `No`
+keywords | `Array<String>` | Keywords related to the portal | `No`
+links | `Object` | @todo | `No`
+logo | `String` | Logo of the portal | `No`
+longName | `String` | @todo | `No`
+messages | `String` | @todo | `No`
+policies | `Object` | @todo | `No`
+stage | `String` | @todo | `No`
+status | `String` | Status of the portal @todo | `No` 
+template | `Object` | Template of the portal | `No`
+
+### Announcement Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+action | `String` | @todo
+content | `String` | Conetent of the announcement
+enabled | `String` | Is announcement enabled?
+layout | `String` | @todo
+link | `String` | Link related to the announcement
+picture | `String` | Url to the picture of the announcement
+title | `String` | Title of the announcement
+
+
+### Links Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+bug | `String` | Name of the holder
+facebook | `String` | Facebook handle of the portal
+faq | `String` | FAQ url of the portal
+feature | `String` | @todo handle of the portal
+homepage | `String` | Homepage of the portal
+instagram | `String` | Instagram handle of the portal
+linkedin | `String` | Linkedin handle of the portal
+privacy | `String` | Url to portal's privacy policy
+telegram | `String` | Telegram handle of the portal
+terms | `String` | Url to portal's terms and condition
+twitter | `String` | Twitter handle of the portal
+
+### Messages Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+askRules | `String` | Rules of asking questions
+motto | `String` | Motto of the portal
+questionIntro | `String` | Introduction for questions
+signupRules | `String` | Rules of signing up
+topicIntro | `String` | Introduction for topics
+userIntro | `String` |Introduction for users
+
+### Template Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+body | `String` | Body tag of the template
+colors.default | `String` | Default colour
+colors.defaultLink | `String` | Default link
+colors.link | `String` | Colour of links
+colors.menuLink | `String` | Colour of menu
+colors.primary | `String` | Primary colour
+colors.secondary | `String` | Secondary colour
+css | `String` | @todo
+menu.background | `String` | Background colour of menu
+menu.border | `Number` | Border size of the menu
+menu.height | `Number` | Border height of the menu
+navbar.background | `String` | Background colour of the navigation bar
+navbar.border | `Number` | Border size of the navigation bar
+navbar.color | `String` | Colour of the navigation bar
+navbar.enabled | `Boolean` | Is navigation bar enabled?
+navbar.height | `Number` | Height the navigation bar
+navbar.links | `Array<String>` | Links of the navigation bar
+navbar.linksString | `String` | @todo
+sidebar | `String` | @todo
+theme | `String` | @todo
+
+### Policies Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+access | `String` | @todo
+cookieConsent | `String` | @todo
+email | `String` | @todo
+registration | `String` | @todo
