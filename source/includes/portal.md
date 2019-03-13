@@ -646,7 +646,7 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
   "name": "Tribe",
   "baseUrl": "https://community.tribe.so",
   "description": "",
-  "domain": "local.dev.tribe.so",
+  "domain": "tribe.so",
   "__v": 7,
   "apps": [
     {
@@ -946,9 +946,9 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
   "updatedAt": "2019-03-13T14:15:04.709Z",
   "createdAt": "2019-03-03T15:27:11.190Z",
   "name": "Tribe",
-  "baseUrl": "https://local.dev.tribe.so:3004",
+  "baseUrl": "https://community.tribe.so",
   "description": "",
-  "domain": "local.dev.tribe.so",
+  "domain": "tribe.so",
   "__v": 8,
   "apps": [
     {
