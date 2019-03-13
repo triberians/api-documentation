@@ -340,9 +340,6 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the topic
 
-
-
-
 ## Get Topic's Experts
 
 
@@ -369,3 +366,68 @@ let users = api.topics.experts('5b88264d3d9228aa7c41f692');
 Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the topic
+
+
+## Add a Child
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/children"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{ name: "Child" }'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let child = api.topics.addChild('5b88264d3d9228aa7c41f692',{ name: 'Child' });
+```
+
+
+### HTTP Request
+
+<code class="request">POST /api/v1/topics/{id}/children</code>
+
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the topic
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+name | `String` | Name of the child to add
+
+## Remove a Child
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/children/4c88264d3d9118aa7c41f6ff"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.topics.removeChild('5b88264d3d9228aa7c41f692','4c88264d3d9118aa7c41f6ff');
+```
+
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/topics/:id/children/:childId</code>
+
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the topic
+childId | `String` | The ID of the child to delete
