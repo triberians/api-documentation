@@ -1081,3 +1081,38 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the comment to remove
 answerId | `String` | The ID of the answer to remove a comment
+
+## Add Log for Specific Answers
+
+```shell
+  curl "https://community.tribe.so/api/v1/answers/logs"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{ ids: ["5bf0e89ada3be54c190b78ba"] }'
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.answers.log(['5bf0e89ada3be54c190b78ba'])
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint adds a log for a specific answer.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/answers/logs</code>
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+logs | `Array<String>` | The ID of answers to add log
