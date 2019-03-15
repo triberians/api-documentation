@@ -221,14 +221,13 @@ website | `String` | Website owned by user | `No`
 gender | `String` | Gender of the user | `No`
 title | `String` | Title of the user | `No`
 description | `String` | A short description of user | `No`
-notifications | @todo | @todo | @todo
 
 ### Bank Account Parameters
 Parameter | Type | Description
 --------- | ----------- | -----------
 holderName | `String` | Name of the holder
 accountNumber | `String` | Account number
-type | `String` | Type of the account @todo
+type | `String` | Type of the account. Can be: `card`, `checking`, `saving`
 routingNumber | `String` | Routing number for the bank account
 bankName | `String` | Name of the bank related to account
 

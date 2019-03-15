@@ -667,7 +667,7 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 content | `String` | The content of the answer
 anonymous | `Boolean` | Is it an anonymous answer or not
-status | `String` | Status of the answer. Should be one of the followings: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new`
+status | `String` | Status of the answer. Can be: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new`
 
 ### Extra Request Parameters for Moderators
 
@@ -720,7 +720,7 @@ anonymous | `String` | Is it an anonymous answer or not
 Parameter | Type | Description
 --------- | ----------- | ------
 verified | `String` | Is this a verified answer or not
-status | `String` | Status of the answer. Should be one of the following values: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new`
+status | `String` | Status of the answer. Can be: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new`
 
 ## Delete a Specific Answer
 
@@ -1184,4 +1184,4 @@ This endpoint returns statistics of a specific user for answers.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-metric | `String` | Metric for the statistics. Should be one of the followings: [`views`,`votes`,`follows`]
+metric | `String` | Metric for the statistics. Can be `views`,`votes`,`follows`

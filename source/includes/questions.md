@@ -339,7 +339,7 @@ Parameter | Type | Description
 type | `String` | The type of the question to create
 locked | `Boolean` | Is the question locked?
 verified | `Boolean` | Is the question verified?
-status | `String` | Status of the question to create. Should be one of the followings: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
+status | `String` | Status of the question to create. Can be: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
 user | `String` | The ID of the user to ask a question on behalf 
 
 ## Update a Specific Question
@@ -378,7 +378,7 @@ Parameter | Type | Description
 type | `String` | The type of the question to create
 locked | `Boolean` | Is the question locked?
 verified | `Boolean` | Is the question verified?
-status | `String` | Status of the question to create. Should be one of the followings: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
+status | `String` | Status of the question to create. Can be: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
 
 ## Add a Comment for a Specific Question
 
@@ -560,4 +560,4 @@ This endpoint returns statistics of a specific user for questions.
 
 Parameter | Type | Description
 --------- | ----------- | -----------
-metric | `String` | Metric for the statistics. Should be one of the followings: [`views`,`votes`,`follows`]
+metric | `String` | Metric for the statistics. Can be: `views`,`votes`,`follows`

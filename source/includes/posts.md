@@ -362,7 +362,7 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 locked | `Boolean` | Is the post locked?
 verified | `Boolean` | Is the post verified?
-status | `String` | The status of the post. Should be one of the followings: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
+status | `String` | The status of the post. Can be: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
 user | `String` | The ID of the user to post on behalf
 
 ## Update a Specific Post
@@ -409,7 +409,7 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 locked | `Boolean` | Is the post locked?
 verified | `Boolean` | Is the post verified?
-status | `String` | The status of the post. Should be one of the followings: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
+status | `String` | The status of the post. Can be: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
 
 ## Delete a Specific Post
 
