@@ -98,32 +98,38 @@
 <th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>username</td>
 <td><code>String</code></td>
 <td>Username of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>name</td>
 <td><code>String</code></td>
 <td>Name of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>email</td>
 <td><code>String</code></td>
 <td>Email of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>password</td>
 <td><code>String</code></td>
 <td>Password of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>confirmPassword</td>
 <td><code>String</code></td>
 <td>Confirm password of the user</td>
+<td><code>No</code></td>
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>
@@ -220,32 +226,186 @@
 <th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>username</td>
 <td><code>String</code></td>
 <td>Username of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>name</td>
 <td><code>String</code></td>
 <td>Name of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>email</td>
 <td><code>String</code></td>
 <td>Email of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>password</td>
 <td><code>String</code></td>
 <td>Password of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>confirmPassword</td>
 <td><code>String</code></td>
 <td>Confirm password of the user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>links</td>
+<td><code>Object</code></td>
+<td>List of user&#39;s social network accounts</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>bankAccount</td>
+<td><code>Object</code></td>
+<td>User&#39;s bank account</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>location</td>
+<td><code>String</code></td>
+<td>Location of the user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>website</td>
+<td><code>String</code></td>
+<td>Website owned by user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>gender</td>
+<td><code>String</code></td>
+<td>Gender of the user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>String</code></td>
+<td>Title of the user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>A short description of user</td>
+<td><code>No</code></td>
+</tr>
+</tbody></table>
+<h3 id='bank-account-parameters'>Bank Account Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>holderName</td>
+<td><code>String</code></td>
+<td>Name of the holder</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td><code>String</code></td>
+<td>Account number</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>Type of the account. Can be: <code>card</code>, <code>checking</code>, <code>saving</code></td>
+</tr>
+<tr>
+<td>routingNumber</td>
+<td><code>String</code></td>
+<td>Routing number for the bank account</td>
+</tr>
+<tr>
+<td>bankName</td>
+<td><code>String</code></td>
+<td>Name of the bank related to account</td>
+</tr>
+</tbody></table>
+<h3 id='links-parameters'>Links Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>telegram</td>
+<td><code>String</code></td>
+<td>Telegram account of the user</td>
+</tr>
+<tr>
+<td>instagram</td>
+<td><code>String</code></td>
+<td>Instagram account of the user</td>
+</tr>
+<tr>
+<td>twitter</td>
+<td><code>String</code></td>
+<td>Twitter account of the user</td>
+</tr>
+<tr>
+<td>facebook</td>
+<td><code>String</code></td>
+<td>Facebook account of the user</td>
+</tr>
+<tr>
+<td>linkedin</td>
+<td><code>String</code></td>
+<td>Twitter account of the user</td>
+</tr>
+<tr>
+<td>homepage</td>
+<td><code>String</code></td>
+<td>The url of homepage of user</td>
+</tr>
+</tbody></table>
+<h3 id='extra-request-parameters-for-moderators'>Extra Request Parameters for Moderators</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>verified</td>
+<td><code>Boolean</code></td>
+<td>Is the user verified or not</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code>String</code></td>
+<td>Status of the user</td>
+</tr>
+</tbody></table>
+<h3 id='extra-request-parameters-for-admin'>Extra Request Parameters for Admin</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>role</td>
+<td><code>String</code></td>
+<td>Role of the user</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-user'>Delete a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>

@@ -676,7 +676,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>Status of the answer. Should be one of the followings: <code>archived</code> <code>collapsed</code> <code>draft</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>scheduled</code> <code>new</code></td>
+<td>Status of the answer. Can be: <code>archived</code> <code>collapsed</code> <code>draft</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>scheduled</code> <code>new</code></td>
 </tr>
 </tbody></table>
 <h3 id='extra-request-parameters-for-moderators'>Extra Request Parameters for Moderators</h3>
@@ -760,7 +760,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>Status of the answer. Should be one of the following values: <code>archived</code> <code>collapsed</code> <code>draft</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>scheduled</code> <code>new</code></td>
+<td>Status of the answer. Can be: <code>archived</code> <code>collapsed</code> <code>draft</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>scheduled</code> <code>new</code></td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-answer'>Delete a Specific Answer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"</span>
@@ -1124,5 +1124,104 @@ topicId | The ID of the topic -->
 <td>answerId</td>
 <td><code>String</code></td>
 <td>The ID of the answer to remove a comment</td>
+</tr>
+</tbody></table>
+<h2 id='add-log-for-specific-answers'>Add Log for Specific Answers</h2><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://community.tribe.so/api/v1/answers/logs"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  --DATA <span class="s1">'{ ids: ["5bf0e89ada3be54c190b78ba"] }'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">answers</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="s1">'5bf0e89ada3be54c190b78ba'</span><span class="p">])</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a log for a specific answer.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/answers/logs</code></p>
+<h3 id='request-parameters-5'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>logs</td>
+<td><code>Array&lt;String&gt;</code></td>
+<td>The ID of answers to add log</td>
+</tr>
+</tbody></table>
+<h2 id='get-stats-of-specific-user-for-answers'>Get Stats of Specific User for Answers</h2><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://community.tribe.so/api/v1/user/stats/answers/views"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">stats</span><span class="p">(</span><span class="s1">'answer'</span><span class="p">,</span><span class="s1">'views'</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2019-02-10"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-11"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-12"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-13"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-14"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-15"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-16"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-17"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-18"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-19"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-20"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-21"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-22"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-23"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-24"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-25"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-26"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-27"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-28"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-01"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-02"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-03"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-04"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-05"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-06"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-07"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-08"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-09"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-10"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-11"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-12"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-13"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_answer_viewed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-01"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns statistics of a specific user for answers.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code class="request">GET /api/v1/user/stats/answers/:metric</code></p>
+<h3 id='request-parameters-6'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metric</td>
+<td><code>String</code></td>
+<td>Metric for the statistics. Can be <code>views</code>,<code>votes</code>,<code>follows</code></td>
 </tr>
 </tbody></table>

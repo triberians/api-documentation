@@ -264,6 +264,12 @@
                   <li>
                     <a href="#remove-a-specific-comment-from-a-specific-answer" class="toc-h2 toc-link" data-title="Remove a Specific Comment from a Specific Answer">Remove a Specific Comment from a Specific Answer</a>
                   </li>
+                  <li>
+                    <a href="#add-log-for-specific-answers" class="toc-h2 toc-link" data-title="Add Log for Specific Answers">Add Log for Specific Answers</a>
+                  </li>
+                  <li>
+                    <a href="#get-stats-of-specific-user-for-answers" class="toc-h2 toc-link" data-title="Get Stats of Specific User for Answers">Get Stats of Specific User for Answers</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -308,6 +314,15 @@
                   </li>
                   <li>
                     <a href="#get-portal-leaderboard" class="toc-h2 toc-link" data-title="Get Portal Leaderboard">Get Portal Leaderboard</a>
+                  </li>
+                  <li>
+                    <a href="#update-the-portal" class="toc-h2 toc-link" data-title="Update the Portal">Update the Portal</a>
+                  </li>
+                  <li>
+                    <a href="#install-an-app" class="toc-h2 toc-link" data-title="Install an App">Install an App</a>
+                  </li>
+                  <li>
+                    <a href="#uninstall-an-app" class="toc-h2 toc-link" data-title="Uninstall an App">Uninstall an App</a>
                   </li>
               </ul>
           </li>
@@ -388,6 +403,9 @@
                   <li>
                     <a href="#remove-a-specific-comment-from-specific-question" class="toc-h2 toc-link" data-title="Remove a Specific Comment from Specific Question">Remove a Specific Comment from Specific Question</a>
                   </li>
+                  <li>
+                    <a href="#get-stats-of-specific-user-for-questions" class="toc-h2 toc-link" data-title="Get Stats of Specific User for Questions">Get Stats of Specific User for Questions</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -413,6 +431,12 @@
                   </li>
                   <li>
                     <a href="#get-topic-39-s-experts" class="toc-h2 toc-link" data-title="Get Topic's Experts">Get Topic's Experts</a>
+                  </li>
+                  <li>
+                    <a href="#add-a-child" class="toc-h2 toc-link" data-title="Add a Child">Add a Child</a>
+                  </li>
+                  <li>
+                    <a href="#remove-a-child" class="toc-h2 toc-link" data-title="Remove a Child">Remove a Child</a>
                   </li>
               </ul>
           </li>
@@ -1188,7 +1212,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>Status of the answer. Should be one of the followings: <code>archived</code> <code>collapsed</code> <code>draft</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>scheduled</code> <code>new</code></td>
+<td>Status of the answer. Can be: <code>archived</code> <code>collapsed</code> <code>draft</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>scheduled</code> <code>new</code></td>
 </tr>
 </tbody></table>
 <h3 id='extra-request-parameters-for-moderators'>Extra Request Parameters for Moderators</h3>
@@ -1272,7 +1296,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>Status of the answer. Should be one of the following values: <code>archived</code> <code>collapsed</code> <code>draft</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>scheduled</code> <code>new</code></td>
+<td>Status of the answer. Can be: <code>archived</code> <code>collapsed</code> <code>draft</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>scheduled</code> <code>new</code></td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-answer'>Delete a Specific Answer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"</span>
@@ -1636,6 +1660,105 @@ topicId | The ID of the topic -->
 <td>answerId</td>
 <td><code>String</code></td>
 <td>The ID of the answer to remove a comment</td>
+</tr>
+</tbody></table>
+<h2 id='add-log-for-specific-answers'>Add Log for Specific Answers</h2><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://community.tribe.so/api/v1/answers/logs"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  --DATA <span class="s1">'{ ids: ["5bf0e89ada3be54c190b78ba"] }'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">answers</span><span class="p">.</span><span class="nx">log</span><span class="p">([</span><span class="s1">'5bf0e89ada3be54c190b78ba'</span><span class="p">])</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint adds a log for a specific answer.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/answers/logs</code></p>
+<h3 id='request-parameters-5'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>logs</td>
+<td><code>Array&lt;String&gt;</code></td>
+<td>The ID of answers to add log</td>
+</tr>
+</tbody></table>
+<h2 id='get-stats-of-specific-user-for-answers'>Get Stats of Specific User for Answers</h2><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://community.tribe.so/api/v1/user/stats/answers/views"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">stats</span><span class="p">(</span><span class="s1">'answer'</span><span class="p">,</span><span class="s1">'views'</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2019-02-10"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-11"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-12"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-13"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-14"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-15"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-16"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-17"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-18"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-19"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-20"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-21"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-22"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-23"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-24"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-25"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-26"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-27"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-28"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-01"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-02"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-03"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-04"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-05"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-06"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-07"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-08"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-09"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-10"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-11"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-12"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-13"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_answer_viewed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-01"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns statistics of a specific user for answers.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code class="request">GET /api/v1/user/stats/answers/:metric</code></p>
+<h3 id='request-parameters-6'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metric</td>
+<td><code>String</code></td>
+<td>Metric for the statistics. Can be <code>views</code>,<code>votes</code>,<code>follows</code></td>
 </tr>
 </tbody></table>
 <h1 id='feed'>Feed</h1><h2 id='get-user-feed'>Get User Feed</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/feed"</span>
@@ -2368,6 +2491,946 @@ topicId | The ID of the topic -->
 <p>This endpoint retrieves users leaderboard in portal.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/stats/users/leaderboard</code></p>
+<h2 id='update-the-portal'>Update the Portal</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/portal"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  --DATA <span class="s1">'{"name": "Test Portal","domain":"test.com"}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">portal</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">portal</span><span class="p">.</span><span class="nx">update</span><span class="p">({</span> 
+  <span class="na">name</span><span class="p">:</span> <span class="s2">"Test Portal"</span><span class="p">,</span>
+  <span class="na">domain</span><span class="p">:</span> <span class="s2">"test.com"</span>
+<span class="p">});</span>
+</code></pre>
+<p>This endpoint updates the portal.</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code class="request">PUT /api/v1/portal</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+<td>The name of the portal</td>
+<td><code>Yes</code></td>
+</tr>
+<tr>
+<td>domain</td>
+<td><code>String</code></td>
+<td>The domain of the portal</td>
+<td><code>Yes</code></td>
+</tr>
+<tr>
+<td>subdomain</td>
+<td><code>String</code></td>
+<td>The subdomain of the portal</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>announcement</td>
+<td><code>Object</code></td>
+<td>The announcement visible to all users on the homepage.</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>banner</td>
+<td><code>String</code></td>
+<td>The path to the banner image. This image is used as the default og:image.</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>Description of the portal</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>email</td>
+<td><code>String</code></td>
+<td>Email of the portal</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>englishName</td>
+<td><code>String</code></td>
+<td>Name of the portal in English</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>favicon</td>
+<td><code>String</code></td>
+<td>Icon of the portal</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>keywords</td>
+<td><code>Array&lt;String&gt;</code></td>
+<td>Keywords related to the portal</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>links</td>
+<td><code>Object</code></td>
+<td>Community links used in the sidebar and emails.</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>logo</td>
+<td><code>String</code></td>
+<td>Logo of the portal</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>longName</td>
+<td><code>String</code></td>
+<td>The full name of the community. This is being used as the title of community home.</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>messages</td>
+<td><code>String</code></td>
+<td>Custom messages for the community.</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>policies</td>
+<td><code>Object</code></td>
+<td>Policies of community.</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>stage</td>
+<td><code>String</code></td>
+<td>Define the stage of the community. Can be: <code>inception</code><code>establishment</code><code>maturity</code><code>mitosis</code>.</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>template</td>
+<td><code>Object</code></td>
+<td>Template of the portal</td>
+<td><code>No</code></td>
+</tr>
+</tbody></table>
+<h3 id='announcement-parameters'>Announcement Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>action</td>
+<td><code>String</code></td>
+<td>The action button text</td>
+</tr>
+<tr>
+<td>content</td>
+<td><code>String</code></td>
+<td>Content of the announcement</td>
+</tr>
+<tr>
+<td>enabled</td>
+<td><code>String</code></td>
+<td>Is announcement enabled?</td>
+</tr>
+<tr>
+<td>layout</td>
+<td><code>String</code></td>
+<td>The layout of the announcement. Can be: <code>imageTop</code><code>imageSide</code><code>imageSidePadded</code><code>imageBackground</code><code>imageTopBackground</code><code>darkImageBackground</code></td>
+</tr>
+<tr>
+<td>link</td>
+<td><code>String</code></td>
+<td>Link related to the announcement</td>
+</tr>
+<tr>
+<td>picture</td>
+<td><code>String</code></td>
+<td>Url to the picture of the announcement</td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>String</code></td>
+<td>Title of the announcement</td>
+</tr>
+</tbody></table>
+<h3 id='links-parameters'>Links Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bug</td>
+<td><code>String</code></td>
+<td>Name of the holder</td>
+</tr>
+<tr>
+<td>facebook</td>
+<td><code>String</code></td>
+<td>Facebook handle of the portal</td>
+</tr>
+<tr>
+<td>faq</td>
+<td><code>String</code></td>
+<td>FAQ url of the portal</td>
+</tr>
+<tr>
+<td>feature</td>
+<td><code>String</code></td>
+<td>Request for feature url.</td>
+</tr>
+<tr>
+<td>homepage</td>
+<td><code>String</code></td>
+<td>Homepage of the portal</td>
+</tr>
+<tr>
+<td>instagram</td>
+<td><code>String</code></td>
+<td>Instagram handle of the portal</td>
+</tr>
+<tr>
+<td>linkedin</td>
+<td><code>String</code></td>
+<td>Linkedin handle of the portal</td>
+</tr>
+<tr>
+<td>privacy</td>
+<td><code>String</code></td>
+<td>Url to portal&#39;s privacy policy</td>
+</tr>
+<tr>
+<td>telegram</td>
+<td><code>String</code></td>
+<td>Telegram handle of the portal</td>
+</tr>
+<tr>
+<td>terms</td>
+<td><code>String</code></td>
+<td>Url to portal&#39;s terms and condition</td>
+</tr>
+<tr>
+<td>twitter</td>
+<td><code>String</code></td>
+<td>Twitter handle of the portal</td>
+</tr>
+</tbody></table>
+<h3 id='messages-parameters'>Messages Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>askRules</td>
+<td><code>String</code></td>
+<td>Rules of asking questions</td>
+</tr>
+<tr>
+<td>motto</td>
+<td><code>String</code></td>
+<td>Motto of the portal</td>
+</tr>
+<tr>
+<td>questionIntro</td>
+<td><code>String</code></td>
+<td>Introduction for questions</td>
+</tr>
+<tr>
+<td>signupRules</td>
+<td><code>String</code></td>
+<td>Rules of signing up</td>
+</tr>
+<tr>
+<td>topicIntro</td>
+<td><code>String</code></td>
+<td>Introduction for topics</td>
+</tr>
+<tr>
+<td>userIntro</td>
+<td><code>String</code></td>
+<td>Introduction for users</td>
+</tr>
+</tbody></table>
+<h3 id='template-parameters'>Template Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td><code>String</code></td>
+<td>Body tag of the template</td>
+</tr>
+<tr>
+<td>colors.default</td>
+<td><code>String</code></td>
+<td>Default Color</td>
+</tr>
+<tr>
+<td>colors.defaultLink</td>
+<td><code>String</code></td>
+<td>Default link</td>
+</tr>
+<tr>
+<td>colors.link</td>
+<td><code>String</code></td>
+<td>Color of links</td>
+</tr>
+<tr>
+<td>colors.menuLink</td>
+<td><code>String</code></td>
+<td>Color of menu</td>
+</tr>
+<tr>
+<td>colors.primary</td>
+<td><code>String</code></td>
+<td>Primary Color</td>
+</tr>
+<tr>
+<td>colors.secondary</td>
+<td><code>String</code></td>
+<td>Secondary Color</td>
+</tr>
+<tr>
+<td>css</td>
+<td><code>String</code></td>
+<td>Custom CSS appended to the end of the code as style tag.</td>
+</tr>
+<tr>
+<td>menu.background</td>
+<td><code>String</code></td>
+<td>Background Color of menu</td>
+</tr>
+<tr>
+<td>menu.border</td>
+<td><code>Number</code></td>
+<td>Border size of the menu</td>
+</tr>
+<tr>
+<td>menu.height</td>
+<td><code>Number</code></td>
+<td>Border height of the menu</td>
+</tr>
+<tr>
+<td>navbar.background</td>
+<td><code>String</code></td>
+<td>Background Color of the navigation bar</td>
+</tr>
+<tr>
+<td>navbar.border</td>
+<td><code>Number</code></td>
+<td>Border size of the navigation bar</td>
+</tr>
+<tr>
+<td>navbar.color</td>
+<td><code>String</code></td>
+<td>Color of the navigation bar</td>
+</tr>
+<tr>
+<td>navbar.enabled</td>
+<td><code>Boolean</code></td>
+<td>Is navigation bar enabled?</td>
+</tr>
+<tr>
+<td>navbar.height</td>
+<td><code>Number</code></td>
+<td>Height the navigation bar</td>
+</tr>
+<tr>
+<td>navbar.links</td>
+<td><code>Array&lt;String&gt;</code></td>
+<td>Links of the navigation bar</td>
+</tr>
+<tr>
+<td>navbar.linksString</td>
+<td><code>String</code></td>
+<td>Links of the navigation bar in String format.</td>
+</tr>
+<tr>
+<td>sidebar</td>
+<td><code>String</code></td>
+<td>The HTML code used inside the sidebar box.</td>
+</tr>
+</tbody></table>
+<h3 id='policies-parameters'>Policies Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>access</td>
+<td><code>String</code></td>
+<td>Access privacy of the community. Can be: <code>public</code>, <code>private</code>.</td>
+</tr>
+<tr>
+<td>cookieConsent</td>
+<td><code>String</code></td>
+<td>Display cookie consent? Can be: <code>enabled</code>, <code>disabled</code>.</td>
+</tr>
+<tr>
+<td>email</td>
+<td><code>String</code></td>
+<td>Defines the types of emails to be sent from the community. Can be: <code>important</code>, <code>disabled</code>, <code>enabled</code>.</td>
+</tr>
+<tr>
+<td>registration</td>
+<td><code>String</code></td>
+<td>The registration policy of the community. Can be: <code>public</code>, <code>approval</code>, <code>invitation</code>.</td>
+</tr>
+</tbody></table>
+<h2 id='install-an-app'>Install an App</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -H <span class="s1">'Content-Type: application/json; charset=utf-8'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+  <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">admin</span><span class="p">.</span><span class="nx">apps</span><span class="p">.</span><span class="nx">install</span><span class="p">(</span><span class="s1">'5c7ff860c389b77bdf1f272b'</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24f157c2c34f735a539"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T14:11:32.761Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-03T15:27:11.190Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tribe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"baseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://community.tribe.so"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tribe.so"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"apps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c8635bac389b77bdf1f2732"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moderation"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T14:10:03.311Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moderation"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Let admins create a minimum reptation."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so/assets/images/appstore/jwt-sso.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-11T10:17:25.732Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enabled"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d038e"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minimumReputation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d038d"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moderation"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"installs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"screenshots"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Functionality"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tribe Technologies, Inc"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"native"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c8635bac389b77bdf1f2732"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moderation"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"minimumReputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c8635bac389b77bdf1f2732"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c864854f6e41f201083bf60"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24fc389b77bdf1f271f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome Email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T14:10:03.304Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send an automatic customized welcome email to new users."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"welcome-email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so/assets/images/appstore/welcome-email.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-03T15:27:07.020Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enabled"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0378"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fromEmail"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0377"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fromName"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0376"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subject"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0375"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0374"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WelcomeEmail"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"installs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"screenshots"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Functionality"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tribe Technologies, Inc"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"native"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24fc389b77bdf1f271f"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"welcome-email"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24fc389b77bdf1f271f"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c864865f6e41f201083bf61"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7ff860c389b77bdf1f272b"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SendGrid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T14:10:03.305Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send emails from your SendGrid account resulting in better email delivery."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sendgrid"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so/assets/images/appstore/sendgrid.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-06T16:42:05.969Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enabled"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d037b"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d037a"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0379"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SendGrid"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"installs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"screenshots"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Functionality"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tribe Technologies, Inc"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"native"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7ff860c389b77bdf1f272b"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sendgrid"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7ff860c389b77bdf1f272b"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f941ff360189a3d038f"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"secrets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ssoKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1f4f219a4b525ddfaba64a54f997e226353726720b477c7c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"announcement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"layout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imageSide"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"navbar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"linksString"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"featured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"conversionRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"unapprovedAnswers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unapprovedQuestions"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unanswered"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"policies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enabled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cookieConsent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"disabled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"registration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shareable"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inception"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"live"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"general"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basic"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"aliases"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"corsWhitelist"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24f157c2c34f735a539"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updateHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1473a306957af1b78b580c0d4cf896ff"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The endpoint installs an app in the portal.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/apps/:id/settings</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of app to install</td>
+</tr>
+</tbody></table>
+<h2 id='uninstall-an-app'>Uninstall an App</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -H <span class="s1">'Content-Type: application/json; charset=utf-8'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+  <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">admin</span><span class="p">.</span><span class="nx">apps</span><span class="p">.</span><span class="nx">uninstall</span><span class="p">(</span><span class="s1">'5c7ff860c389b77bdf1f272b'</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24f157c2c34f735a539"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T14:15:04.709Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-03T15:27:11.190Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tribe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"baseUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://community.tribe.so"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"domain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tribe.so"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"apps"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c8635bac389b77bdf1f2732"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moderation"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T14:10:03.311Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moderation"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Let admins create a minimum reptation."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so/assets/images/appstore/jwt-sso.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-11T10:17:25.732Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enabled"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d038e"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"minimumReputation"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d038d"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Moderation"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"installs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"screenshots"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Functionality"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tribe Technologies, Inc"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"native"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c8635bac389b77bdf1f2732"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"moderation"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c8635bac389b77bdf1f2732"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"minimumReputation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c864854f6e41f201083bf60"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"app"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24fc389b77bdf1f271f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome Email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-13T14:10:03.304Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"shortDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Send an automatic customized welcome email to new users."</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"welcome-email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so/assets/images/appstore/welcome-email.png"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-03T15:27:07.020Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+          </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkbox"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enabled"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0378"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fromEmail"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0377"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fromName"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0376"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"subject"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0375"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"message"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c890f3b1ff360189a3d0374"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"private"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"components"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WelcomeEmail"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"premium"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"installs"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"screenshots"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"Functionality"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"link"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://tribe.so"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tribe Technologies, Inc"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"native"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24fc389b77bdf1f271f"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"welcome-email"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"settings"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24fc389b77bdf1f271f"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c864865f6e41f201083bf61"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"secrets"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"ssoKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1f4f219a4b525ddfaba64a54f997e226353726720b477c7c"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"announcement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"layout"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imageSide"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"template"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"navbar"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"linksString"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"theme"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"featured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"conversionRate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"unapprovedAnswers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unapprovedQuestions"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"unanswered"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"sections"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"policies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"enabled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cookieConsent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"disabled"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"registration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"shareable"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"access"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"stage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inception"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"live"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"general"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"plan"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basic"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"aliases"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"corsWhitelist"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7bf24f157c2c34f735a539"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updateHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3fa36c8343b45caeb47b31c8c59a082b"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The endpoint uninstalls an app in the portal.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code class="request">DELETE /api/v1/apps/:id/settings</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of app to uninstall</td>
+</tr>
+</tbody></table>
 <h1 id='post'>Post</h1><h2 id='get-all-post'>Get All Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
@@ -2760,7 +3823,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>The status of the post. Should be one of the followings: <code>new</code> <code>draft</code> <code>published</code> <code>unlisted</code> <code>archived</code> <code>collapsed</code> <code>scheduled</code> <code>unapproved</code></td>
+<td>The status of the post. Can be: <code>new</code> <code>draft</code> <code>published</code> <code>unlisted</code> <code>archived</code> <code>collapsed</code> <code>scheduled</code> <code>unapproved</code></td>
 </tr>
 <tr>
 <td>user</td>
@@ -2837,7 +3900,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>The status of the post. Should be one of the followings: <code>new</code> <code>draft</code> <code>published</code> <code>unlisted</code> <code>archived</code> <code>collapsed</code> <code>scheduled</code> <code>unapproved</code></td>
+<td>The status of the post. Can be: <code>new</code> <code>draft</code> <code>published</code> <code>unlisted</code> <code>archived</code> <code>collapsed</code> <code>scheduled</code> <code>unapproved</code></td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-post'>Delete a Specific Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"</span>
@@ -3563,7 +4626,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>Status of the question to create. Should be one of the followings: <code>archived</code> <code>collapsed</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>featured</code> <code>scheduled</code></td>
+<td>Status of the question to create. Can be: <code>archived</code> <code>collapsed</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>featured</code> <code>scheduled</code></td>
 </tr>
 <tr>
 <td>user</td>
@@ -3642,7 +4705,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>Status of the question to create. Should be one of the followings: <code>archived</code> <code>collapsed</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>featured</code> <code>scheduled</code></td>
+<td>Status of the question to create. Can be: <code>archived</code> <code>collapsed</code> <code>published</code> <code>unapproved</code> <code>unlisted</code> <code>featured</code> <code>scheduled</code></td>
 </tr>
 </tbody></table>
 <h2 id='add-a-comment-for-a-specific-question'>Add a Comment for a Specific Question</h2><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/comments"</span>
@@ -3783,6 +4846,72 @@ topicId | The ID of the topic -->
 <td>questionId</td>
 <td><code>String</code></td>
 <td>The ID of the question to remove a comment</td>
+</tr>
+</tbody></table>
+<h2 id='get-stats-of-specific-user-for-questions'>Get Stats of Specific User for Questions</h2><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://community.tribe.so/api/v1/user/stats/questions/views"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">stats</span><span class="p">(</span><span class="s1">'question'</span><span class="p">,</span><span class="s1">'views'</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"2019-02-10"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-11"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-12"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-13"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-14"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-15"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-16"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-17"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-18"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-19"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-20"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-21"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-22"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-23"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-24"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-25"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-26"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-27"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-02-28"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-01"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-02"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-03"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-04"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-05"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-06"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-07"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-08"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-09"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-10"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-11"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-12"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"2019-03-13"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user_question_viewed"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-01"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint returns statistics of a specific user for questions.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code class="request">GET /api/v1/user/stats/questions/:metric</code></p>
+<h3 id='request-parameters-3'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>metric</td>
+<td><code>String</code></td>
+<td>Metric for the statistics. Can be: <code>views</code>,<code>votes</code>,<code>follows</code></td>
 </tr>
 </tbody></table>
 <h1 id='topics'>Topics</h1><h2 id='get-all-topics'>Get All Topics</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/topics"</span>
@@ -4192,6 +5321,72 @@ topicId | The ID of the topic -->
 <td>The ID of the topic</td>
 </tr>
 </tbody></table>
+<h2 id='add-a-child'>Add a Child</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/children"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  --DATA <span class="s1">'{ name: "Child" }'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">child</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">topics</span><span class="p">.</span><span class="nx">addChild</span><span class="p">(</span><span class="s1">'5b88264d3d9228aa7c41f692'</span><span class="p">,{</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'Child'</span> <span class="p">});</span>
+</code></pre><h3 id='http-request-8'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/topics/{id}/children</code></p>
+<h3 id='url-parameters-6'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the topic</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters-3'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+<td>Name of the child to add</td>
+</tr>
+</tbody></table>
+<h2 id='remove-a-child'>Remove a Child</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/children/4c88264d3d9118aa7c41f6ff"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">topics</span><span class="p">.</span><span class="nx">removeChild</span><span class="p">(</span><span class="s1">'5b88264d3d9228aa7c41f692'</span><span class="p">,</span><span class="s1">'4c88264d3d9118aa7c41f6ff'</span><span class="p">);</span>
+</code></pre><h3 id='http-request-9'>HTTP Request</h3>
+<p><code class="request">DELETE /api/v1/topics/:id/children/:childId</code></p>
+<h3 id='url-parameters-7'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the topic</td>
+</tr>
+<tr>
+<td>childId</td>
+<td><code>String</code></td>
+<td>The ID of the child to delete</td>
+</tr>
+</tbody></table>
 <h1 id='users'>Users</h1><h2 id='get-all-users'>Get All Users</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
@@ -4292,32 +5487,38 @@ topicId | The ID of the topic -->
 <th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>username</td>
 <td><code>String</code></td>
 <td>Username of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>name</td>
 <td><code>String</code></td>
 <td>Name of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>email</td>
 <td><code>String</code></td>
 <td>Email of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>password</td>
 <td><code>String</code></td>
 <td>Password of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>confirmPassword</td>
 <td><code>String</code></td>
 <td>Confirm password of the user</td>
+<td><code>No</code></td>
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>
@@ -4414,32 +5615,186 @@ topicId | The ID of the topic -->
 <th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
+<th>Required</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>username</td>
 <td><code>String</code></td>
 <td>Username of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>name</td>
 <td><code>String</code></td>
 <td>Name of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>email</td>
 <td><code>String</code></td>
 <td>Email of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>password</td>
 <td><code>String</code></td>
 <td>Password of the user</td>
+<td><code>Yes</code></td>
 </tr>
 <tr>
 <td>confirmPassword</td>
 <td><code>String</code></td>
 <td>Confirm password of the user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>links</td>
+<td><code>Object</code></td>
+<td>List of user&#39;s social network accounts</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>bankAccount</td>
+<td><code>Object</code></td>
+<td>User&#39;s bank account</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>location</td>
+<td><code>String</code></td>
+<td>Location of the user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>website</td>
+<td><code>String</code></td>
+<td>Website owned by user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>gender</td>
+<td><code>String</code></td>
+<td>Gender of the user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>title</td>
+<td><code>String</code></td>
+<td>Title of the user</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>A short description of user</td>
+<td><code>No</code></td>
+</tr>
+</tbody></table>
+<h3 id='bank-account-parameters'>Bank Account Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>holderName</td>
+<td><code>String</code></td>
+<td>Name of the holder</td>
+</tr>
+<tr>
+<td>accountNumber</td>
+<td><code>String</code></td>
+<td>Account number</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>Type of the account. Can be: <code>card</code>, <code>checking</code>, <code>saving</code></td>
+</tr>
+<tr>
+<td>routingNumber</td>
+<td><code>String</code></td>
+<td>Routing number for the bank account</td>
+</tr>
+<tr>
+<td>bankName</td>
+<td><code>String</code></td>
+<td>Name of the bank related to account</td>
+</tr>
+</tbody></table>
+<h3 id='links-parameters'>Links Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>telegram</td>
+<td><code>String</code></td>
+<td>Telegram account of the user</td>
+</tr>
+<tr>
+<td>instagram</td>
+<td><code>String</code></td>
+<td>Instagram account of the user</td>
+</tr>
+<tr>
+<td>twitter</td>
+<td><code>String</code></td>
+<td>Twitter account of the user</td>
+</tr>
+<tr>
+<td>facebook</td>
+<td><code>String</code></td>
+<td>Facebook account of the user</td>
+</tr>
+<tr>
+<td>linkedin</td>
+<td><code>String</code></td>
+<td>Twitter account of the user</td>
+</tr>
+<tr>
+<td>homepage</td>
+<td><code>String</code></td>
+<td>The url of homepage of user</td>
+</tr>
+</tbody></table>
+<h3 id='extra-request-parameters-for-moderators'>Extra Request Parameters for Moderators</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>verified</td>
+<td><code>Boolean</code></td>
+<td>Is the user verified or not</td>
+</tr>
+<tr>
+<td>status</td>
+<td><code>String</code></td>
+<td>Status of the user</td>
+</tr>
+</tbody></table>
+<h3 id='extra-request-parameters-for-admin'>Extra Request Parameters for Admin</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>role</td>
+<td><code>String</code></td>
+<td>Role of the user</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-user'>Delete a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>

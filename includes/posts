@@ -390,7 +390,7 @@
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>The status of the post. Should be one of the followings: <code>new</code> <code>draft</code> <code>published</code> <code>unlisted</code> <code>archived</code> <code>collapsed</code> <code>scheduled</code> <code>unapproved</code></td>
+<td>The status of the post. Can be: <code>new</code> <code>draft</code> <code>published</code> <code>unlisted</code> <code>archived</code> <code>collapsed</code> <code>scheduled</code> <code>unapproved</code></td>
 </tr>
 <tr>
 <td>user</td>
@@ -467,7 +467,7 @@
 <tr>
 <td>status</td>
 <td><code>String</code></td>
-<td>The status of the post. Should be one of the followings: <code>new</code> <code>draft</code> <code>published</code> <code>unlisted</code> <code>archived</code> <code>collapsed</code> <code>scheduled</code> <code>unapproved</code></td>
+<td>The status of the post. Can be: <code>new</code> <code>draft</code> <code>published</code> <code>unlisted</code> <code>archived</code> <code>collapsed</code> <code>scheduled</code> <code>unapproved</code></td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-post'>Delete a Specific Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"</span>
