@@ -561,3 +561,47 @@ This endpoint returns statistics of a specific user for questions.
 Parameter | Type | Description
 --------- | ----------- | -----------
 metric | `String` | Metric for the statistics. Can be: `views`,`votes`,`follows`
+
+
+## Follow a question
+
+
+```shell
+curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/followers"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let question = api.questions.follow('5bf0e89ada3be54c190b78ba');
+```
+
+This endpoint follows a question.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/questions/{id}/followers</code>
+
+
+## Unfollow a question
+
+
+```shell
+curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/followers"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let question = api.questions.unfollow('5bf0e89ada3be54c190b78ba');
+```
+
+This endpoint unfollows a question.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/questions/{id}/followers</code>

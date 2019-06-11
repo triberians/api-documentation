@@ -432,6 +432,51 @@ id | `String` | The ID of the user
 
 
 
+
+## Follow a user
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let user = api.users.follow('5b1f99a7478dd3768d84b646');
+```
+
+This endpoint follows a user.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/users/{id}/followers</code>
+
+
+## Unfollow a user
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let user = api.users.unfollow('5b1f99a7478dd3768d84b646');
+```
+
+This endpoint unfollows a user.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/users/{id}/followers</code>
+
+
 ## Get User's Expertise
 
 

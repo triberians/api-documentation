@@ -431,3 +431,48 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the topic
 childId | `String` | The ID of the child to delete
+
+
+
+## Follow a topic
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/followers"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let topic = api.topics.follow('5b88264d3d9228aa7c41f692');
+```
+
+This endpoint follows a topic.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/topics/{id}/followers</code>
+
+
+## Unfollow a topic
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/followers"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let topic = api.topics.unfollow('5b88264d3d9228aa7c41f692');
+```
+
+This endpoint unfollows a topic.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/topics/{id}/followers</code>

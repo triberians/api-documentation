@@ -463,7 +463,7 @@ curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/responses
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let users = api.posts.responses('5c0621864cb2b119dc174a63');
+api.posts.responses('5c0621864cb2b119dc174a63');
 ```
 
 
@@ -586,7 +586,7 @@ curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/votes"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let users = api.posts.upvote('5c0621864cb2b119dc174a63');
+api.posts.upvote('5c0621864cb2b119dc174a63');
 ```
 
 This endpoint upvotes a specific post.
@@ -615,7 +615,7 @@ curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/votes"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let users = api.posts.downvote('5c0621864cb2b119dc174a63');
+api.posts.unvote('5c0621864cb2b119dc174a63');
 ```
 
 
@@ -654,7 +654,7 @@ id | `String` | The ID of the post to remove an upvote
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let users = api.posts.comment('5c0621864cb2b119dc174a63',{
+api.posts.comment('5c0621864cb2b119dc174a63',{
   body: "New Comment"
 });
 ```
@@ -695,7 +695,7 @@ user | `String` | The ID of the user to comment on behalf
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let users = api.posts.comments.update('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2",{
+api.posts.comments.update('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2",{
   body: "New Comment"
 });
 ```
@@ -731,7 +731,7 @@ body | `String` | The content of the comment
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let users = api.posts.comments.delete('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2");
+api.posts.comments.delete('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2");
 ```
 
 > The above command returns JSON structured like this:
