@@ -471,3 +471,25 @@
 <td>The ID of the child to delete</td>
 </tr>
 </tbody></table>
+<h2 id='follow-a-topic'>Follow a topic</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/followers"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">topic</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">topics</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="s1">'5b88264d3d9228aa7c41f692'</span><span class="p">);</span>
+</code></pre>
+<p>This endpoint follows a topic.</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/topics/{id}/followers</code></p>
+<h2 id='unfollow-a-topic'>Unfollow a topic</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/followers"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">topic</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">topics</span><span class="p">.</span><span class="nx">unfollow</span><span class="p">(</span><span class="s1">'5b88264d3d9228aa7c41f692'</span><span class="p">);</span>
+</code></pre>
+<p>This endpoint unfollows a topic.</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code class="request">DELETE /api/v1/topics/{id}/followers</code></p>

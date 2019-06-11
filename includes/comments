@@ -1,0 +1,131 @@
+<h1 id='comments'>Comments</h1><h2 id='update-a-specific-comment'>Update a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5c0621864cb2b119dc174a63"</span>
+  -X PUT
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  --DATA <span class="s2">"{data}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">comment</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"5c0621864cb2b119dc174a63"</span><span class="p">,{</span> 
+  <span class="na">body</span><span class="p">:</span> <span class="s2">"New Comment"</span><span class="p">,</span>
+<span class="p">});</span>
+</code></pre>
+<p>This endpoint updates a specific comment.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="request">PUT /api/v1/comments/:id</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the comment to update</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td><code>String</code></td>
+<td>The content of the comment</td>
+</tr>
+</tbody></table>
+<h2 id='delete-a-specific-comment'>Delete a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5c0621864cb2b119dc174a63"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">'5c0621864cb2b119dc174a63'</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint deletes a specific comment.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code class="request">DELETE /api/v1/comments/{id}</code></p>
+<h3 id='url-parameters-2'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the comment to delete</td>
+</tr>
+</tbody></table>
+<h2 id='upvote-for-a-specific-comment'>Upvote for a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5c0621864cb2b119dc174a63/votes"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">upvote</span><span class="p">(</span><span class="s1">'5c0621864cb2b119dc174a63'</span><span class="p">);</span>
+</code></pre>
+<p>This endpoint upvotes a specific comment.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/comments/{id}/votes</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the comment to upvote</td>
+</tr>
+</tbody></table>
+<h2 id='remove-an-upvote-for-a-specific-comment'>Remove an Upvote for a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5c0621864cb2b119dc174a63/votes"</span>
+  -X DELETE
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">unvote</span><span class="p">(</span><span class="s1">'5c0621864cb2b119dc174a63'</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint removes an upvote a specific comment.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code class="request">DELETE /api/v1/comments/{id}/votes</code></p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the comment to remove an upvote</td>
+</tr>
+</tbody></table>
