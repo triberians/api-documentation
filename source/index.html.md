@@ -10,6 +10,7 @@ toc_footers:
 
 includes:
   - answers
+  - comments
   - feed
   - notifications
   - portal

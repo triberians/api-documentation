@@ -62,11 +62,11 @@ This endpoint retrieves all questions.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Question
@@ -130,9 +130,9 @@ This endpoint retrieves a specific question using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the item
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the item
 
 
 ## Delete a Specific Question
@@ -168,9 +168,9 @@ This endpoint deletes a specific question.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the question to delete
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the question to delete
 
 
 
@@ -197,17 +197,17 @@ let users = api.questions.answers('5a816275f8030b3bdd655b0d');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the question
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the question
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ----------- | ------- | -----------
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `Number` | `createdAt.desc` | The field to sort on
 
 
 
@@ -235,13 +235,13 @@ let users = api.questions.experts('5a816275f8030b3bdd655b0d');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the question
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the question
 
 
 
-## Get Question Recommendations
+## Get a Question's Recommendations
 
 
 ```shell
@@ -264,9 +264,9 @@ let users = api.questions.recommendations('5a816275f8030b3bdd655b0d');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the question
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the question
 
 
 ## Get Similar Questions
@@ -293,9 +293,9 @@ This endpoint find related questions to keywords or a question title.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-questy | "" | Keywords or title of a question
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+query | `String` | `""` | Keywords or title of a question
 
 
 
@@ -316,9 +316,292 @@ let api = tribe.authorize('{access_token}');
 let question = api.questions.create({ title: 'What is life?'});
 ```
 
-This endpoint creates a question.
+This endpoint creates a new question.
 
 ### HTTP Request
 
 <code class="request">POST /api/v1/questions</code>
 
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ----------- | ----------- | -----------
+title | `String` | The title of the question to create
+description | `String` | The description of the question to create
+anonymous | `Boolean` | Is this an anonymous question?
+from | `String` | The ID of the user who has beend asked from
+topics | `[String]` | The IDs of the topics related to the question
+
+### Extra Query Parameters for Moderators
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+type | `String` | The type of the question to create
+locked | `Boolean` | Is the question locked?
+verified | `Boolean` | Is the question verified?
+status | `String` | Status of the question to create. Can be: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
+user | `String` | The ID of the user to ask a question on behalf 
+
+## Update a Specific Question
+
+
+```shell
+curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+```
+
+This endpoint updates a specific question.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/questions/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the question to update
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+title | `String` | The title of the question to create
+description | `String` | The description of the question to create
+anonymous | `Boolean` | Is this an anonymous question?
+
+### Extra Query Parameters for Moderators
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+type | `String` | The type of the question to create
+locked | `Boolean` | Is the question locked?
+verified | `Boolean` | Is the question verified?
+status | `String` | Status of the question to create. Can be: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
+
+## Add a Comment for a Specific Question
+
+```shell
+  curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/comments"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{'body':'New comment'}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.questions.comments.create('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2", {
+  body: "New Comment"
+});
+```
+
+This endpoint adds a comment for a specific question.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/questions/:id/comments</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the question to add a comment
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+body | `String` | The content of the comment
+
+### Extra Request Parameters for Moderators
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+user | `String` | The ID of the user to comment on behalf
+
+## Update a Specific Comment for a Specific Question
+
+```shell
+  curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/comments/4sf0e89ada3be54c190b78b2"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{'body':'Updated comment'}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.questions.comments.update('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2",{
+  body: "Updated Comment"
+});
+```
+
+This endpoint updates a specific comment.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/questions/:questionId/comments/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the comment to update
+questionId | `String` | The ID of the question to add a comment
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+body | `String` | The content of the comment
+
+## Remove a Specific Comment from Specific Question
+
+```shell
+  curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/comments/4sf0e89ada3be54c190b78b2"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.questions.comments.delete('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2");
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint removes a specific comment.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/questions/:questionId/comments/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the comment to remove
+questionId | `String` | The ID of the question to remove a comment
+
+## Get Stats of Specific User for Questions
+
+```shell
+  curl "https://community.tribe.so/api/v1/user/stats/questions/views"
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.user.stats('question','views')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "values": {
+    "2019-02-10": 0,
+    "2019-02-11": 0,
+    "2019-02-12": 0,
+    "2019-02-13": 0,
+    "2019-02-14": 0,
+    "2019-02-15": 0,
+    "2019-02-16": 0,
+    "2019-02-17": 0,
+    "2019-02-18": 0,
+    "2019-02-19": 0,
+    "2019-02-20": 0,
+    "2019-02-21": 0,
+    "2019-02-22": 0,
+    "2019-02-23": 0,
+    "2019-02-24": 0,
+    "2019-02-25": 0,
+    "2019-02-26": 0,
+    "2019-02-27": 0,
+    "2019-02-28": 0,
+    "2019-03-01": 0,
+    "2019-03-02": 0,
+    "2019-03-03": 0,
+    "2019-03-04": 0,
+    "2019-03-05": 0,
+    "2019-03-06": 0,
+    "2019-03-07": 0,
+    "2019-03-08": 0,
+    "2019-03-09": 0,
+    "2019-03-10": 0,
+    "2019-03-11": 0,
+    "2019-03-12": 0,
+    "2019-03-13": 0
+  },
+  "type": "user_question_viewed",
+  "timestamp": "2019-03-01"
+}
+```
+
+This endpoint returns statistics of a specific user for questions.
+
+### HTTP Request
+
+<code class="request">GET /api/v1/user/stats/questions/:metric</code>
+
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+metric | `String` | Metric for the statistics. Can be: `views`,`votes`,`follows`
+
+
+## Follow a question
+
+
+```shell
+curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/followers"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let question = api.questions.follow('5bf0e89ada3be54c190b78ba');
+```
+
+This endpoint follows a question.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/questions/{id}/followers</code>
+
+
+## Unfollow a question
+
+
+```shell
+curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/followers"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let question = api.questions.unfollow('5bf0e89ada3be54c190b78ba');
+```
+
+This endpoint unfollows a question.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/questions/{id}/followers</code>

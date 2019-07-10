@@ -155,11 +155,11 @@ This endpoint retrieves all posts.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Post
@@ -316,10 +316,100 @@ This endpoint retrieves a specific post using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the item
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the item
 
+## Create a new Post
+
+
+```shell
+curl "https://community.tribe.so/api/v1/posts"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{data}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let post = api.posts.create({ 
+  title: "New Post",
+  content: "New Post's content",
+});
+```
+
+This endpoint creates a new post.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/posts</code>
+
+### Request Parameters
+
+Parameter | Type | Description 
+--------- | ----------- | -----------
+title | `String` | The title of the post
+content | `String` | The content of the post
+type | `String` | The type of the post
+parent | `String` | The ID of the parent post
+replyTo | `String` | The ID of the post to reply
+
+### Extra Request Parameters for Moderators
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+locked | `Boolean` | Is the post locked?
+verified | `Boolean` | Is the post verified?
+status | `String` | The status of the post. Can be: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
+user | `String` | The ID of the user to post on behalf
+
+## Update a Specific Post
+
+
+```shell
+curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{data}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let post = api.posts.update("5c0621864cb2b119dc174a63",{ 
+  title: "New Post",
+  content: "New Post's content",
+});
+```
+
+This endpoint updates a specific post.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/posts/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the post to update
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+title | `String` | The title of the post
+content | `String` | The content of the post
+
+### Extra Request Parameters for Moderators
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+locked | `Boolean` | Is the post locked?
+verified | `Boolean` | Is the post verified?
+status | `String` | The status of the post. Can be: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
 
 ## Delete a Specific Post
 
@@ -354,9 +444,9 @@ This endpoint deletes a specific post.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the post to delete
+Parameter | Type | Description
+--------- | ----------- | ----------- 
+id | `String` | The ID of the post to delete
 
 
 
@@ -373,7 +463,7 @@ curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/responses
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let users = api.posts.responses('5c0621864cb2b119dc174a63');
+api.posts.responses('5c0621864cb2b119dc174a63');
 ```
 
 
@@ -471,16 +561,196 @@ let users = api.posts.responses('5c0621864cb2b119dc174a63');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the question
+Parameter | Type | Description
+--------- | ----------- | ----------- 
+id | `String` | The ID of the question
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` | `createdAt.desc` | The field to sort on
+
+## Upvote for a Specific Post
 
 
+```shell
+curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/votes"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.posts.upvote('5c0621864cb2b119dc174a63');
+```
+
+This endpoint upvotes a specific post.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/posts/{id}/votes</code>
+
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the post to upvote
+
+## Remove an Upvote for a Specific Post
+
+
+```shell
+curl "https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63/votes"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.posts.unvote('5c0621864cb2b119dc174a63');
+```
+
+
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint removes an upvote a specific post.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/posts/{id}/votes</code>
+
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the post to remove an upvote
+
+
+## Add a Comment for a Specific Post
+
+```shell
+  curl "https://community.tribe.so/api/v1/posts/5bf0e89ada3be54c190b78ba/comments"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{'body':'New comment'}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.posts.comment('5c0621864cb2b119dc174a63',{
+  body: "New Comment"
+});
+```
+
+This endpoint adds a comment for a specific post.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/posts/:id/comments</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the post to add a comment
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+body | `String` | The content of the comment
+
+### Extra Request Parameters for Moderators
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+user | `String` | The ID of the user to comment on behalf
+
+## Update a Specific Comment for a Specific Post
+
+```shell
+  curl "https://community.tribe.so/api/v1/posts/5bf0e89ada3be54c190b78ba/comments/4sf0e89ada3be54c190b78b2"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  --DATA "{'body':'Updated comment'}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.posts.comments.update('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2",{
+  body: "New Comment"
+});
+```
+
+This endpoint updates a specific comment.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/posts/:postId/comments/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the comment to update
+postId | `String` | The ID of the post to add a comment
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+body | `String` | The content of the comment
+
+## Remove a Specific Comment from Specific Post
+
+```shell
+  curl "https://community.tribe.so/api/v1/posts/5bf0e89ada3be54c190b78ba/comments/4sf0e89ada3be54c190b78b2"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.posts.comments.delete('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2");
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint removes a specific comment.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/posts/:postId/comments/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the comment to remove
+postId | `String` | The ID of the post to remove a comment

@@ -62,12 +62,50 @@ This endpoint retrieves all users.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `Number` | `createdAt.desc` | The field to sort on
 
+
+## Create a new User
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{data}'
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.users.create({
+  username: "info",
+  name:"Mr Support",
+  email: "info@tribe.so",
+  password: ...,
+  confirmPassword: ...
+});
+```
+
+This endpoint creates a new user.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/users/</code>
+
+### Request Parameters
+
+Parameter | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+username | `String` | Username of the user | `Yes`
+name | `String` | Name of the user | `Yes`
+email | `String` | Email of the user | `Yes`
+password | `String` | Password of the user | `Yes`
+confirmPassword | `String` | Confirm password of the user | `No`
 
 ## Get a Specific User
 
@@ -130,9 +168,90 @@ This endpoint retrieves a specific user using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the user
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the user
+
+
+## Update a Specific User
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{data}'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.users.update("5b1f99a7478dd3768d84b646",{
+  name:"Ms. Support"
+});
+```
+
+This endpoint updates a specific user using ID.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/users/{id}</code>
+
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | -----------  | -----------
+id | `String` | The ID of the user to update
+
+### Request Parameters
+
+Parameter | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+username | `String` | Username of the user | `Yes`
+name | `String` | Name of the user | `Yes`
+email | `String` | Email of the user | `Yes`
+password | `String` | Password of the user | `Yes`
+confirmPassword | `String` | Confirm password of the user | `No`
+links | `Object` | List of user's social network accounts | `No`
+bankAccount | `Object` | User's bank account | `No`
+location | `String` | Location of the user | `No`
+website | `String` | Website owned by user | `No`
+gender | `String` | Gender of the user | `No`
+title | `String` | Title of the user | `No`
+description | `String` | A short description of user | `No`
+
+### Bank Account Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+holderName | `String` | Name of the holder
+accountNumber | `String` | Account number
+type | `String` | Type of the account. Can be: `card`, `checking`, `saving`
+routingNumber | `String` | Routing number for the bank account
+bankName | `String` | Name of the bank related to account
+
+### Links Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+telegram | `String` | Telegram account of the user
+instagram | `String` | Instagram account of the user
+twitter | `String` | Twitter account of the user
+facebook | `String` | Facebook account of the user
+linkedin | `String` | Twitter account of the user
+homepage | `String` | The url of homepage of user
+
+### Extra Request Parameters for Moderators
+Parameter | Type | Description
+--------- | ----------- | -----------
+verified | `Boolean` | Is the user verified or not
+status | `String` | Status of the user
+
+### Extra Request Parameters for Admin
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+role | `String` | Role of the user
 
 
 ## Delete a Specific User
@@ -168,9 +287,9 @@ This endpoint deletes a specific user.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the user to delete
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the user to delete
 
 
 
@@ -239,9 +358,9 @@ This endpoint retrieves a specific user's followers using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the user
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the user
 
 
 ## Get User's Following
@@ -307,10 +426,55 @@ This endpoint retrieves a specific user's followings using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the user
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the user
 
+
+
+
+## Follow a user
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let user = api.users.follow('5b1f99a7478dd3768d84b646');
+```
+
+This endpoint follows a user.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/users/{id}/followers</code>
+
+
+## Unfollow a user
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let user = api.users.unfollow('5b1f99a7478dd3768d84b646');
+```
+
+This endpoint unfollows a user.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/users/{id}/followers</code>
 
 
 ## Get User's Expertise
@@ -405,9 +569,9 @@ This endpoint retrieves a specific user's expertise using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the user
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the user
 
 
 
@@ -435,9 +599,9 @@ let users = api.users.questions('5b1f99a7478dd3768d84b646');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the user
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the user
 
 
 
@@ -464,6 +628,6 @@ let users = api.users.answers('5b1f99a7478dd3768d84b646');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the user
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the user

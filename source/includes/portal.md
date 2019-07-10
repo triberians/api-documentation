@@ -12,7 +12,7 @@ curl "https://community.tribe.so/api/v1/portal"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.portal.get();
+let portals = api.portal.get();
 ```
 
 > The above command returns JSON structured like this:
@@ -311,6 +311,42 @@ This endpoint retrieves portal information.
 <code class="request">GET /api/v1/portal</code>
 
 
+## Create a new Portal
+
+
+```shell
+curl "https://community.tribe.so/api/v1/portal"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{"name": "Test Portal","domain":"test.com"}'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let portal = api.portal.create({ 
+  name: "Test Portal",
+  domain: "test.com"
+});
+```
+
+This endpoint creates a new portal.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/portal</code>
+
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+name | `String` | The name of the portal
+domain | `String` | The domain of the portal
+subdomain | `String` | The subdomain of the portal
+
+
 ## Get Trending Items
 
 
@@ -323,7 +359,7 @@ curl "https://community.tribe.so/api/v1/trends"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.portal.trends();
+let portals = api.portal.trends();
 ```
 
 > The above command returns JSON structured like this:
@@ -359,7 +395,7 @@ curl "https://community.tribe.so/api/v1/stats/portal"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.portal.stats();
+let stats = api.portal.stats();
 ```
 
 > The above command returns JSON structured like this:
@@ -396,7 +432,7 @@ curl "https://community.tribe.so/api/v1/stats/users/leaderboard"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.portal.leaderboard();
+let leaderboard = api.portal.leaderboard();
 ```
 
 > The above command returns JSON structured like this:
@@ -464,3 +500,659 @@ This endpoint retrieves users leaderboard in portal.
 ### HTTP Request
 
 <code class="request">GET /api/v1/stats/users/leaderboard</code>
+
+
+## Update the Portal
+
+
+```shell
+curl "https://community.tribe.so/api/v1/portal"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{"name": "Test Portal","domain":"test.com"}'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let portal = api.portal.update({ 
+  name: "Test Portal",
+  domain: "test.com"
+});
+```
+
+This endpoint updates the portal.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/portal</code>
+
+### Request Parameters
+
+Parameter | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+name | `String` | The name of the portal | `Yes`
+domain | `String` | The domain of the portal | `Yes`
+subdomain | `String` | The subdomain of the portal | `No`
+announcement | `Object` | The announcement visible to all users on the homepage. | `No`
+banner | `String` | The path to the banner image. This image is used as the default og:image. | `No`
+description | `String` | Description of the portal | `No`
+email | `String` | Email of the portal | `No`
+englishName | `String` | Name of the portal in English | `No`
+favicon | `String` | Icon of the portal | `No`
+keywords | `Array<String>` | Keywords related to the portal | `No`
+links | `Object` | Community links used in the sidebar and emails. | `No`
+logo | `String` | Logo of the portal | `No`
+longName | `String` | The full name of the community. This is being used as the title of community home. | `No`
+messages | `String` | Custom messages for the community. | `No`
+policies | `Object` | Policies of community. | `No`
+stage | `String` | Define the stage of the community. Can be: `inception``establishment``maturity``mitosis`. | `No`
+template | `Object` | Template of the portal | `No`
+
+### Announcement Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+action | `String` | The action button text
+content | `String` | Content of the announcement
+enabled | `String` | Is announcement enabled?
+layout | `String` | The layout of the announcement. Can be: `imageTop``imageSide``imageSidePadded``imageBackground``imageTopBackground``darkImageBackground`
+link | `String` | Link related to the announcement
+picture | `String` | Url to the picture of the announcement
+title | `String` | Title of the announcement
+
+
+### Links Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+bug | `String` | Name of the holder
+facebook | `String` | Facebook handle of the portal
+faq | `String` | FAQ url of the portal
+feature | `String` | Request for feature url.
+homepage | `String` | Homepage of the portal
+instagram | `String` | Instagram handle of the portal
+linkedin | `String` | Linkedin handle of the portal
+privacy | `String` | Url to portal's privacy policy
+telegram | `String` | Telegram handle of the portal
+terms | `String` | Url to portal's terms and condition
+twitter | `String` | Twitter handle of the portal
+
+### Messages Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+askRules | `String` | Rules of asking questions
+motto | `String` | Motto of the portal
+questionIntro | `String` | Introduction for questions
+signupRules | `String` | Rules of signing up
+topicIntro | `String` | Introduction for topics
+userIntro | `String` |Introduction for users
+
+### Template Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+body | `String` | Body tag of the template
+colors.default | `String` | Default Color
+colors.defaultLink | `String` | Default link
+colors.link | `String` | Color of links
+colors.menuLink | `String` | Color of menu
+colors.primary | `String` | Primary Color
+colors.secondary | `String` | Secondary Color
+css | `String` | Custom CSS appended to the end of the code as style tag.
+menu.background | `String` | Background Color of menu
+menu.border | `Number` | Border size of the menu
+menu.height | `Number` | Border height of the menu
+navbar.background | `String` | Background Color of the navigation bar
+navbar.border | `Number` | Border size of the navigation bar
+navbar.color | `String` | Color of the navigation bar
+navbar.enabled | `Boolean` | Is navigation bar enabled?
+navbar.height | `Number` | Height the navigation bar
+navbar.links | `Array<String>` | Links of the navigation bar
+navbar.linksString | `String` | Links of the navigation bar in String format.
+sidebar | `String` | The HTML code used inside the sidebar box.
+
+### Policies Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+access | `String` | Access privacy of the community. Can be: `public`, `private`.
+cookieConsent | `String` | Display cookie consent? Can be: `enabled`, `disabled`.
+email | `String` | Defines the types of emails to be sent from the community. Can be: `important`, `disabled`, `enabled`.
+registration | `String` | The registration policy of the community. Can be: `public`, `approval`, `invitation`.
+
+## Install an App
+
+```shell
+curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  -H 'Content-Type: application/json; charset=utf-8'
+```
+
+```javascript
+  const tribe = require('tribe');
+
+  let api = tribe.authorize('{access_token}');
+  let result = api.admin.apps.install('5c7ff860c389b77bdf1f272b')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_id": "5c7bf24f157c2c34f735a539",
+  "updatedAt": "2019-03-13T14:11:32.761Z",
+  "createdAt": "2019-03-03T15:27:11.190Z",
+  "name": "Tribe",
+  "baseUrl": "https://community.tribe.so",
+  "description": "",
+  "domain": "tribe.so",
+  "__v": 7,
+  "apps": [
+    {
+      "app": {
+        "_id": "5c8635bac389b77bdf1f2732",
+        "slug": "moderation",
+        "updatedAt": "2019-03-13T14:10:03.311Z",
+        "name": "Moderation",
+        "shortDescription": "Let admins create a minimum reptation.",
+        "picture": "https://tribe.so/assets/images/appstore/jwt-sso.png",
+        "__v": 0,
+        "createdAt": "2019-03-11T10:17:25.732Z",
+        "settings": {
+          "user": [],
+          "portal": [
+            {
+              "type": "checkbox",
+              "name": "enabled",
+              "_id": "5c890f3b1ff360189a3d038e",
+              "private": false,
+              "values": []
+            },
+            {
+              "type": "number",
+              "name": "minimumReputation",
+              "_id": "5c890f3b1ff360189a3d038d",
+              "private": true,
+              "values": []
+            }
+          ]
+        },
+        "components": {
+          "settings": "Moderation"
+        },
+        "permissions": [],
+        "active": true,
+        "premium": false,
+        "followers": [],
+        "counts": {
+          "followers": 0,
+          "installs": 0
+        },
+        "screenshots": [],
+        "categories": [
+          "Functionality"
+        ],
+        "author": {
+          "link": "https://tribe.so",
+          "name": "Tribe Technologies, Inc"
+        },
+        "type": "native",
+        "id": "5c8635bac389b77bdf1f2732"
+      },
+      "slug": "moderation",
+      "settings": {
+        "minimumReputation": "8",
+        "_id": "5c8635bac389b77bdf1f2732",
+        "enabled": true
+      },
+      "_id": "5c864854f6e41f201083bf60",
+      "enabled": false
+    },
+    {
+      "app": {
+        "_id": "5c7bf24fc389b77bdf1f271f",
+        "name": "Welcome Email",
+        "updatedAt": "2019-03-13T14:10:03.304Z",
+        "shortDescription": "Send an automatic customized welcome email to new users.",
+        "slug": "welcome-email",
+        "picture": "https://tribe.so/assets/images/appstore/welcome-email.png",
+        "__v": 0,
+        "createdAt": "2019-03-03T15:27:07.020Z",
+        "settings": {
+          "user": [],
+          "portal": [
+            {
+              "type": "checkbox",
+              "name": "enabled",
+              "_id": "5c890f3b1ff360189a3d0378",
+              "private": false,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "fromEmail",
+              "_id": "5c890f3b1ff360189a3d0377",
+              "private": true,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "fromName",
+              "_id": "5c890f3b1ff360189a3d0376",
+              "private": true,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "subject",
+              "_id": "5c890f3b1ff360189a3d0375",
+              "private": true,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "message",
+              "_id": "5c890f3b1ff360189a3d0374",
+              "private": true,
+              "values": []
+            }
+          ]
+        },
+        "components": {
+          "settings": "WelcomeEmail"
+        },
+        "permissions": [],
+        "active": true,
+        "premium": false,
+        "followers": [],
+        "counts": {
+          "followers": 0,
+          "installs": 0
+        },
+        "screenshots": [],
+        "categories": [
+          "Functionality"
+        ],
+        "author": {
+          "link": "https://tribe.so",
+          "name": "Tribe Technologies, Inc"
+        },
+        "type": "native",
+        "id": "5c7bf24fc389b77bdf1f271f"
+      },
+      "slug": "welcome-email",
+      "settings": {
+        "_id": "5c7bf24fc389b77bdf1f271f"
+      },
+      "_id": "5c864865f6e41f201083bf61",
+      "enabled": false
+    },
+    {
+      "app": {
+        "_id": "5c7ff860c389b77bdf1f272b",
+        "name": "SendGrid",
+        "updatedAt": "2019-03-13T14:10:03.305Z",
+        "shortDescription": "Send emails from your SendGrid account resulting in better email delivery.",
+        "slug": "sendgrid",
+        "picture": "https://tribe.so/assets/images/appstore/sendgrid.png",
+        "__v": 0,
+        "createdAt": "2019-03-06T16:42:05.969Z",
+        "settings": {
+          "user": [],
+          "portal": [
+            {
+              "type": "checkbox",
+              "name": "enabled",
+              "_id": "5c890f3b1ff360189a3d037b",
+              "private": false,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "username",
+              "_id": "5c890f3b1ff360189a3d037a",
+              "private": true,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "password",
+              "_id": "5c890f3b1ff360189a3d0379",
+              "private": true,
+              "values": []
+            }
+          ]
+        },
+        "components": {
+          "settings": "SendGrid"
+        },
+        "permissions": [],
+        "active": true,
+        "premium": false,
+        "followers": [],
+        "counts": {
+          "followers": 0,
+          "installs": 0
+        },
+        "screenshots": [],
+        "categories": [
+          "Functionality"
+        ],
+        "author": {
+          "link": "https://tribe.so",
+          "name": "Tribe Technologies, Inc"
+        },
+        "type": "native",
+        "id": "5c7ff860c389b77bdf1f272b"
+      },
+      "slug": "sendgrid",
+      "settings": {
+        "_id": "5c7ff860c389b77bdf1f272b"
+      },
+      "_id": "5c890f941ff360189a3d038f",
+      "enabled": false
+    }
+  ],
+  "secrets": {
+    "ssoKey": "1f4f219a4b525ddfaba64a54f997e226353726720b477c7c"
+  },
+  "announcement": {
+    "layout": "imageSide"
+  },
+  "template": {
+    "navbar": {
+      "links": [],
+      "enabled": false,
+      "linksString": ""
+    },
+    "theme": "default"
+  },
+  "featured": {
+    "posts": [],
+    "events": [],
+    "answers": [],
+    "topics": [],
+    "users": [],
+    "questions": []
+  },
+  "currency": {
+    "conversionRate": 100,
+    "enabled": false
+  },
+  "counts": {
+    "unapprovedAnswers": 0,
+    "unapprovedQuestions": 0,
+    "comments": 0,
+    "unanswered": 0,
+    "topics": 0,
+    "answers": 0,
+    "questions": 0,
+    "users": 0
+  },
+  "sections": [],
+  "policies": {
+    "email": "enabled",
+    "cookieConsent": "disabled",
+    "registration": "public",
+    "content": "shareable",
+    "access": "public"
+  },
+  "stage": "inception",
+  "status": "live",
+  "type": "general",
+  "plan": "basic",
+  "topics": [],
+  "aliases": [],
+  "corsWhitelist": [],
+  "id": "5c7bf24f157c2c34f735a539",
+  "updateHash": "1473a306957af1b78b580c0d4cf896ff"
+}
+```
+
+The endpoint installs an app in the portal.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/apps/:id/settings</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of app to install
+
+## Uninstall an App
+
+```shell
+curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+  -H 'Content-Type: application/json; charset=utf-8'
+```
+
+```javascript
+  const tribe = require('tribe');
+
+  let api = tribe.authorize('{access_token}');
+  let result = api.admin.apps.uninstall('5c7ff860c389b77bdf1f272b')
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_id": "5c7bf24f157c2c34f735a539",
+  "updatedAt": "2019-03-13T14:15:04.709Z",
+  "createdAt": "2019-03-03T15:27:11.190Z",
+  "name": "Tribe",
+  "baseUrl": "https://community.tribe.so",
+  "description": "",
+  "domain": "tribe.so",
+  "__v": 8,
+  "apps": [
+    {
+      "app": {
+        "_id": "5c8635bac389b77bdf1f2732",
+        "slug": "moderation",
+        "updatedAt": "2019-03-13T14:10:03.311Z",
+        "name": "Moderation",
+        "shortDescription": "Let admins create a minimum reptation.",
+        "picture": "https://tribe.so/assets/images/appstore/jwt-sso.png",
+        "__v": 0,
+        "createdAt": "2019-03-11T10:17:25.732Z",
+        "settings": {
+          "user": [],
+          "portal": [
+            {
+              "type": "checkbox",
+              "name": "enabled",
+              "_id": "5c890f3b1ff360189a3d038e",
+              "private": false,
+              "values": []
+            },
+            {
+              "type": "number",
+              "name": "minimumReputation",
+              "_id": "5c890f3b1ff360189a3d038d",
+              "private": true,
+              "values": []
+            }
+          ]
+        },
+        "components": {
+          "settings": "Moderation"
+        },
+        "permissions": [],
+        "active": true,
+        "premium": false,
+        "followers": [],
+        "counts": {
+          "followers": 0,
+          "installs": 0
+        },
+        "screenshots": [],
+        "categories": [
+          "Functionality"
+        ],
+        "author": {
+          "link": "https://tribe.so",
+          "name": "Tribe Technologies, Inc"
+        },
+        "type": "native",
+        "id": "5c8635bac389b77bdf1f2732"
+      },
+      "slug": "moderation",
+      "settings": {
+        "enabled": true,
+        "_id": "5c8635bac389b77bdf1f2732",
+        "minimumReputation": "8"
+      },
+      "_id": "5c864854f6e41f201083bf60",
+      "enabled": false
+    },
+    {
+      "app": {
+        "_id": "5c7bf24fc389b77bdf1f271f",
+        "name": "Welcome Email",
+        "updatedAt": "2019-03-13T14:10:03.304Z",
+        "shortDescription": "Send an automatic customized welcome email to new users.",
+        "slug": "welcome-email",
+        "picture": "https://tribe.so/assets/images/appstore/welcome-email.png",
+        "__v": 0,
+        "createdAt": "2019-03-03T15:27:07.020Z",
+        "settings": {
+          "user": [],
+          "portal": [
+            {
+              "type": "checkbox",
+              "name": "enabled",
+              "_id": "5c890f3b1ff360189a3d0378",
+              "private": false,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "fromEmail",
+              "_id": "5c890f3b1ff360189a3d0377",
+              "private": true,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "fromName",
+              "_id": "5c890f3b1ff360189a3d0376",
+              "private": true,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "subject",
+              "_id": "5c890f3b1ff360189a3d0375",
+              "private": true,
+              "values": []
+            },
+            {
+              "type": "text",
+              "name": "message",
+              "_id": "5c890f3b1ff360189a3d0374",
+              "private": true,
+              "values": []
+            }
+          ]
+        },
+        "components": {
+          "settings": "WelcomeEmail"
+        },
+        "permissions": [],
+        "active": true,
+        "premium": false,
+        "followers": [],
+        "counts": {
+          "followers": 0,
+          "installs": 0
+        },
+        "screenshots": [],
+        "categories": [
+          "Functionality"
+        ],
+        "author": {
+          "link": "https://tribe.so",
+          "name": "Tribe Technologies, Inc"
+        },
+        "type": "native",
+        "id": "5c7bf24fc389b77bdf1f271f"
+      },
+      "slug": "welcome-email",
+      "settings": {
+        "_id": "5c7bf24fc389b77bdf1f271f"
+      },
+      "_id": "5c864865f6e41f201083bf61",
+      "enabled": false
+    }
+  ],
+  "secrets": {
+    "ssoKey": "1f4f219a4b525ddfaba64a54f997e226353726720b477c7c"
+  },
+  "announcement": {
+    "layout": "imageSide"
+  },
+  "template": {
+    "navbar": {
+      "links": [],
+      "enabled": false,
+      "linksString": ""
+    },
+    "theme": "default"
+  },
+  "featured": {
+    "posts": [],
+    "events": [],
+    "answers": [],
+    "topics": [],
+    "users": [],
+    "questions": []
+  },
+  "currency": {
+    "conversionRate": 100,
+    "enabled": false
+  },
+  "counts": {
+    "unapprovedAnswers": 0,
+    "unapprovedQuestions": 0,
+    "comments": 0,
+    "unanswered": 0,
+    "topics": 0,
+    "answers": 0,
+    "questions": 0,
+    "users": 0
+  },
+  "sections": [],
+  "policies": {
+    "email": "enabled",
+    "cookieConsent": "disabled",
+    "registration": "public",
+    "content": "shareable",
+    "access": "public"
+  },
+  "stage": "inception",
+  "status": "live",
+  "type": "general",
+  "plan": "basic",
+  "topics": [],
+  "aliases": [],
+  "corsWhitelist": [],
+  "id": "5c7bf24f157c2c34f735a539",
+  "updateHash": "3fa36c8343b45caeb47b31c8c59a082b"
+}
+```
+
+The endpoint uninstalls an app in the portal.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/apps/:id/settings</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of app to uninstall

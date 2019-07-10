@@ -73,11 +73,11 @@ This endpoint retrieves all topics.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
-sort | createdAt.desc | The field to sort on
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` | `createdAt.desc` | The field to sort on
 
 
 ## Get a Specific Topic
@@ -152,9 +152,9 @@ This endpoint retrieves a specific topic using ID.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the item
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the item
 
 
 
@@ -163,7 +163,7 @@ id | The ID of the item
 
 
 ```shell
-curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692"
+curl "https://community.tribe.so/api/v1/topics"
   -X POST
   -H "Authorization: Bearer {access_token}"
   -H 'Content-Type: application/json; charset=utf-8' \
@@ -214,14 +214,65 @@ This endpoint creates a new topic.
 
 ### Request Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-name | null | The name of the Topic
-about | null | The description of the Topic
-picture | null | Url to a picture for this Topic
-definitions | [] | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
-aliases | [] | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
-externalId | null | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+name | `String` | `null` | The name of the Topic
+about | `String` | `null` | The description of the Topic
+picture | `String` | `null` | Url to a picture for this Topic
+definitions | `[String]` | `[]` | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
+aliases | `[String]` | `[]` | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
+externalId | `String` | `null` | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
+
+## Update a Specific Topic
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692"
+  -X PUT
+  -H "Authorization: Bearer {access_token}"
+  -H 'Content-Type: application/json; charset=utf-8' \
+  --DATA '{data}'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.topics.update({name: 'Test Topic'}, {
+  name: "Updated name",
+  about: "Updated description",
+  definitions: ["Location","School"]
+});
+```
+
+
+This endpoint updates a specific topic.
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/topics/:id</code>
+
+### URL Parameters
+
+Parameter | Type | Default
+--------- | ------- | -------
+id | `String` | The ID of the topic to update
+
+### Request Parameters
+
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+name | `String` | `null` | The name of the Topic
+about | `String` | `null` | The description of the Topic
+definitions | `[String]` | `[]` | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
+aliases | `[String]` | `[]` | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
+
+### Extra Request Parameters
+
+Parameter | Type | Default | Description
+--------- | ------- | -----------  | -----------
+picture | `String` | `null` | Url to a picture for this Topic
+externalId | `String` | `null` | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
 
 ## Delete a Specific Topic
 
@@ -256,9 +307,9 @@ This endpoint deletes a specific topic.
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the topic to delete
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the topic to delete
 
 
 
@@ -285,12 +336,9 @@ let users = api.topics.questions('5b88264d3d9228aa7c41f692');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the topic
-
-
-
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the topic
 
 ## Get Topic's Experts
 
@@ -315,6 +363,116 @@ let users = api.topics.experts('5b88264d3d9228aa7c41f692');
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-id | The ID of the topic
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the topic
+
+
+## Add a Child
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/children"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{ name: "Child" }'
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let child = api.topics.addChild('5b88264d3d9228aa7c41f692',{ name: 'Child' });
+```
+
+
+### HTTP Request
+
+<code class="request">POST /api/v1/topics/{id}/children</code>
+
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the topic
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+name | `String` | Name of the child to add
+
+## Remove a Child
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/children/4c88264d3d9118aa7c41f6ff"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.topics.removeChild('5b88264d3d9228aa7c41f692','4c88264d3d9118aa7c41f6ff');
+```
+
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/topics/:id/children/:childId</code>
+
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the topic
+childId | `String` | The ID of the child to delete
+
+
+
+## Follow a topic
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/followers"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let topic = api.topics.follow('5b88264d3d9228aa7c41f692');
+```
+
+This endpoint follows a topic.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/topics/{id}/followers</code>
+
+
+## Unfollow a topic
+
+
+```shell
+curl "https://community.tribe.so/api/v1/topics/5b88264d3d9228aa7c41f692/followers"
+  -X DELETE
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let topic = api.topics.unfollow('5b88264d3d9228aa7c41f692');
+```
+
+This endpoint unfollows a topic.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/topics/{id}/followers</code>

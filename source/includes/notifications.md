@@ -12,7 +12,7 @@ curl "https://community.tribe.so/api/v1/notifications"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.notifications.list();
+let notifications = api.notifications.list();
 ```
 
 > The above command returns JSON structured like this:
@@ -137,10 +137,10 @@ This endpoint retrieves user notifications.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-page | 1 | Intended page
-limit | 20 | Number of items per page
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
 
 
 
@@ -156,7 +156,7 @@ curl "https://community.tribe.so/api/v1/notifications/summary"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.notifications.summary();
+let summaries = api.notifications.summary();
 ```
 
 > The above command returns JSON structured like this:
@@ -188,7 +188,7 @@ curl "https://community.tribe.so/api/v1/notifications/summary"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let questions = api.notifications.read();
+api.notifications.read();
 ```
 
 > The above command returns JSON structured like this:
@@ -206,3 +206,37 @@ This endpoint marks all user notifications as read.
 <code class="request">POST /api/v1/notifications/read</code>
 
 
+
+## Mark a Specific Notification as Read
+
+
+```shell
+  curl "https://community.tribe.so/api/v1/notifications/5b913111f19a473232026877/read"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.notifications.read("5b913111f19a473232026877");
+```
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint marks a specific notification as read.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/notifications/:id/read</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the notification to mark as read
