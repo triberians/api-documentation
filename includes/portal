@@ -296,67 +296,6 @@
 <p>This endpoint retrieves portal information.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/portal</code></p>
-<h2 id='create-a-new-portal'>Create a new Portal</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/portal"</span>
-  -X POST
-  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-  --DATA <span class="s1">'{"name": "Test Portal","domain":"test.com"}'</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">portal</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">portal</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> 
-  <span class="na">name</span><span class="p">:</span> <span class="s2">"Test Portal"</span><span class="p">,</span>
-  <span class="na">domain</span><span class="p">:</span> <span class="s2">"test.com"</span>
-<span class="p">});</span>
-</code></pre>
-<p>This endpoint creates a new portal.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code class="request">POST /api/v1/portal</code></p>
-<h3 id='request-parameters'>Request Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td><code>String</code></td>
-<td>The name of the portal</td>
-</tr>
-<tr>
-<td>domain</td>
-<td><code>String</code></td>
-<td>The domain of the portal</td>
-</tr>
-<tr>
-<td>subdomain</td>
-<td><code>String</code></td>
-<td>The subdomain of the portal</td>
-</tr>
-</tbody></table>
-<h2 id='get-trending-items'>Get Trending Items</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/trends"</span>
-  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">portals</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">portal</span><span class="p">.</span><span class="nx">trends</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"events"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w">
-  </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves portal information.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code class="request">GET /api/v1/stats/portal</code></p>
 <h2 id='get-portal-health-stats'>Get Portal Health Stats</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/stats/portal"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
@@ -379,7 +318,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves portal health stats.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/stats/portal</code></p>
 <h2 id='get-portal-leaderboard'>Get Portal Leaderboard</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/stats/users/leaderboard"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
@@ -448,7 +387,7 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves users leaderboard in portal.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/stats/users/leaderboard</code></p>
 <h2 id='update-the-portal'>Update the Portal</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/portal"</span>
   -X PUT
@@ -463,9 +402,9 @@
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint updates the portal.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/portal</code></p>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1140,7 +1079,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>The endpoint installs an app in the portal.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/apps/:id/settings</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -1374,7 +1313,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>The endpoint uninstalls an app in the portal.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/apps/:id/settings</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>

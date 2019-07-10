@@ -1,0 +1,102 @@
+<h1 id='virtual-currency'>Virtual Currency</h1><h2 id='add-credit-to-user'>Add Credit to User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/:id/credit"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X POST
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">currency</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span><span class="nx">amount</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code></code></pre>
+<p>This endpoint adds credits to a specific user. It does not reduce credits from the giver and is only for admins.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/users/:id/credit</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>credit</code></td>
+<td>Type of the request. For adding credit it must be <code>credit</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td></td>
+<td>Amount of the credit to add</td>
+</tr>
+</tbody></table>
+<h2 id='withdraw-credit-from-user'>Withdraw Credit from User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/:id/credit"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X POST
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">currency</span><span class="p">.</span><span class="nx">withdraw</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span><span class="nx">amount</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code></code></pre>
+<p>This endpoint withdraws credits from a specific user. Only for admins.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/users/:id/credit</code></p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>withdraw</code></td>
+<td>Type of the request. For withdrawing credit it must be <code>withdraw</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td></td>
+<td>Amount of the credit to withdraw</td>
+</tr>
+</tbody></table>
+<h2 id='deposit-credit-from-user'>Deposit Credit from User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/:id/credit"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X POST
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">currency</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span><span class="nx">amount</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code></code></pre>
+<p>This endpoint deposits credits to a specific user.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/users/:id/credit</code></p>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>deposit</code></td>
+<td>Type of the request. For withdrawing credit it must be <code>deposit</code></td>
+</tr>
+<tr>
+<td>amount</td>
+<td></td>
+<td>Amount of the credit to deposit</td>
+</tr>
+</tbody></table>
