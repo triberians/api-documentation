@@ -18,8 +18,11 @@ includes:
   - questions
   - topics
   - users
+  - groups
+  - virtual_curreny
   - errors
   - widgets.md.erb
+
 
 
 search: true
