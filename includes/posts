@@ -359,6 +359,16 @@
 <td>The type of the post</td>
 </tr>
 <tr>
+<td>images</td>
+<td><code>Array</code></td>
+<td>An array of urls pointing to the images attached to this post (Only works with simple post type)</td>
+</tr>
+<tr>
+<td>files</td>
+<td><code>Array</code></td>
+<td>An array of urls pointing to the files attached to this post (Only works with simple post type)</td>
+</tr>
+<tr>
 <td>parent</td>
 <td><code>String</code></td>
 <td>The ID of the parent post</td>
@@ -398,6 +408,38 @@
 <td>The ID of the user to post on behalf</td>
 </tr>
 </tbody></table>
+<h2 id='add-image-or-file-to-a-post'>Add Image or File to a Post</h2>
+<p>This endpoint uploads a new file that can be attached to a simple post or included in an article post.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/posts/image</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>upload</td>
+<td><code>File</code></td>
+<td>The image or file in <code>multipart/form-data</code> format.</td>
+</tr>
+</tbody></table>
+
+<p>To attach an image or a file to a post, first we need to send the file to this endpoint. The endpoint resizes the images, scans files, and returns the url of the image or file.</p>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"uploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/files/portals/.../posts/.../..._original.jpg"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>For simple post type, you can pass an array of <code>url</code>s to the post creation end-point (<code>POST /api/v1/posts</code>). You should pass the array in the body with <code>images</code> or <code>files</code> key.</p>
+
+<p>For article post type you can add the image in the <code>content</code> of the post as an HTML tag (e.g. <code>&lt;img src=&quot;{url}&quot; /&gt;</code>).</p>
 <h2 id='update-a-specific-post'>Update a Specific Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"</span>
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
@@ -411,7 +453,7 @@
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint updates a specific post.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/posts/:id</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -427,7 +469,7 @@
 <td>The ID of the post to update</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -486,7 +528,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific post.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/posts/{id}</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
@@ -593,7 +635,7 @@
     </span><span class="s2">"followed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
-</span></code></pre><h3 id='http-request-6'>HTTP Request</h3>
+</span></code></pre><h3 id='http-request-7'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/posts/{id}/responses</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
@@ -646,7 +688,7 @@
 <span class="nx">api</span><span class="p">.</span><span class="nx">posts</span><span class="p">.</span><span class="nx">upvote</span><span class="p">(</span><span class="s1">'5c0621864cb2b119dc174a63'</span><span class="p">);</span>
 </code></pre>
 <p>This endpoint upvotes a specific post.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/posts/{id}/votes</code></p>
 <h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
@@ -678,7 +720,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint removes an upvote a specific post.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/posts/{id}/votes</code></p>
 <h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
@@ -706,7 +748,7 @@
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint adds a comment for a specific post.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/posts/:id/comments</code></p>
 <h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
@@ -722,7 +764,7 @@
 <td>The ID of the post to add a comment</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters-3'>Request Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -762,7 +804,7 @@
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint updates a specific comment.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/posts/:postId/comments/:id</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
@@ -783,7 +825,7 @@
 <td>The ID of the post to add a comment</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters-4'>Request Parameters</h3>
+<h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -813,7 +855,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint removes a specific comment.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/posts/:postId/comments/:id</code></p>
 <h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
