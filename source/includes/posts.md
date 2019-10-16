@@ -353,6 +353,8 @@ Parameter | Type | Description
 title | `String` | The title of the post
 content | `String` | The content of the post
 type | `String` | The type of the post
+images | `Array` | An array of urls pointing to the images attached to this post (Only works with simple post type)
+files | `Array` | An array of urls pointing to the files attached to this post (Only works with simple post type)
 parent | `String` | The ID of the parent post
 replyTo | `String` | The ID of the post to reply
 
@@ -364,6 +366,39 @@ locked | `Boolean` | Is the post locked?
 verified | `Boolean` | Is the post verified?
 status | `String` | The status of the post. Can be: `new` `draft` `published` `unlisted` `archived` `collapsed` `scheduled` `unapproved`
 user | `String` | The ID of the user to post on behalf
+
+
+
+## Add Image or File to a Post
+
+This endpoint uploads a new file that can be attached to a simple post or included in an article post.
+
+
+### HTTP Request
+
+<code class="request">POST /api/v1/posts/image</code>
+
+### Request Parameters
+
+Parameter | Type | Description 
+--------- | ----------- | -----------
+upload | `File` | The image or file in `multipart/form-data` format.
+
+To attach an image or a file to a post, first we need to send the file to this endpoint. The endpoint resizes the images, scans files, and returns the url of the image or file.
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "uploaded": true,
+  "url": "/files/portals/.../posts/.../..._original.jpg"
+}
+```
+
+For simple post type, you can pass an array of `url`s to the post creation end-point (`POST /api/v1/posts`). You should pass the array in the body with `images` or `files` key.
+
+For article post type you can add the image in the `content` of the post as an HTML tag (e.g. `<img src="{url}" />`).
+
 
 ## Update a Specific Post
 
