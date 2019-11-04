@@ -357,6 +357,7 @@ images | `Array` | An array of urls pointing to the images attached to this post
 files | `Array` | An array of urls pointing to the files attached to this post (Only works with simple post type)
 parent | `String` | The ID of the parent post
 replyTo | `String` | The ID of the post to reply
+group | `String` | The ID of the group to post
 
 ### Extra Request Parameters for Moderators
 
