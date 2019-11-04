@@ -378,6 +378,11 @@
 <td><code>String</code></td>
 <td>The ID of the post to reply</td>
 </tr>
+<tr>
+<td>group</td>
+<td><code>String</code></td>
+<td>The ID of the group to post</td>
+</tr>
 </tbody></table>
 <h3 id='extra-request-parameters-for-moderators'>Extra Request Parameters for Moderators</h3>
 <table><thead>

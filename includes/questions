@@ -330,6 +330,11 @@
 <td><code>[String]</code></td>
 <td>The IDs of the topics related to the question</td>
 </tr>
+<tr>
+<td>group</td>
+<td><code>String</code></td>
+<td>The ID of the group to post</td>
+</tr>
 </tbody></table>
 <h3 id='extra-query-parameters-for-moderators'>Extra Query Parameters for Moderators</h3>
 <table><thead>
