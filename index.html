@@ -484,6 +484,9 @@
                     <a href="#create-a-new-user" class="toc-h2 toc-link" data-title="Create a new User">Create a new User</a>
                   </li>
                   <li>
+                    <a href="#invite-new-users" class="toc-h2 toc-link" data-title="Invite new Users">Invite new Users</a>
+                  </li>
+                  <li>
                     <a href="#get-a-specific-user" class="toc-h2 toc-link" data-title="Get a Specific User">Get a Specific User</a>
                   </li>
                   <li>
@@ -512,6 +515,9 @@
                   </li>
                   <li>
                     <a href="#get-user-39-s-answers" class="toc-h2 toc-link" data-title="Get User's Answers">Get User's Answers</a>
+                  </li>
+                  <li>
+                    <a href="#get-user-39-s-posts" class="toc-h2 toc-link" data-title="Get User's Posts">Get User's Posts</a>
                   </li>
               </ul>
           </li>
@@ -3860,6 +3866,12 @@ topicId | The ID of the topic -->
 <td><code>createdAt.desc</code></td>
 <td>The field to sort on</td>
 </tr>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td></td>
+<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>simple</code>, <code>discussion</code>, <code>article</code>) seprated by comma</td>
+</tr>
 </tbody></table>
 <h2 id='get-a-specific-post'>Get a Specific Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
@@ -5878,6 +5890,87 @@ topicId | The ID of the topic -->
 <td><code>No</code></td>
 </tr>
 </tbody></table>
+<h2 id='invite-new-users'>Invite new Users</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/user/email/invitations"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  --DATA <span class="s1">'{data}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span><span class="s2">"Mr Support"</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s2">"info@tribe.so"</span><span class="p">,</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span><span class="s2">"Mr Tech"</span><span class="p">,</span>
+    <span class="na">email</span><span class="p">:</span> <span class="s2">"tech@tribe.so"</span><span class="p">,</span>
+  <span class="p">},</span>
+<span class="p">];</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">users</span><span class="p">,</span>
+  <span class="na">role</span><span class="p">:</span> <span class="s1">'member'</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">invite</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint send invitation email to people. The free plan is limited to 50 invitaions per day.</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/user/email/invitations/</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>role</td>
+<td><code>String</code></td>
+<td>Role of the users</td>
+<td><code>Yes</code></td>
+</tr>
+<tr>
+<td>users</td>
+<td><code>Array&lt;Object&gt;</code></td>
+<td>List of users</td>
+<td><code>Yes</code></td>
+</tr>
+<tr>
+<td>message</td>
+<td><code>String</code></td>
+<td>Custom message for the invitation</td>
+<td><code>No</code></td>
+</tr>
+</tbody></table>
+<h3 id='user-parameters'>User Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td><code>String</code></td>
+<td>Name of the user</td>
+</tr>
+<tr>
+<td>email</td>
+<td><code>String</code></td>
+<td>Email of the user</td>
+</tr>
+</tbody></table>
 <h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
@@ -5922,7 +6015,7 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific user using ID.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-4'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/users/{id}</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -5950,7 +6043,7 @@ topicId | The ID of the topic -->
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint updates a specific user using ID.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/users/{id}</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -5966,7 +6059,7 @@ topicId | The ID of the topic -->
 <td>The ID of the user to update</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -6139,6 +6232,11 @@ topicId | The ID of the topic -->
 <td><code>String</code></td>
 <td>Status of the user</td>
 </tr>
+<tr>
+<td>badge</td>
+<td><code>Object</code></td>
+<td>User&#39;s badge</td>
+</tr>
 </tbody></table>
 <h3 id='extra-request-parameters-for-admin'>Extra Request Parameters for Admin</h3>
 <table><thead>
@@ -6152,6 +6250,25 @@ topicId | The ID of the topic -->
 <td>role</td>
 <td><code>String</code></td>
 <td>Role of the user</td>
+</tr>
+</tbody></table>
+<h3 id='badge-parameters'>Badge Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>text</td>
+<td><code>Boolean</code></td>
+<td>Text of the badge</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>Type of the badge. It can be one of the followings: [<code>gold</code>, <code>silver</code>, <code>bronze</code>]</td>
 </tr>
 </tbody></table>
 <h2 id='delete-a-specific-user'>Delete a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>
@@ -6170,7 +6287,7 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific user.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/users/{id}</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
@@ -6232,7 +6349,7 @@ topicId | The ID of the topic -->
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific user&#39;s followers using ID.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/users/{id}/followers</code></p>
 <h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
@@ -6294,7 +6411,7 @@ topicId | The ID of the topic -->
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific user&#39;s followings using ID.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/users/{id}/followings</code></p>
 <h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
@@ -6319,7 +6436,7 @@ topicId | The ID of the topic -->
 <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="s1">'5b1f99a7478dd3768d84b646'</span><span class="p">);</span>
 </code></pre>
 <p>This endpoint follows a user.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/users/{id}/followers</code></p>
 <h2 id='unfollow-a-user'>Unfollow a user</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"</span>
   -X DELETE
@@ -6330,7 +6447,7 @@ topicId | The ID of the topic -->
 <span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">unfollow</span><span class="p">(</span><span class="s1">'5b1f99a7478dd3768d84b646'</span><span class="p">);</span>
 </code></pre>
 <p>This endpoint unfollows a user.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/users/{id}/followers</code></p>
 <h2 id='get-user-39-s-expertise'>Get User&#39;s Expertise</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/expertise"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
@@ -6407,7 +6524,7 @@ topicId | The ID of the topic -->
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves a specific user&#39;s expertise using ID.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/users/{id}/expertise</code></p>
 <h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
@@ -6429,20 +6546,105 @@ topicId | The ID of the topic -->
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">questions</span><span class="p">(</span><span class="s1">'5b1f99a7478dd3768d84b646'</span><span class="p">);</span>
-</code></pre><h3 id='http-request-11'>HTTP Request</h3>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ddbdb3d47a56345bc4bb3d2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shortId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dAV2L"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-25T13:46:37.529Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-25T13:46:37.529Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"how do i embed endorsal dynamic form on tribe and can i use tags from the site like avatar, first name, second name and email?"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"publishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-25T13:46:37.528Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a73b1fcc48071e4c4dc1cae"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastAskedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-25T13:46:37.528Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dd484e7b033d753be0f71a4"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andy sandford"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"andrewsandford"</span><span class="p">,</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dd484e7b033d753be0f71a4"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referrers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"aliases"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"hasReward"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"downvotes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"askers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"published"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"pollVotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"asks"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"downvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"edits"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"hiddenAnswers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"general"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"privacy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"anonymous"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"locked"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ddbdb3d47a56345bc4bb3d2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/question/5ddbdb3d47a56345bc4bb3d2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"api_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/questions/5ddbdb3d47a56345bc4bb3d2"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific user&#39;s questions using ID.</p>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/users/{id}/questions</code></p>
 <h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
 <td><code>String</code></td>
+<td></td>
 <td>The ID of the user</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code>Number</code></td>
+<td><code>1</code></td>
+<td>Intended page</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>Number</code></td>
+<td><code>20</code></td>
+<td>Number of items per page</td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code>String</code></td>
+<td><code>createdAt.desc</code></td>
+<td>The field to sort on</td>
 </tr>
 </tbody></table>
 <h2 id='get-user-39-s-answers'>Get User&#39;s Answers</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/answers"</span>
@@ -6451,20 +6653,218 @@ topicId | The ID of the topic -->
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">answers</span><span class="p">(</span><span class="s1">'5b1f99a7478dd3768d84b646'</span><span class="p">);</span>
-</code></pre><h3 id='http-request-12'>HTTP Request</h3>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dd7260552a5be0ba42b94a6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-25T12:55:10.718Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-22T00:04:21.631Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a73b1fcc48071e4c4dc1cae"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"question"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dd6f272f8730a37e88ba86c"</span><span class="p">,</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7037e168356d17013df39b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preetish"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preetish"</span><span class="p">,</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"publishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-22T00:12:25.579Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shortId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOKKn"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"downvotes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"privacy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"anonymous"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sure, if you have already verified your domain via Google Analytics or Tag Manager, you can simply use that. Otherwise, you can access the community Theme (look for advanced settings tab) un..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dd7260552a5be0ba42b94a6"</span><span class="p">,</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">...</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific user&#39;s answers using ID.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/users/{id}/answers</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
 <th>Type</th>
+<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id</td>
 <td><code>String</code></td>
+<td></td>
 <td>The ID of the user</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code>Number</code></td>
+<td><code>1</code></td>
+<td>Intended page</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>Number</code></td>
+<td><code>20</code></td>
+<td>Number of items per page</td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code>String</code></td>
+<td><code>createdAt.desc</code></td>
+<td>The field to sort on</td>
+</tr>
+</tbody></table>
+<h2 id='get-user-39-s-posts'>Get User&#39;s Posts</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5c7037e168356d17013df39b/posts?type=discussion"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="na">type</span><span class="p">:</span> <span class="s1">'discussion'</span>
+<span class="p">}</span>
+<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">posts</span><span class="p">(</span><span class="s1">'5c7037e168356d17013df39b'</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d03f4abdb3dbb6f2c9d4ff8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"shortId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"yM7Zz"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-23T15:49:47.804Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-14T19:25:31.241Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Common Mistakes to Avoid When Building Online Communities"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;This &lt;a href=</span><span class="se">\"</span><span class="s2">https://blog.tribe.so/10-common-mistakes-to-avoid-when-building-online-communities/</span><span class="se">\"</span><span class="s2">&gt;&lt;strong&gt;comprehensive blog&lt;/strong&gt;&lt;/a&gt; covers the 10 most common mistakes that must be avoided when building online communities — from the lack of content seeding and internal support to poor processes and aggressive growth targets.&lt;/p&gt;&lt;p&gt;What are some of your key learnings from community building?&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"publishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-14T19:25:31.201Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a73b1fcc48071e4c4dc1cae"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7037e168356d17013df39b"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preetish"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preetish"</span><span class="p">,</span><span class="w">
+        </span><span class="err">...</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c7037e168356d17013df39b"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"referrers"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"downvotes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"rewards"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"files"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"images"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"attachments"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"posters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"downvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"links"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"totalUpvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"upvotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"edits"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"published"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"privacy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"article"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"discussion"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"anonymous"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This comprehensive blog covers the 10 most common mistakes that must be avoided when building online communities — from the lack of content seeding and internal support to poor processes and..."</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d03f4abdb3dbb6f2c9d4ff8"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"upvoted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"downvoted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific user&#39;s posts (Discussions, Blogs, Quick Post, Replies) using ID.</p>
+<h3 id='http-request-14'>HTTP Request</h3>
+<p><code class="request">GET /api/v1/users/{id}/posts</code></p>
+<h3 id='url-parameters-9'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td></td>
+<td>The ID of the user</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td></td>
+<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>simple</code>, <code>discussion</code>, <code>article</code>, <code>response</code>) seprated by comma</td>
+</tr>
+<tr>
+<td>page</td>
+<td><code>Number</code></td>
+<td><code>1</code></td>
+<td>Intended page</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>Number</code></td>
+<td><code>20</code></td>
+<td>Number of items per page</td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code>String</code></td>
+<td><code>createdAt.desc</code></td>
+<td>The field to sort on</td>
 </tr>
 </tbody></table>
 <h1 id='groups'>Groups</h1><h2 id='create-a-group'>Create a Group</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups"</span>
