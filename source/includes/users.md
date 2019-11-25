@@ -246,13 +246,18 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 verified | `Boolean` | Is the user verified or not
 status | `String` | Status of the user
+badge | `Object` | User's badge | `No`
 
 ### Extra Request Parameters for Admin
-
 Parameter | Type | Description
 --------- | ----------- | -----------
 role | `String` | Role of the user
 
+### Badge Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+text | `Boolean` | Text of the badge
+type | `String` | Type of the badge. It can be one of the followings: [`gold`, `silver`, `bronze`]
 
 ## Delete a Specific User
 
