@@ -591,6 +591,70 @@ let api = tribe.authorize('{access_token}');
 let users = api.users.questions('5b1f99a7478dd3768d84b646');
 ```
 
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "_id": "5ddbdb3d47a56345bc4bb3d2",
+    "shortId": "dAV2L",
+    "lang": "en",
+    "updatedAt": "2019-11-25T13:46:37.529Z",
+    "createdAt": "2019-11-25T13:46:37.529Z",
+    "title": "how do i embed endorsal dynamic form on tribe and can i use tags from the site like avatar, first name, second name and email?",
+    "publishedAt": "2019-11-25T13:46:37.528Z",
+    "portal": "5a73b1fcc48071e4c4dc1cae",
+    "lastAskedAt": "2019-11-25T13:46:37.528Z",
+    "user": {
+      "_id": "5dd484e7b033d753be0f71a4",
+      "profile": {
+        "name": "andy sandford",
+        "username": "andrewsandford",
+        ...
+      },
+      "externalId": null,
+      "id": "5dd484e7b033d753be0f71a4"
+    },
+    "__v": 0,
+    "referrers": [],
+    "aliases": [],
+    "rewards": [],
+    "hasReward": false,
+    "downvotes": [],
+    "upvotes": [],
+    "followers": [],
+    "askers": [],
+    "comments": [],
+    "options": [],
+    "topics": [],
+    "score": 0,
+    "status": "published",
+    "counts": {
+      "pollVotes": 0,
+      "asks": 1,
+      "downvotes": 0,
+      "upvotes": 0,
+      "edits": 1,
+      "comments": 0,
+      "hiddenAnswers": 0,
+      "answers": 0,
+      "views": 0,
+      "followers": 0
+    },
+    "type": "general",
+    "privacy": "public",
+    "anonymous": false,
+    "verified": false,
+    "locked": false,
+    "id": "5ddbdb3d47a56345bc4bb3d2",
+    "followed": false,
+    "url": "/question/5ddbdb3d47a56345bc4bb3d2",
+    "api_url": "/questions/5ddbdb3d47a56345bc4bb3d2"
+  },
+  ...
+]
+```
+
 
 ### HTTP Request
 
@@ -599,9 +663,12 @@ let users = api.users.questions('5b1f99a7478dd3768d84b646');
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the user
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+id | `String` | | The ID of the user
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` | `createdAt.desc` | The field to sort on
 
 
 
@@ -620,6 +687,57 @@ let api = tribe.authorize('{access_token}');
 let users = api.users.answers('5b1f99a7478dd3768d84b646');
 ```
 
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "_id": "5dd7260552a5be0ba42b94a6",
+    "updatedAt": "2019-11-25T12:55:10.718Z",
+    "createdAt": "2019-11-22T00:04:21.631Z",
+    "portal": "5a73b1fcc48071e4c4dc1cae",
+    "question": {
+      "_id": "5dd6f272f8730a37e88ba86c",
+      ...
+    },
+    "user": {
+      "_id": "5c7037e168356d17013df39b",
+      "profile": {
+        "name": "Preetish",
+        "username": "preetish",
+        ...
+      },
+      ...
+    },
+    "__v": 9,
+    "lang": "en",
+    "publishedAt": "2019-11-22T00:12:25.579Z",
+    "shortId": "LOKKn",
+    "downvotes": [],
+    "upvotes": [
+      ...
+    ],
+    "comments": [
+      ...
+    ],
+    "rewards": [],
+    "images": [
+      ...
+    ],
+    "links": [
+      ...
+    ],
+    "privacy": "public",
+    "anonymous": false,
+    "verified": false,
+    "summary": "Sure, if you have already verified your domain via Google Analytics or Tag Manager, you can simply use that. Otherwise, you can access the community Theme (look for advanced settings tab) un...",
+    "id": "5dd7260552a5be0ba42b94a6",
+    ...
+  },
+  ...
+]
+```
+
 
 ### HTTP Request
 
@@ -628,9 +746,12 @@ let users = api.users.answers('5b1f99a7478dd3768d84b646');
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the user
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+id | `String` | | The ID of the user
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` | `createdAt.desc` | The field to sort on
 
 ## Get User's Posts
 
@@ -736,7 +857,7 @@ This endpoint retrieves a specific user's posts (Discussions, Blogs, Quick Post,
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
 id | `String` | | The ID of the user
-type | `String` | | Type of posts. It can be empty (for all types) or a string of types of posts (`simple`, `discussion`, `article`) seprated by comma 
+type | `String` | | Type of posts. It can be empty (for all types) or a string of types of posts (`simple`, `discussion`, `article`, `response`) seprated by comma 
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
 sort | `String` | `createdAt.desc` | The field to sort on
