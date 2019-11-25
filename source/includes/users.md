@@ -631,3 +631,112 @@ let users = api.users.answers('5b1f99a7478dd3768d84b646');
 Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the user
+
+## Get User's Posts
+
+
+```shell
+curl "https://community.tribe.so/api/v1/users/5c7037e168356d17013df39b/posts?type=discussion"
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let data = {
+  type: 'discussion'
+}
+let users = api.users.posts('5c7037e168356d17013df39b', data);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "_id": "5d03f4abdb3dbb6f2c9d4ff8",
+    "shortId": "yM7Zz",
+    "lang": "en",
+    "updatedAt": "2019-11-23T15:49:47.804Z",
+    "createdAt": "2019-06-14T19:25:31.241Z",
+    "title": "Common Mistakes to Avoid When Building Online Communities",
+    "content": "<p>This <a href=\"https://blog.tribe.so/10-common-mistakes-to-avoid-when-building-online-communities/\"><strong>comprehensive blog</strong></a> covers the 10 most common mistakes that must be avoided when building online communities — from the lack of content seeding and internal support to poor processes and aggressive growth targets.</p><p>What are some of your key learnings from community building?</p>",
+    "publishedAt": "2019-06-14T19:25:31.201Z",
+    "portal": "5a73b1fcc48071e4c4dc1cae",
+    "user": {
+      "_id": "5c7037e168356d17013df39b",
+      "profile": {
+        "name": "Preetish",
+        "username": "preetish",
+        ...
+      },
+      "externalId": null,
+      "id": "5c7037e168356d17013df39b"
+    },
+    "__v": 6,
+    "referrers": [],
+    "downvotes": [],
+    "upvotes": [
+      ...
+    ],
+    "comments": [],
+    "rewards": [],
+    "files": [],
+    "images": [],
+    "attachments": [],
+    "topics": [
+      ...
+    ],
+    "posters": [
+      ...
+    ],
+    "followers": [
+      ...
+    ],
+    "score": 0,
+    "counts": {
+      "downvotes": 0,
+      "links": 0,
+      "totalUpvotes": 0,
+      "upvotes": 2,
+      "followers": 0,
+      "edits": 0,
+      "responses": 1,
+      "comments": 0,
+      "views": 0
+    },
+    "status": "published",
+    "privacy": "public",
+    "kind": "article",
+    "type": "discussion",
+    "anonymous": false,
+    "verified": false,
+    "responses": [
+      ...
+    ],
+    "summary": "This comprehensive blog covers the 10 most common mistakes that must be avoided when building online communities — from the lack of content seeding and internal support to poor processes and...",
+    "id": "5d03f4abdb3dbb6f2c9d4ff8",
+    "upvoted": false,
+    "downvoted": false,
+    "followed": false
+  }
+]
+```
+
+This endpoint retrieves a specific user's posts (Discussions, Blogs, Quick Post, Replies) using ID
+
+### HTTP Request
+
+<code class="request">GET /api/v1/users/{id}/posts</code>
+
+
+### URL Parameters
+
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+id | `String` | | The ID of the user
+type | `String` | | Type of posts. It can be empty (for all type of) or a string of types of posts (`simple`, `discussion`, `article`) seprated by comma 
+page | `Number` | `1` | Intended page
+limit | `Number` | `20` | Number of items per page
+sort | `String` | `createdAt.desc` | The field to sort on
