@@ -107,6 +107,65 @@ email | `String` | Email of the user | `Yes`
 password | `String` | Password of the user | `Yes`
 confirmPassword | `String` | Confirm password of the user | `No`
 
+## Invite new Users
+
+
+```shell
+curl "https://community.tribe.so/api/v1/user/email/invitations"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  --DATA '{data}'
+```
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = [
+  {
+    name:"Mr Support",
+    email: "info@tribe.so",
+  },
+  {
+    name:"Mr Tech",
+    email: "tech@tribe.so",
+  },
+];
+let data = {
+  users,
+  role: 'member',
+}
+api.users.invite(data)
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true,
+  "count": 1
+}
+```
+
+This endpoint send invitation email to people. The free plan is limited to 50 invitaions per day.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/user/email/invitations/</code>
+
+### Request Parameters
+
+Parameter | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+role | `String` | Role of the users | `Yes`
+users | `Array<Object>` | List of users | `Yes`
+message | `String` | Custom message for the invitation | `No`
+
+### User Parameters
+Parameter | Type | Description
+--------- | ----------- | -----------
+name | `String` | Name of the user
+email | `String` | Email of the user
+
 ## Get a Specific User
 
 
