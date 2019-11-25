@@ -331,6 +331,7 @@ description | `String` | The description of the question to create
 anonymous | `Boolean` | Is this an anonymous question?
 from | `String` | The ID of the user who has beend asked from
 topics | `[String]` | The IDs of the topics related to the question
+group | `String` | The ID of the group to post
 
 ### Extra Query Parameters for Moderators
 
