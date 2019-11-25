@@ -719,6 +719,7 @@ let users = api.users.questions('5b1f99a7478dd3768d84b646');
 ]
 ```
 
+This endpoint retrieves a specific user's questions using ID.
 
 ### HTTP Request
 
@@ -802,6 +803,7 @@ let users = api.users.answers('5b1f99a7478dd3768d84b646');
 ]
 ```
 
+This endpoint retrieves a specific user's answers using ID.
 
 ### HTTP Request
 
@@ -909,7 +911,7 @@ let users = api.users.posts('5c7037e168356d17013df39b', data);
 ]
 ```
 
-This endpoint retrieves a specific user's posts (Discussions, Blogs, Quick Post, Replies) using ID
+This endpoint retrieves a specific user's posts (Discussions, Blogs, Quick Post, Replies) using ID.
 
 ### HTTP Request
 
