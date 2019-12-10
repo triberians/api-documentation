@@ -326,7 +326,7 @@
 </span></code></pre>
 <p>This endpoint join user to multiple groups. It can also be used for community admins to add a user to multiple groups.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code class="request">POST /api/v1/user/:id/groups</code></p>
+<p><code class="request">POST /api/v1/users/:id/groups</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -352,6 +352,6 @@
 <tr>
 <td>groupIds</td>
 <td></td>
-<td>List of the groups&#39; IDs to join</td>
+<td>List of the groups&#39; IDs to joinx</td>
 </tr>
 </tbody></table>

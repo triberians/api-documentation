@@ -519,6 +519,12 @@
                   <li>
                     <a href="#get-user-39-s-posts" class="toc-h2 toc-link" data-title="Get User's Posts">Get User's Posts</a>
                   </li>
+                  <li>
+                    <a href="#add-device-token" class="toc-h2 toc-link" data-title="Add device token">Add device token</a>
+                  </li>
+                  <li>
+                    <a href="#remove-device-token" class="toc-h2 toc-link" data-title="Remove device token">Remove device token</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -6867,6 +6873,110 @@ topicId | The ID of the topic -->
 <td>The field to sort on</td>
 </tr>
 </tbody></table>
+<h2 id='add-device-token'>Add device token</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/user/devices"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X POST
+  --DATA <span class="s2">"{...}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">authUser</span><span class="p">().</span><span class="nx">addDevice</span><span class="p">({...})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint add device token to the authenticated user.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/user/devices</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td></td>
+<td>The ID of user to add the device token</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters-4'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td></td>
+<td>Device token</td>
+</tr>
+<tr>
+<td>type</td>
+<td></td>
+<td>Type of the device. It can be one of [<code>web</code> , <code>ios</code>, <code>android</code>]</td>
+</tr>
+<tr>
+<td>name</td>
+<td></td>
+<td>Optional name for the device</td>
+</tr>
+</tbody></table>
+<h2 id='remove-device-token'>Remove device token</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/user/devices"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X DELETE
+  --DATA <span class="s2">"{...}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">authUser</span><span class="p">().</span><span class="nx">removeDevice</span><span class="p">({...})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint remove device token from the authenticated user.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code class="request">DELETE /api/v1/user/devices</code></p>
+<h3 id='url-parameters-11'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td></td>
+<td>The ID of user to add the device token</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters-5'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td></td>
+<td>Device token</td>
+</tr>
+</tbody></table>
 <h1 id='groups'>Groups</h1><h2 id='create-a-group'>Create a Group</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X POST
@@ -7195,7 +7305,7 @@ topicId | The ID of the topic -->
 </span></code></pre>
 <p>This endpoint join user to multiple groups. It can also be used for community admins to add a user to multiple groups.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
-<p><code class="request">POST /api/v1/user/:id/groups</code></p>
+<p><code class="request">POST /api/v1/users/:id/groups</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -7221,7 +7331,7 @@ topicId | The ID of the topic -->
 <tr>
 <td>groupIds</td>
 <td></td>
-<td>List of the groups&#39; IDs to join</td>
+<td>List of the groups&#39; IDs to joinx</td>
 </tr>
 </tbody></table>
 <h1 id='virtual-currency'>Virtual Currency</h1><h2 id='add-credit-to-user'>Add Credit to User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/:id/credit"</span>

@@ -1109,3 +1109,107 @@
 <td>The field to sort on</td>
 </tr>
 </tbody></table>
+<h2 id='add-device-token'>Add device token</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/user/devices"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X POST
+  --DATA <span class="s2">"{...}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">authUser</span><span class="p">().</span><span class="nx">addDevice</span><span class="p">({...})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint add device token to the authenticated user.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/user/devices</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td></td>
+<td>The ID of user to add the device token</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters-4'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td></td>
+<td>Device token</td>
+</tr>
+<tr>
+<td>type</td>
+<td></td>
+<td>Type of the device. It can be one of [<code>web</code> , <code>ios</code>, <code>android</code>]</td>
+</tr>
+<tr>
+<td>name</td>
+<td></td>
+<td>Optional name for the device</td>
+</tr>
+</tbody></table>
+<h2 id='remove-device-token'>Remove device token</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/user/devices"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X DELETE
+  --DATA <span class="s2">"{...}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">authUser</span><span class="p">().</span><span class="nx">removeDevice</span><span class="p">({...})</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint remove device token from the authenticated user.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code class="request">DELETE /api/v1/user/devices</code></p>
+<h3 id='url-parameters-11'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td></td>
+<td>The ID of user to add the device token</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters-5'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>token</td>
+<td></td>
+<td>Device token</td>
+</tr>
+</tbody></table>
