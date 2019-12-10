@@ -318,7 +318,7 @@ This endpoint join user to multiple groups. It can also be used for community ad
 
 ### HTTP Request
 
-<code class="request">POST /api/v1/user/:id/groups</code>
+<code class="request">POST /api/v1/users/:id/groups</code>
 
 ### URL Parameters
 
@@ -330,4 +330,4 @@ id |  | The ID of user to join (add)
 
 Parameter | Default | Description
 --------- | --------- | -----------
-groupIds |  | List of the groups' IDs to join
+groupIds |  | List of the groups' IDs to joinx

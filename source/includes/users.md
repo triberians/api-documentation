@@ -927,3 +927,89 @@ type | `String` | | Type of posts. It can be empty (for all types) or a string o
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
 sort | `String` | `createdAt.desc` | The field to sort on
+
+## Add device token
+
+```shell
+curl "https://community.tribe.so/api/v1/user/devices"
+  -H "Authorization: Bearer {access_token}"
+  -X POST
+  --DATA "{...}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.authUser().addDevice({...})
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint add device token to the authenticated user.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/user/devices</code>
+
+### URL Parameters
+
+Parameter | Default | Description
+--------- | --------- | -----------
+id |  | The ID of user to add the device token
+
+### Request Parameters
+
+Parameter | Default | Description
+--------- | --------- | -----------
+token |  | Device token
+type |  | Type of the device. It can be one of [`web` , `ios`, `android`]
+name |  | Optional name for the device 
+
+## Remove device token
+
+```shell
+curl "https://community.tribe.so/api/v1/user/devices"
+  -H "Authorization: Bearer {access_token}"
+  -X DELETE
+  --DATA "{...}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.authUser().removeDevice({...})
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+This endpoint remove device token from the authenticated user.
+
+### HTTP Request
+
+<code class="request">DELETE /api/v1/user/devices</code>
+
+### URL Parameters
+
+Parameter | Default | Description
+--------- | --------- | -----------
+id |  | The ID of user to add the device token
+
+### Request Parameters
+
+Parameter | Default | Description
+--------- | --------- | -----------
+token |  | Device token
