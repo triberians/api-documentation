@@ -19,6 +19,7 @@ includes:
   - topics
   - users
   - groups
+  - search
   - virtual_curreny
   - errors
   - widgets.md.erb
