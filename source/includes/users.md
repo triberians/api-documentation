@@ -67,6 +67,14 @@ Parameter | Type | Default | Description
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
 sort | `Number` | `createdAt.desc` | The field to sort on
+query | `String` |  | Query to filter on name, username, and title
+
+### Extra Query Parameters for Moderators
+
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+role | `String` |  | Filter users based on role. Can be `admin`, `moderator`, `member`, and `bot`
+email | `String` |  | Comma separated list of emails to filter on
 
 
 ## Create a new User
@@ -286,7 +294,7 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 holderName | `String` | Name of the holder
 accountNumber | `String` | Account number
-type | `String` | Type of the account. Can be: `card`, `checking`, `saving`
+type | `String` | Type of the account. Can be `card`, `checking`, `saving`
 routingNumber | `String` | Routing number for the bank account
 bankName | `String` | Name of the bank related to account
 
@@ -1013,3 +1021,82 @@ id |  | The ID of user to add the device token
 Parameter | Default | Description
 --------- | --------- | -----------
 token |  | Device token
+
+
+
+## Get Users Leaderboard
+
+
+```shell
+curl "https://community.tribe.so/api/v1/stats/users/leaderboard"
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.users.getLeaderboard();
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "target": {
+      "_id": "5e1df0f22fd9c490684b834a",
+      "profile": {
+        "counts": {
+          "receivedLikes": 0,
+          "replies": 0,
+          "groups": 0,
+          "requests": 0,
+          "edits": 0,
+          "questionsFollowers": 0,
+          "responses": 0,
+          "posts": 0,
+          "questions": 0,
+          "comments": 0,
+          "answersWords": 0,
+          "answersVotes": 0,
+          "answers": 0,
+          "views": 0,
+          "followings": 0,
+          "followers": 0
+        },
+        "score": 10,
+        "verified": false,
+        "badge": {
+          "type": "silver"
+        },
+        "description": "",
+        "title": "",
+        "banner": "",
+        "picture": "https://gravatar.com/avatar/b7711ecd91aebb5dd1b7c153dbfd92d0?s=200&d=retro",
+        "website": "",
+        "location": "",
+        "gender": "",
+        "name": "Admin",
+        "username": "admin"
+      },
+      "id": "5e1df0f22fd9c490684b834a",
+      "followed": false
+    },
+    "total": 10
+  },
+  ...
+]
+```
+
+This endpoint retrieves users leaderboard for a specific period. It includes an array of user object (`target`) and their score (`total`).
+
+### HTTP Request
+
+<code class="request">GET /api/v1/stats/users/leaderboard</code>
+
+### Query Parameters
+
+Parameter | Type | Default | Description
+--------- | ------- | ----------- | -----------
+period | `String` | `all` | Can be `all`, `month`, or `week`
