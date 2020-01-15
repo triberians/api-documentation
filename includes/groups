@@ -249,7 +249,7 @@
 <td>Topics&#39; exact names separated by comma</td>
 </tr>
 </tbody></table>
-<h2 id='join-multiple-groups'>Join Multiple Groups</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/:id/groups"</span>
+<h2 id='add-a-user-to-multiple-groups'>Add A User to Multiple Groups</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/:id/groups"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X POST
   --DATA <span class="s2">"{...}"</span>
@@ -352,6 +352,98 @@
 <tr>
 <td>groupIds</td>
 <td></td>
-<td>List of the groups&#39; IDs to joinx</td>
+<td>List of the groups&#39; IDs to join</td>
+</tr>
+</tbody></table>
+<h2 id='join-multiple-groups'>Join Multiple Groups</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/user/groups"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X POST
+  --DATA <span class="s2">"{...}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">join</span><span class="p">([</span><span class="s1">'groupId'</span><span class="p">]);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1aafad2e97764f5c4b593"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1b9b4c014eee3fcd97402"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"shortId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"P8Bkn"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-04T09:46:06.068Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-24T14:48:20.773Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"first-group"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"First group"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1aaf9d2e97764f5c4b58e"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d3077834d0c0c03cb892a5f"</span><span class="p">,</span><span class="w">
+              </span><span class="err">...</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joined"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-24T15:00:03.565Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1bc73267d8cfed33cd2f3"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbe1943d794c01bbdf0196f"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-03T00:03:15.702Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joined"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbe1943d794c01bbdf0196e"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"shortId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QOlqV"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-04T13:22:09.911Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-03T00:03:15.664Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"second-group"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Second group"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1aaf9d2e97764f5c4b58e"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1aafad2e97764f5c4b593"</span><span class="p">,</span><span class="w">
+              </span><span class="err">...</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbe1a279fe204230b82f5a4"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-03T00:07:03.922Z"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joined"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"group"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbe1a279fe204230b82f5a3"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"shortId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"y9Mk7"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-03T01:25:34.006Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-03T00:07:03.898Z"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asd-123"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"asd 123"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1aaf9d2e97764f5c4b58e"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1aafad2e97764f5c4b593"</span><span class="p">,</span><span class="w">
+              </span><span class="err">...</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5db1aafad2e97764f5c4b593"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"followed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint joins the authenticated user to multiple groups.</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/user/groups</code></p>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupIds</td>
+<td></td>
+<td>List of the group IDs to join</td>
 </tr>
 </tbody></table>
