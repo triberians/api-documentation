@@ -181,7 +181,7 @@
   <span class="p">})</span>
 <span class="nt">&lt;/script&gt;</span>
 </code></pre><h3 id='oauth2'>OAuth2</h3>
-<p>To enable OAuth2 on your widgets you need to create an OAuth2 app for Tribe on your side and email us the following information to dev@tribe.so:</p>
+<p>To enable OAuth2 on your widgets you need to create an OAuth2 app for Tribe on your side and email us the following information to hi@tribe.so:</p>
 
 <ul>
 <li>Client ID</li>
