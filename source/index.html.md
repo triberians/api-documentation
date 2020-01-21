@@ -6,7 +6,7 @@ language_tabs: # must be one of https://git.io/vQNgJ
   - javascript
 
 toc_footers:
-  - <a href='mailto:dev@tribe.so'>Request API Key</a>
+  - <a href='mailto:hi@tribe.so?subject=Request API Credentials'>Request API Credentials</a>
 
 includes:
   - answers
@@ -81,7 +81,7 @@ You must replace <code>&lt;YourAccessToken&gt;</code> with the JWT access token.
 
 ## Tribe Access Token
 
-If your product does not support JWT access token or you are using Tribe as the main identity service, you need to first request for a client ID and client Secret by [contacting us](dev@tribe.so).
+If your product does not support JWT access token or you are using Tribe as the main identity service, you need to first request for a client ID and client Secret by [contacting us](mailto:hi@tribe.so?subject=Request API Credentials).
 
 Then, you'll be able to generate access token and refresh token using one of the following OAuth2 methods:
 
