@@ -57,6 +57,7 @@ This endpoint retrieves user feed.
 
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
+type | `String` |  | Comma separated list of types to filter on. Types can be `post`, `question`, `discussion`, and `article`
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
 sort | `String` | `createdAt.desc` | The field to sort on

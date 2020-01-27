@@ -1185,3 +1185,32 @@ This endpoint returns statistics of a specific user for answers.
 Parameter | Type | Description
 --------- | ----------- | -----------
 metric | `String` | Metric for the statistics. Can be `views`,`votes`,`follows`
+
+
+
+## Reporting a Specific Answer
+
+```shell
+curl "https://community.tribe.so/api/v1/answers/5a816275f8030b3bdd655b0d/reports"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+
+This endpoint reports (flags) a specific answer to admins and moderators.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/answers/:id/reports</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the answer to report
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+type | `String` | The type of the report. Can be `Harrasment`, `Spam`, `DoesntAnswerQuestion`, `Plagiarism`, `JokeAnswer`, `OutOfDate`, `PoorlyWritten`, `FactuallyIncorrect`, or `AgainstRules`
+description | `String` | The optional description of the report shown to admins and moderators

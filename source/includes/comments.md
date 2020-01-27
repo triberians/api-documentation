@@ -144,3 +144,32 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the comment to remove an upvote
 
+
+
+## Reporting a Specific Comment
+
+```shell
+curl "https://community.tribe.so/api/v1/comments/5a816275f8030b3bdd655b0d/reports"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+
+This endpoint reports (flags) a specific comment to admins and moderators.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/comments/:id/reports</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the comment to report
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+type | `String` | The type of the report. Can be `Harrasment`, `Spam`, `Plagiarism`, `JokeComment`, `OutOfDate`, `PoorlyWritten`, `FactuallyIncorrect`, or `AgainstRules`
+description | `String` | The optional description of the report shown to admins and moderators
+

@@ -791,3 +791,32 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the comment to remove
 postId | `String` | The ID of the post to remove a comment
+
+
+
+## Reporting a Specific Post
+
+```shell
+curl "https://community.tribe.so/api/v1/posts/5a816275f8030b3bdd655b0d/reports"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+
+This endpoint reports (flags) a specific post to admins and moderators.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/posts/:id/reports</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the post to report
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+type | `String` | The type of the report. Can be `Harrasment`, `Spam`, `PoorlyWritten`, `IncorrectTopics`, or `AgainstRules`
+description | `String` | The optional description of the report shown to admins and moderators

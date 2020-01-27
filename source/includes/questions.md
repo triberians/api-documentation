@@ -313,7 +313,7 @@ curl "https://community.tribe.so/api/v1/questions"
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let question = api.questions.create({ title: 'What is life?'});
+let question = api.questions.create({ title: 'What is life?', options: [ { text: 'Life is life' }, { text: 'I have no idea' } ] });
 ```
 
 This endpoint creates a new question.
@@ -332,6 +332,7 @@ anonymous | `Boolean` | Is this an anonymous question?
 from | `String` | The ID of the user who has beend asked from
 topics | `[String]` | The IDs of the topics related to the question
 group | `String` | The ID of the group to post
+options | `[{ text: String }]` (Optional) | An array of poll options in `[{ text: 'Option text' }]` format
 
 ### Extra Query Parameters for Moderators
 
@@ -371,6 +372,7 @@ Parameter | Type | Description
 title | `String` | The title of the question to create
 description | `String` | The description of the question to create
 anonymous | `Boolean` | Is this an anonymous question?
+options | `[{ text: String, _id: ID }]` (Optional) | An array of poll options in `[{ text: 'Option text', _id: "5e2...ab" }]` format. `_id` is the ID of the option passed while fetching a question object.
 
 ### Extra Query Parameters for Moderators
 
@@ -606,3 +608,31 @@ This endpoint unfollows a question.
 ### HTTP Request
 
 <code class="request">DELETE /api/v1/questions/{id}/followers</code>
+
+
+## Reporting a Specific Question
+
+```shell
+curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d/reports"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+
+This endpoint reports (flags) a specific question to admins and moderators.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/questions/:id/reports</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the question to report
+
+### Query Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+type | `String` | The type of the report. Can be `Harrasment`, `Spam`, `Insincere`, `PoorlyWritten`, `IncorrectTopics`, or `AgainstRules`
+description | `String` | The optional description of the report shown to admins and moderators
