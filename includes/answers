@@ -1225,3 +1225,43 @@ topicId | The ID of the topic -->
 <td>Metric for the statistics. Can be <code>views</code>,<code>votes</code>,<code>follows</code></td>
 </tr>
 </tbody></table>
+<h2 id='reporting-a-specific-answer'>Reporting a Specific Answer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/answers/5a816275f8030b3bdd655b0d/reports"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre>
+<p>This endpoint reports (flags) a specific answer to admins and moderators.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/answers/:id/reports</code></p>
+<h3 id='url-parameters-12'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the answer to report</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>The type of the report. Can be <code>Harrasment</code>, <code>Spam</code>, <code>DoesntAnswerQuestion</code>, <code>Plagiarism</code>, <code>JokeAnswer</code>, <code>OutOfDate</code>, <code>PoorlyWritten</code>, <code>FactuallyIncorrect</code>, or <code>AgainstRules</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>The optional description of the report shown to admins and moderators</td>
+</tr>
+</tbody></table>

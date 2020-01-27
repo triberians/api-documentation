@@ -292,7 +292,7 @@
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'What is life?'</span><span class="p">});</span>
+<span class="kd">let</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'What is life?'</span><span class="p">,</span> <span class="na">options</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="na">text</span><span class="p">:</span> <span class="s1">'Life is life'</span> <span class="p">},</span> <span class="p">{</span> <span class="na">text</span><span class="p">:</span> <span class="s1">'I have no idea'</span> <span class="p">}</span> <span class="p">]</span> <span class="p">});</span>
 </code></pre>
 <p>This endpoint creates a new question.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
@@ -334,6 +334,11 @@
 <td>group</td>
 <td><code>String</code></td>
 <td>The ID of the group to post</td>
+</tr>
+<tr>
+<td>options</td>
+<td><code>[{ text: String }]</code> (Optional)</td>
+<td>An array of poll options in <code>[{ text: &#39;Option text&#39; }]</code> format</td>
 </tr>
 </tbody></table>
 <h3 id='extra-query-parameters-for-moderators'>Extra Query Parameters for Moderators</h3>
@@ -413,6 +418,11 @@
 <td>anonymous</td>
 <td><code>Boolean</code></td>
 <td>Is this an anonymous question?</td>
+</tr>
+<tr>
+<td>options</td>
+<td><code>[{ text: String, _id: ID }]</code> (Optional)</td>
+<td>An array of poll options in <code>[{ text: &#39;Option text&#39;, _id: &quot;5e2...ab&quot; }]</code> format. <code>_id</code> is the ID of the option passed while fetching a question object.</td>
 </tr>
 </tbody></table>
 <h3 id='extra-query-parameters-for-moderators-2'>Extra Query Parameters for Moderators</h3>
@@ -672,3 +682,43 @@
 <p>This endpoint unfollows a question.</p>
 <h3 id='http-request-15'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/questions/{id}/followers</code></p>
+<h2 id='reporting-a-specific-question'>Reporting a Specific Question</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d/reports"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre>
+<p>This endpoint reports (flags) a specific question to admins and moderators.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/questions/:id/reports</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the question to report</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>The type of the report. Can be <code>Harrasment</code>, <code>Spam</code>, <code>Insincere</code>, <code>PoorlyWritten</code>, <code>IncorrectTopics</code>, or <code>AgainstRules</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>The optional description of the report shown to admins and moderators</td>
+</tr>
+</tbody></table>

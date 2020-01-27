@@ -48,6 +48,12 @@
 </tr>
 </thead><tbody>
 <tr>
+<td>type</td>
+<td><code>String</code></td>
+<td></td>
+<td>Comma separated list of types to filter on. Types can be <code>post</code>, <code>question</code>, <code>discussion</code>, and <code>article</code></td>
+</tr>
+<tr>
 <td>page</td>
 <td><code>Number</code></td>
 <td><code>1</code></td>

@@ -278,6 +278,9 @@
                   <li>
                     <a href="#get-stats-of-specific-user-for-answers" class="toc-h2 toc-link" data-title="Get Stats of Specific User for Answers">Get Stats of Specific User for Answers</a>
                   </li>
+                  <li>
+                    <a href="#reporting-a-specific-answer" class="toc-h2 toc-link" data-title="Reporting a Specific Answer">Reporting a Specific Answer</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -294,6 +297,9 @@
                   </li>
                   <li>
                     <a href="#remove-an-upvote-for-a-specific-comment" class="toc-h2 toc-link" data-title="Remove an Upvote for a Specific Comment">Remove an Upvote for a Specific Comment</a>
+                  </li>
+                  <li>
+                    <a href="#reporting-a-specific-comment" class="toc-h2 toc-link" data-title="Reporting a Specific Comment">Reporting a Specific Comment</a>
                   </li>
               </ul>
           </li>
@@ -384,6 +390,9 @@
                   <li>
                     <a href="#remove-a-specific-comment-from-specific-post" class="toc-h2 toc-link" data-title="Remove a Specific Comment from Specific Post">Remove a Specific Comment from Specific Post</a>
                   </li>
+                  <li>
+                    <a href="#reporting-a-specific-post" class="toc-h2 toc-link" data-title="Reporting a Specific Post">Reporting a Specific Post</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -433,6 +442,9 @@
                   </li>
                   <li>
                     <a href="#unfollow-a-question" class="toc-h2 toc-link" data-title="Unfollow a question">Unfollow a question</a>
+                  </li>
+                  <li>
+                    <a href="#reporting-a-specific-question" class="toc-h2 toc-link" data-title="Reporting a Specific Question">Reporting a Specific Question</a>
                   </li>
               </ul>
           </li>
@@ -544,6 +556,9 @@
                   </li>
                   <li>
                     <a href="#remove-a-member" class="toc-h2 toc-link" data-title="Remove a Member">Remove a Member</a>
+                  </li>
+                  <li>
+                    <a href="#get-group-39-s-activity-feed" class="toc-h2 toc-link" data-title="Get Group's Activity Feed">Get Group's Activity Feed</a>
                   </li>
                   <li>
                     <a href="#add-a-topic-to-group" class="toc-h2 toc-link" data-title="Add a Topic to Group">Add a Topic to Group</a>
@@ -1978,6 +1993,46 @@ topicId | The ID of the topic -->
 <td>Metric for the statistics. Can be <code>views</code>,<code>votes</code>,<code>follows</code></td>
 </tr>
 </tbody></table>
+<h2 id='reporting-a-specific-answer'>Reporting a Specific Answer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/answers/5a816275f8030b3bdd655b0d/reports"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre>
+<p>This endpoint reports (flags) a specific answer to admins and moderators.</p>
+<h3 id='http-request-15'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/answers/:id/reports</code></p>
+<h3 id='url-parameters-12'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the answer to report</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>The type of the report. Can be <code>Harrasment</code>, <code>Spam</code>, <code>DoesntAnswerQuestion</code>, <code>Plagiarism</code>, <code>JokeAnswer</code>, <code>OutOfDate</code>, <code>PoorlyWritten</code>, <code>FactuallyIncorrect</code>, or <code>AgainstRules</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>The optional description of the report shown to admins and moderators</td>
+</tr>
+</tbody></table>
 <h1 id='comments'>Comments</h1><h2 id='update-a-specific-comment'>Update a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5c0621864cb2b119dc174a63"</span>
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
@@ -2109,6 +2164,46 @@ topicId | The ID of the topic -->
 <td>The ID of the comment to remove an upvote</td>
 </tr>
 </tbody></table>
+<h2 id='reporting-a-specific-comment'>Reporting a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5a816275f8030b3bdd655b0d/reports"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre>
+<p>This endpoint reports (flags) a specific comment to admins and moderators.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/comments/:id/reports</code></p>
+<h3 id='url-parameters-5'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the comment to report</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>The type of the report. Can be <code>Harrasment</code>, <code>Spam</code>, <code>Plagiarism</code>, <code>JokeComment</code>, <code>OutOfDate</code>, <code>PoorlyWritten</code>, <code>FactuallyIncorrect</code>, or <code>AgainstRules</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>The optional description of the report shown to admins and moderators</td>
+</tr>
+</tbody></table>
 <h1 id='feed'>Feed</h1><h2 id='get-user-feed'>Get User Feed</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/feed"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
@@ -2158,6 +2253,12 @@ topicId | The ID of the topic -->
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td></td>
+<td>Comma separated list of types to filter on. Types can be <code>post</code>, <code>question</code>, <code>discussion</code>, and <code>article</code></td>
+</tr>
 <tr>
 <td>page</td>
 <td><code>Number</code></td>
@@ -4607,6 +4708,46 @@ topicId | The ID of the topic -->
 <td>The ID of the post to remove a comment</td>
 </tr>
 </tbody></table>
+<h2 id='reporting-a-specific-post'>Reporting a Specific Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts/5a816275f8030b3bdd655b0d/reports"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre>
+<p>This endpoint reports (flags) a specific post to admins and moderators.</p>
+<h3 id='http-request-13'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/posts/:id/reports</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the post to report</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-3'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>The type of the report. Can be <code>Harrasment</code>, <code>Spam</code>, <code>PoorlyWritten</code>, <code>IncorrectTopics</code>, or <code>AgainstRules</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>The optional description of the report shown to admins and moderators</td>
+</tr>
+</tbody></table>
 <h1 id='questions'>Questions</h1><h2 id='get-all-questions'>Get All Questions</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/questions"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
@@ -4901,7 +5042,7 @@ topicId | The ID of the topic -->
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'What is life?'</span><span class="p">});</span>
+<span class="kd">let</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span> <span class="na">title</span><span class="p">:</span> <span class="s1">'What is life?'</span><span class="p">,</span> <span class="na">options</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span> <span class="na">text</span><span class="p">:</span> <span class="s1">'Life is life'</span> <span class="p">},</span> <span class="p">{</span> <span class="na">text</span><span class="p">:</span> <span class="s1">'I have no idea'</span> <span class="p">}</span> <span class="p">]</span> <span class="p">});</span>
 </code></pre>
 <p>This endpoint creates a new question.</p>
 <h3 id='http-request-8'>HTTP Request</h3>
@@ -4943,6 +5084,11 @@ topicId | The ID of the topic -->
 <td>group</td>
 <td><code>String</code></td>
 <td>The ID of the group to post</td>
+</tr>
+<tr>
+<td>options</td>
+<td><code>[{ text: String }]</code> (Optional)</td>
+<td>An array of poll options in <code>[{ text: &#39;Option text&#39; }]</code> format</td>
 </tr>
 </tbody></table>
 <h3 id='extra-query-parameters-for-moderators'>Extra Query Parameters for Moderators</h3>
@@ -5022,6 +5168,11 @@ topicId | The ID of the topic -->
 <td>anonymous</td>
 <td><code>Boolean</code></td>
 <td>Is this an anonymous question?</td>
+</tr>
+<tr>
+<td>options</td>
+<td><code>[{ text: String, _id: ID }]</code> (Optional)</td>
+<td>An array of poll options in <code>[{ text: &#39;Option text&#39;, _id: &quot;5e2...ab&quot; }]</code> format. <code>_id</code> is the ID of the option passed while fetching a question object.</td>
 </tr>
 </tbody></table>
 <h3 id='extra-query-parameters-for-moderators-2'>Extra Query Parameters for Moderators</h3>
@@ -5281,6 +5432,46 @@ topicId | The ID of the topic -->
 <p>This endpoint unfollows a question.</p>
 <h3 id='http-request-15'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/questions/{id}/followers</code></p>
+<h2 id='reporting-a-specific-question'>Reporting a Specific Question</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d/reports"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre>
+<p>This endpoint reports (flags) a specific question to admins and moderators.</p>
+<h3 id='http-request-16'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/questions/:id/reports</code></p>
+<h3 id='url-parameters-10'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the question to report</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-6'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td>The type of the report. Can be <code>Harrasment</code>, <code>Spam</code>, <code>Insincere</code>, <code>PoorlyWritten</code>, <code>IncorrectTopics</code>, or <code>AgainstRules</code></td>
+</tr>
+<tr>
+<td>description</td>
+<td><code>String</code></td>
+<td>The optional description of the report shown to admins and moderators</td>
+</tr>
+</tbody></table>
 <h1 id='topics'>Topics</h1><h2 id='get-all-topics'>Get All Topics</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/topics"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
@@ -7231,6 +7422,94 @@ topicId | The ID of the topic -->
 <p>This endpoint removes a user from a specific group. Only for admins.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/groups/:id/members/:userId</code></p>
+<h2 id='get-group-39-s-activity-feed'>Get Group&#39;s Activity Feed</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id/feed"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">questions</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">feed</span><span class="p">();</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"topics-1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Topics"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You have not picked any topics yet. Please pick some to improve this page."</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5c0621864cb2b119dc174a63"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Discussion"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"publishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-04T06:41:10.031Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"post"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5bf0e89ada3be54c190b78ba"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Answer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"publishedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-18T04:25:42.037Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"answer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="err">...</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves group&#39;s activity feed.</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code class="request">GET /api/v1/groups/:id/feed</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the group</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td><code>String</code></td>
+<td></td>
+<td>Comma separated list of types to filter on. Types can be <code>post</code>, <code>question</code>, <code>discussion</code>, and <code>article</code></td>
+</tr>
+<tr>
+<td>page</td>
+<td><code>Number</code></td>
+<td><code>1</code></td>
+<td>Intended page</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>Number</code></td>
+<td><code>20</code></td>
+<td>Number of items per page</td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code>String</code></td>
+<td><code>createdAt.desc</code></td>
+<td>The field to sort on</td>
+</tr>
+</tbody></table>
 <h2 id='add-a-topic-to-group'>Add a Topic to Group</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id/topics"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X DELETE
@@ -7245,7 +7524,7 @@ topicId | The ID of the topic -->
 </blockquote>
 <pre class="highlight json tab-json"><code></code></pre>
 <p>This endpoint adds a topic to a specific group. Only for admins.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/groups/:id/topics</code></p>
 
 <table><thead>
@@ -7303,9 +7582,9 @@ topicId | The ID of the topic -->
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all groups.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/groups</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7421,9 +7700,9 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint join user to multiple groups. It can also be used for community admins to add a user to multiple groups.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/users/:id/groups</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -7527,7 +7806,7 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint joins the authenticated user to multiple groups.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/user/groups</code></p>
 <h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
