@@ -371,35 +371,59 @@ user | `String` | The ID of the user to post on behalf
 
 
 
-## Add Image or File to a Post
+## Add Image, File or Video to a Post
 
 This endpoint uploads a new file that can be attached to a simple post or included in an article post.
 
 
 ### HTTP Request
+<strong>@deprecated</strong>
+<del><code class="request">POST /api/v1/posts/image</code></del>
+<small>This endpoint has been deprecated and will be removed in a future version.</small>
 
-<code class="request">POST /api/v1/posts/image</code>
+<code class="request">POST /api/v1/uploads/posts</code>
+
+> The above command returns JSON structured like this for Image, File or Video:
+
+```json
+{
+  "uploaded": true,
+  "url": "https://static.t-cdn.net/.../posts/.../file"
+}
+```
 
 ### Request Parameters
 
 Parameter | Type | Description 
 --------- | ----------- | -----------
-upload | `File` | The image or file in `multipart/form-data` format.
+upload | `File` | The image, file or video in `multipart/form-data` format.
+<a href="https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers-input.html" target="_blank">Supported video formats</a>
 
-To attach an image or a file to a post, first we need to send the file to this endpoint. The endpoint resizes the images, scans files, and returns the url of the image or file.
 
-> The above command returns JSON structured like this:
 
-```json
-{
-  "uploaded": true,
-  "url": "/files/portals/.../posts/.../..._original.jpg"
-}
-```
+### For Image or File
+To attach an image or a file to a post, first we need to send the file to this endpoint.
+The endpoint resizes the images, scans files, and returns the url of the image or file.
 
-For simple post type, you can pass an array of `url`s to the post creation end-point (`POST /api/v1/posts`). You should pass the array in the body with `images` or `files` key.
+For simple post type, you can pass an array of `url`s to the post creation end-point (`POST /api/v1/posts`).
+You should pass the array in the body with `images` or `files` key.
 
 For article post type you can add the image in the `content` of the post as an HTML tag (e.g. `<img src="{url}" />`).
+
+
+
+### For Video
+To attach a video to a post, first we need to send the video to this endpoint. 
+The endpoint uploads to Amazon S3 and returns the url of the original video.
+
+
+For simple post type, you can pass an array of `url`s to the post creation end-point (`POST /api/v1/posts`).
+You should pass the array in the body with `files` key.
+
+Once the Post is created, the video is queued for processing. If the original video is in MP4 format, it will be readily available for the users to view it. In case the video is in any other format, the video player will be under a "processing" state.
+Upon completion, the video player gets updated with the processed video. 
+
+
 
 
 ## Update a Specific Post
