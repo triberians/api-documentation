@@ -364,7 +364,7 @@
                     <a href="#create-a-new-post" class="toc-h2 toc-link" data-title="Create a new Post">Create a new Post</a>
                   </li>
                   <li>
-                    <a href="#add-image-or-file-to-a-post" class="toc-h2 toc-link" data-title="Add Image or File to a Post">Add Image or File to a Post</a>
+                    <a href="#add-image-file-or-video-to-a-post" class="toc-h2 toc-link" data-title="Add Image, File or Video to a Post">Add Image, File or Video to a Post</a>
                   </li>
                   <li>
                     <a href="#update-a-specific-post" class="toc-h2 toc-link" data-title="Update a Specific Post">Update a Specific Post</a>
@@ -4240,11 +4240,23 @@ topicId | The ID of the topic -->
 <td>The ID of the user to post on behalf</td>
 </tr>
 </tbody></table>
-<h2 id='add-image-or-file-to-a-post'>Add Image or File to a Post</h2>
+<h2 id='add-image-file-or-video-to-a-post'>Add Image, File or Video to a Post</h2>
 <p>This endpoint uploads a new file that can be attached to a simple post or included in an article post.</p>
 <h3 id='http-request-4'>HTTP Request</h3>
-<p><code class="request">POST /api/v1/posts/image</code></p>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<p><strong>@deprecated</strong>
+<del><code class="request">POST /api/v1/posts/image</code></del>
+<small>This endpoint has been deprecated and will be removed in a future version.</small></p>
+
+<p><code class="request">POST /api/v1/uploads/posts</code></p>
+
+<blockquote>
+<p>The above command returns JSON structured like this for Image, File or Video:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"uploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static.t-cdn.net/.../posts/.../file"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -4255,23 +4267,28 @@ topicId | The ID of the topic -->
 <tr>
 <td>upload</td>
 <td><code>File</code></td>
-<td>The image or file in <code>multipart/form-data</code> format.</td>
+<td>The image, file or video in <code>multipart/form-data</code> format.</td>
 </tr>
 </tbody></table>
 
-<p>To attach an image or a file to a post, first we need to send the file to this endpoint. The endpoint resizes the images, scans files, and returns the url of the image or file.</p>
+<p><a href="https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers-input.html" target="_blank">Supported video formats</a></p>
+<h3 id='for-image-or-file'>For Image or File</h3>
+<p>To attach an image or a file to a post, first we need to send the file to this endpoint.
+The endpoint resizes the images, scans files, and returns the url of the image or file.</p>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"uploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/files/portals/.../posts/.../..._original.jpg"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>For simple post type, you can pass an array of <code>url</code>s to the post creation end-point (<code>POST /api/v1/posts</code>). You should pass the array in the body with <code>images</code> or <code>files</code> key.</p>
+<p>For simple post type, you can pass an array of <code>url</code>s to the post creation end-point (<code>POST /api/v1/posts</code>).
+You should pass the array in the body with <code>images</code> or <code>files</code> key.</p>
 
 <p>For article post type you can add the image in the <code>content</code> of the post as an HTML tag (e.g. <code>&lt;img src=&quot;{url}&quot; /&gt;</code>).</p>
+<h3 id='for-video'>For Video</h3>
+<p>To attach a video to a post, first we need to send the video to this endpoint. 
+The endpoint uploads to Amazon S3 and returns the url of the original video.</p>
+
+<p>For simple post type, you can pass an array of <code>url</code>s to the post creation end-point (<code>POST /api/v1/posts</code>).
+You should pass the array in the body with <code>files</code> key.</p>
+
+<p>Once the Post is created, the video is queued for processing. If the original video is in MP4 format, it will be readily available for the users to view it. In case the video is in any other format, the video player will be under a &quot;processing&quot; state.
+Upon completion, the video player gets updated with the processed video. </p>
 <h2 id='update-a-specific-post'>Update a Specific Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"</span>
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
