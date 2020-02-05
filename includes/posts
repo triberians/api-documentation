@@ -170,7 +170,7 @@
 <td>type</td>
 <td><code>String</code></td>
 <td></td>
-<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>simple</code>, <code>discussion</code>, <code>article</code>) seprated by comma</td>
+<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>post</code>, <code>discussion</code>, <code>article</code>, <code>response</code>) seprated by comma</td>
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-post'>Get a Specific Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"</span>

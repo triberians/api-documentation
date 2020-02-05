@@ -1116,7 +1116,7 @@
 <td>type</td>
 <td><code>String</code></td>
 <td></td>
-<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>simple</code>, <code>discussion</code>, <code>article</code>, <code>response</code>) seprated by comma</td>
+<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>post</code>, <code>discussion</code>, <code>article</code>, <code>response</code>) seprated by comma</td>
 </tr>
 <tr>
 <td>page</td>

@@ -423,6 +423,9 @@
                     <a href="#create-a-question" class="toc-h2 toc-link" data-title="Create a Question">Create a Question</a>
                   </li>
                   <li>
+                    <a href="#add-image-file-or-video-to-a-question" class="toc-h2 toc-link" data-title="Add Image, File or Video to a Question">Add Image, File or Video to a Question</a>
+                  </li>
+                  <li>
                     <a href="#update-a-specific-question" class="toc-h2 toc-link" data-title="Update a Specific Question">Update a Specific Question</a>
                   </li>
                   <li>
@@ -3991,7 +3994,7 @@ topicId | The ID of the topic -->
 <td>type</td>
 <td><code>String</code></td>
 <td></td>
-<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>simple</code>, <code>discussion</code>, <code>article</code>) seprated by comma</td>
+<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>post</code>, <code>discussion</code>, <code>article</code>, <code>response</code>) seprated by comma</td>
 </tr>
 </tbody></table>
 <h2 id='get-a-specific-post'>Get a Specific Post</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/posts/5c0621864cb2b119dc174a63"</span>
@@ -5142,12 +5145,59 @@ Upon completion, the video player gets updated with the processed video. </p>
 <td>The ID of the user to ask a question on behalf</td>
 </tr>
 </tbody></table>
+<h2 id='add-image-file-or-video-to-a-question'>Add Image, File or Video to a Question</h2>
+<p>This endpoint uploads a new file that can be attached to a Question.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
+<p><strong>@deprecated</strong>
+<del><code class="request">POST /api/v1/questions/image</code></del>
+<small>This endpoint has been deprecated and will be removed in a future version.</small></p>
+
+<p><code class="request">POST /api/v1/uploads/questions</code></p>
+
+<blockquote>
+<p>The above command returns JSON structured like this for Image, File or Video:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"uploaded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://static.t-cdn.net/.../questions/.../file"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h3 id='request-parameters'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>upload</td>
+<td><code>File</code></td>
+<td>The image, file or video in <code>multipart/form-data</code> format.</td>
+</tr>
+</tbody></table>
+
+<p><a href="https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers-input.html" target="_blank">Supported video formats</a></p>
+<h3 id='for-image-or-file'>For Image or File</h3>
+<p>To attach an image or a file to a question, first we need to send the file to this endpoint.
+The endpoint resizes the images, scans files, and returns the url of the image or file.</p>
+
+<p>You can pass an array of <code>url</code>s to the question creation end-point (<code>POST /api/v1/questions</code>).
+You should pass the array in the body with <code>images</code> or <code>files</code> key.</p>
+<h3 id='for-video'>For Video</h3>
+<p>To attach a video to a question, first we need to send the video to this endpoint. 
+The endpoint uploads to Amazon S3 and returns the url of the original video.</p>
+
+<p>You can pass an array of <code>url</code>s to the question creation end-point (<code>POST /api/v1/questions</code>).
+You should pass the array in the body with <code>files</code> key.</p>
+
+<p>Once the Question is created, the video is queued for processing. If the original video is in MP4 format, it will be readily available for the users to view it. In case the video is in any other format, the video player will be under a &quot;processing&quot; state.
+Upon completion, the video player gets updated with the processed video. </p>
 <h2 id='update-a-specific-question'>Update a Specific Question</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d"</span>
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre>
 <p>This endpoint updates a specific question.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/questions/:id</code></p>
 <h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
@@ -5233,7 +5283,7 @@ Upon completion, the video player gets updated with the processed video. </p>
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint adds a comment for a specific question.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/questions/:id/comments</code></p>
 <h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
@@ -5249,7 +5299,7 @@ Upon completion, the video player gets updated with the processed video. </p>
 <td>The ID of the question to add a comment</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters'>Request Parameters</h3>
+<h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5289,7 +5339,7 @@ Upon completion, the video player gets updated with the processed video. </p>
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint updates a specific comment.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/questions/:questionId/comments/:id</code></p>
 <h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
@@ -5310,7 +5360,7 @@ Upon completion, the video player gets updated with the processed video. </p>
 <td>The ID of the question to add a comment</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5340,7 +5390,7 @@ Upon completion, the video player gets updated with the processed video. </p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint removes a specific comment.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/questions/:questionId/comments/:id</code></p>
 <h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
@@ -5411,9 +5461,9 @@ Upon completion, the video player gets updated with the processed video. </p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint returns statistics of a specific user for questions.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/user/stats/questions/:metric</code></p>
-<h3 id='request-parameters-3'>Request Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5436,7 +5486,7 @@ Upon completion, the video player gets updated with the processed video. </p>
 <span class="kd">let</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="s1">'5bf0e89ada3be54c190b78ba'</span><span class="p">);</span>
 </code></pre>
 <p>This endpoint follows a question.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/questions/{id}/followers</code></p>
 <h2 id='unfollow-a-question'>Unfollow a question</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/followers"</span>
   -X DELETE
@@ -5447,14 +5497,14 @@ Upon completion, the video player gets updated with the processed video. </p>
 <span class="kd">let</span> <span class="nx">question</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">unfollow</span><span class="p">(</span><span class="s1">'5bf0e89ada3be54c190b78ba'</span><span class="p">);</span>
 </code></pre>
 <p>This endpoint unfollows a question.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/questions/{id}/followers</code></p>
 <h2 id='reporting-a-specific-question'>Reporting a Specific Question</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d/reports"</span>
   -X POST
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre>
 <p>This endpoint reports (flags) a specific question to admins and moderators.</p>
-<h3 id='http-request-16'>HTTP Request</h3>
+<h3 id='http-request-17'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/questions/:id/reports</code></p>
 <h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
@@ -7102,7 +7152,7 @@ Upon completion, the video player gets updated with the processed video. </p>
 <td>type</td>
 <td><code>String</code></td>
 <td></td>
-<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>simple</code>, <code>discussion</code>, <code>article</code>, <code>response</code>) seprated by comma</td>
+<td>Type of posts. It can be empty (for all types) or a string of types of posts (<code>post</code>, <code>discussion</code>, <code>article</code>, <code>response</code>) seprated by comma</td>
 </tr>
 <tr>
 <td>page</td>
