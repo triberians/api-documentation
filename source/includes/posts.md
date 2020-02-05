@@ -67,9 +67,11 @@ let posts = api.posts.get();
     "upvotes": [],
     "comments": [],
     "rewards": [],
+    "videos": [],
+    "files": [],
     "images": [],
+    "attachments": [],
     "links": [],
-    "media": [],
     "topics": [
       {
         "_id": "5b88264d3d9228aa7c41f692",
@@ -229,9 +231,11 @@ let posts = api.posts.get('5c0621864cb2b119dc174a63');
     "upvotes": [],
     "comments": [],
     "rewards": [],
+    "videos": [],
+    "files": [],
     "images": [],
+    "attachments": [],
     "links": [],
-    "media": [],
     "topics": [
       {
         "_id": "5b88264d3d9228aa7c41f692",
@@ -581,9 +585,11 @@ api.posts.responses('5c0621864cb2b119dc174a63');
     "upvotes": [],
     "comments": [],
     "rewards": [],
+    "videos": [],
+    "files": [],
     "images": [],
+    "attachments": [],
     "links": [],
-    "media": [],
     "topics": [],
     "posters": [],
     "followers": [],
