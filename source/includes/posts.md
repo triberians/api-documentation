@@ -231,11 +231,79 @@ let posts = api.posts.get('5c0621864cb2b119dc174a63');
     "upvotes": [],
     "comments": [],
     "rewards": [],
-    "videos": [],
-    "files": [],
-    "images": [],
+    "videos": [
+      {
+        "_id": "5e3a15595ac93e649abfe40b",
+        "name": "tribe.mp4",
+        "formatType": "video/mp4",
+        "original": "...",
+        "duration": 6923,
+        "status": "complete",
+        "poster": "...",
+        "src": [
+          {
+            "url": "...",
+            "quality": "1080",
+            "compression": "avc"
+          },
+          {
+            "url": "...",
+            "quality": "720",
+            "compression": "avc"
+          },
+          {
+            "url": "...",
+            "quality": "480",
+            "compression": "avc"
+          },
+          {
+            "url": "...",
+            "quality": "1080",
+            "compression": "avc"
+          },
+          {
+            "url": "...",
+            "quality": "720",
+            "compression": "avc"
+          },
+          {
+            "url": "...",
+            "quality": "480",
+            "compression": "avc"
+          }
+        ]
+      }     
+    ],
+    "files": [
+      {
+        "src": "...",
+        "name": "...",
+        "formatType": "application/pdf",
+        "_id": "5e3a15995a071453baa99355"
+      }      
+    ],
+    "images": [
+      {
+        "src": "...",
+        "width": 512,
+        "height": 512,
+        "color": "#2abb80",
+        "formatType": "png",
+        "_id": "5e3a15995a071453baa99356"
+      }      
+    ],
     "attachments": [],
-    "links": [],
+    "links": [
+      {
+        "title": "How to scale content marketing using customer community",
+        "description": "Scaling your ‘content marketing’ is a sizeable program to take on, especially if you want to generate business results. However, one…",
+        "url": "https://medium.com/triberians/how-to-scale-content-marketing-using-customer-community-de4ad2410dfd",
+        "image": "https://miro.medium.com/max/1200/1*3DUhF_ByisFPhtQHBwGozw.jpeg",
+        "_id": "5e3a15d04eb79156d40204cf",
+        "status": "200",
+        "clicks": 0
+      }
+    ],
     "topics": [
       {
         "_id": "5b88264d3d9228aa7c41f692",
