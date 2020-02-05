@@ -931,7 +931,7 @@ This endpoint retrieves a specific user's posts (Discussions, Blogs, Quick Post,
 Parameter | Type | Default | Description
 --------- | ------- | ----------- | -----------
 id | `String` | | The ID of the user
-type | `String` | | Type of posts. It can be empty (for all types) or a string of types of posts (`simple`, `discussion`, `article`, `response`) seprated by comma 
+type | `String` | | Type of posts. It can be empty (for all types) or a string of types of posts (`post`, `discussion`, `article`, `response`) seprated by comma 
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
 sort | `String` | `createdAt.desc` | The field to sort on

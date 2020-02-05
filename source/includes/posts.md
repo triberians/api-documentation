@@ -160,7 +160,7 @@ Parameter | Type | Default | Description
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
 sort | `String` | `createdAt.desc` | The field to sort on
-type | `String` | | Type of posts. It can be empty (for all types) or a string of types of posts (`simple`, `discussion`, `article`) seprated by comma 
+type | `String` | | Type of posts. It can be empty (for all types) or a string of types of posts (`post`, `discussion`, `article`, `response`) seprated by comma 
 
 
 ## Get a Specific Post
