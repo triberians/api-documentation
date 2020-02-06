@@ -160,6 +160,34 @@
 <td><code>No</code></td>
 </tr>
 </tbody></table>
+<h3 id='extra-request-parameters-for-admins'>Extra Request Parameters for Admins</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalId</td>
+<td><code>String</code></td>
+<td>The ID of user in the external service</td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>role</td>
+<td><code>String</code></td>
+<td>The role of the user. Can be <code>member</code>, <code>moderator</code>, or <code>admin</code></td>
+<td><code>No</code></td>
+</tr>
+<tr>
+<td>source</td>
+<td><code>String</code></td>
+<td>The source of the user (e.g. API, SSO, Google, etc.) Can be used for analytics.</td>
+<td><code>No</code></td>
+</tr>
+</tbody></table>
 <h2 id='invite-new-users'>Invite new Users</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/user/email/invitations"</span>
   -X POST
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
@@ -266,7 +294,12 @@
       </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
       </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
       </span><span class="s2">"followings"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+      </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"receivedLikes"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">   
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
     </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -301,6 +334,12 @@
 <td>The ID of the user</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+You can pass `external:{externalId}` as the id to find a specific user using an external ID.
+</aside>
+
+<p>If you want to find users based on their email address, you can use <a href="#get-all-users">Get All Users</a> endpoint and pass email as query string.</p>
 <h2 id='update-a-specific-user'>Update a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
@@ -591,15 +630,20 @@
         </span><span class="s2">"requests"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"edits"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
         </span><span class="s2">"questionsFollowers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"answersWords"</span><span class="p">:</span><span class="w"> </span><span class="mi">1128</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answersWords"</span><span class="p">:</span><span class="w"> </span><span class="mi">1586</span><span class="p">,</span><span class="w">
         </span><span class="s2">"answersVotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"answersViews"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
         </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"followings"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+        </span><span class="s2">"followings"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"receivedLikes"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">   
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w">
       </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
