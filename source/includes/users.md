@@ -115,6 +115,14 @@ email | `String` | Email of the user | `Yes`
 password | `String` | Password of the user | `Yes`
 confirmPassword | `String` | Confirm password of the user | `No`
 
+### Extra Request Parameters for Admins
+Parameter | Type | Description | Required
+--------- | ----------- | ----------- | -----------
+externalId | `String` | The ID of user in the external service | `No`
+role | `String` | The role of the user. Can be `member`, `moderator`, or `admin` | `No`
+source | `String` | The source of the user (e.g. API, SSO, Google, etc.) Can be used for analytics. | `No`
+
+
 ## Invite new Users
 
 
@@ -207,7 +215,12 @@ let users = api.users.get('5b1f99a7478dd3768d84b646');
       "answers": 12,
       "views": 0,
       "followings": 3,
-      "followers": 3
+      "followers": 3,
+      "posts": 1,
+      "responses": 1,
+      "groups": 2,
+      "replies": 2,
+      "receivedLikes": 3   
     },
     "score": 52,
     "externalId": null,
@@ -239,6 +252,11 @@ Parameter | Type | Description
 --------- | ----------- | -----------
 id | `String` | The ID of the user
 
+<aside class="notice">
+You can pass `external:{externalId}` as the id to find a specific user using an external ID.
+</aside>
+
+If you want to find users based on their email address, you can use [Get All Users](#get-all-users) endpoint and pass email as query string.
 
 ## Update a Specific User
 
@@ -393,15 +411,20 @@ let users = api.users.followers('5b1f99a7478dd3768d84b646');
         "requests": 2,
         "edits": 46,
         "questionsFollowers": 0,
-        "questions": 4,
-        "comments": 0,
-        "answersWords": 1128,
+        "questions": 2,
+        "comments": 2,
+        "answersWords": 1586,
         "answersVotes": 0,
         "answersViews": 0,
-        "answers": 8,
+        "answers": 12,
         "views": 0,
-        "followings": 1,
-        "followers": 2
+        "followings": 3,
+        "followers": 3,
+        "posts": 1,
+        "responses": 1,
+        "groups": 2,
+        "replies": 2,
+        "receivedLikes": 3   
       },
       "score": 58,
       "externalId": null,

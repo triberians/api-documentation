@@ -78,6 +78,8 @@ Parameter | Type | Default | Description
 page | `Number` | `1` | Intended page
 limit | `Number` | `20` | Number of items per page
 sort | `String` | `createdAt.desc` | The field to sort on
+type | `String` |  | Filter topics based on their type. Can be `category`, `collection`, or `tag`
+definition | `String` |  | Filter topics based on their definition
 
 
 ## Get a Specific Topic
@@ -222,6 +224,7 @@ picture | `String` | `null` | Url to a picture for this Topic
 definitions | `[String]` | `[]` | The different types assigned with the Topic. It can be an array of following: <code>['Concept', 'Location', 'Localizable','Activity', 'QuestionType', 'Category', 'Event', 'Person', 'AcademicField', 'Job', 'Person', 'Company', 'School', 'Product', 'Adult']</code>
 aliases | `[String]` | `[]` | An array of Aliases for this Topic. Aliases help users search the Topic with different keywords.
 externalId | `String` | `null` | The unique ID of the Topic in an external platform. This is useful when creating a Topic for an external entity.
+upsert | `Boolean` | `false` | If `true`, it will try to create the topic, if a topic with same name exists it'll return the topic. If `false`, it will throw an error if a topic with the same name exists.
 
 ## Update a Specific Topic
 
