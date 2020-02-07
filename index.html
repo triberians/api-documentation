@@ -246,6 +246,9 @@
                     <a href="#create-an-answer" class="toc-h2 toc-link" data-title="Create an Answer">Create an Answer</a>
                   </li>
                   <li>
+                    <a href="#answer-a-poll" class="toc-h2 toc-link" data-title="Answer a poll">Answer a poll</a>
+                  </li>
+                  <li>
                     <a href="#update-a-specific-answer" class="toc-h2 toc-link" data-title="Update a Specific Answer">Update a Specific Answer</a>
                   </li>
                   <li>
@@ -1469,6 +1472,47 @@ topicId | The ID of the topic -->
 <td>The ID of the user to create an answer on behalf</td>
 </tr>
 </tbody></table>
+<h2 id='answer-a-poll'>Answer a poll</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/answers/5e3d8df499d91a48d101d8e2/poll"</span>
+  -X POST
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -H <span class="s1">'Content-Type: application/json; charset=utf-8'</span>
+  --DATA <span class="s1">'{"poll":"5e3d8df499d91a48d101d8e4"}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code>  <span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+
+  <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+  <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">questions</span><span class="p">.</span><span class="nx">answerPoll</span><span class="p">(</span><span class="s2">"5c7bfc7a157c2c34f735a53e"</span><span class="p">,</span> <span class="s2">"5e3d8df499d91a48d101d8e4"</span><span class="p">)</span>
+</code></pre>
+<p>The endpoint creates a poll answer for a specific question.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code class="request">POST /api/v1/answers/:questionId/poll</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>questionId</td>
+<td><code>String</code></td>
+<td>The ID of the question</td>
+</tr>
+</tbody></table>
+<h3 id='request-parameters-2'>Request Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>poll</td>
+<td><code>String</code></td>
+<td>ID of the selected poll option</td>
+</tr>
+</tbody></table>
 <h2 id='update-a-specific-answer'>Update a Specific Answer</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"</span>
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
@@ -1480,9 +1524,9 @@ topicId | The ID of the topic -->
   <span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">answers</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"5c7bfc7a157c2c34f735a53e"</span><span class="p">,{</span><span class="na">conent</span><span class="p">:</span> <span class="s2">"Very good answer"</span><span class="p">,</span> <span class="na">anonymous</span><span class="p">:</span> <span class="kc">false</span><span class="p">)</span>
 </code></pre>
 <p>This endpoint update a specific answer.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/answers/{id}</code></p>
-<h3 id='url-parameters-3'>URL Parameters</h3>
+<h3 id='url-parameters-4'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1496,7 +1540,7 @@ topicId | The ID of the topic -->
 <td>The ID of the answer to update</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters-2'>Request Parameters</h3>
+<h3 id='request-parameters-3'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1550,9 +1594,9 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific answer.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/answers/{id}</code></p>
-<h3 id='url-parameters-4'>URL Parameters</h3>
+<h3 id='url-parameters-5'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1582,9 +1626,9 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint deletes a specific draft answer.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/answers/{id}/draft</code></p>
-<h3 id='url-parameters-5'>URL Parameters</h3>
+<h3 id='url-parameters-6'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1616,9 +1660,9 @@ topicId | The ID of the topic -->
 ``` -->
 
 <p>This endpoint upvotes for a specific answer.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/answers/:id/votes</code></p>
-<h3 id='url-parameters-6'>URL Parameters</h3>
+<h3 id='url-parameters-7'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1648,9 +1692,9 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint removes an upvote for a specific answer.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/answers/:id/votes</code></p>
-<h3 id='url-parameters-7'>URL Parameters</h3>
+<h3 id='url-parameters-8'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1741,9 +1785,9 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all answers for a specific answer.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/answers/:id/votes</code></p>
-<h3 id='url-parameters-8'>URL Parameters</h3>
+<h3 id='url-parameters-9'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1769,9 +1813,9 @@ topicId | The ID of the topic -->
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint adds a comment for a specific answer.</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/answers/:id/comments</code></p>
-<h3 id='url-parameters-9'>URL Parameters</h3>
+<h3 id='url-parameters-10'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1785,7 +1829,7 @@ topicId | The ID of the topic -->
 <td>The ID of the answer to add a comment</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters-3'>Request Parameters</h3>
+<h3 id='request-parameters-4'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1825,9 +1869,9 @@ topicId | The ID of the topic -->
 <span class="p">});</span>
 </code></pre>
 <p>This endpoint updates a specific comment.</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h3 id='http-request-12'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/answers/:answerId/comments/:id</code></p>
-<h3 id='url-parameters-10'>URL Parameters</h3>
+<h3 id='url-parameters-11'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1846,7 +1890,7 @@ topicId | The ID of the topic -->
 <td>The ID of the answer to add a comment</td>
 </tr>
 </tbody></table>
-<h3 id='request-parameters-4'>Request Parameters</h3>
+<h3 id='request-parameters-5'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1876,9 +1920,9 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint removes a specific comment.</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h3 id='http-request-13'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/answers/:answerId/comments/:id</code></p>
-<h3 id='url-parameters-11'>URL Parameters</h3>
+<h3 id='url-parameters-12'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1914,9 +1958,9 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint adds a log for a specific answer.</p>
-<h3 id='http-request-13'>HTTP Request</h3>
+<h3 id='http-request-14'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/answers/logs</code></p>
-<h3 id='request-parameters-5'>Request Parameters</h3>
+<h3 id='request-parameters-6'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -1980,9 +2024,9 @@ topicId | The ID of the topic -->
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint returns statistics of a specific user for answers.</p>
-<h3 id='http-request-14'>HTTP Request</h3>
+<h3 id='http-request-15'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/user/stats/answers/:metric</code></p>
-<h3 id='request-parameters-6'>Request Parameters</h3>
+<h3 id='request-parameters-7'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -2001,9 +2045,9 @@ topicId | The ID of the topic -->
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
 </code></pre>
 <p>This endpoint reports (flags) a specific answer to admins and moderators.</p>
-<h3 id='http-request-15'>HTTP Request</h3>
+<h3 id='http-request-16'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/answers/:id/reports</code></p>
-<h3 id='url-parameters-12'>URL Parameters</h3>
+<h3 id='url-parameters-13'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
