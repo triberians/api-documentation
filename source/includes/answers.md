@@ -677,6 +677,43 @@ verified | `Boolean` | Is this answer verified or not
 user | `String` | The ID of the user to create an answer on behalf
 
 
+
+## Answer a poll
+
+```shell
+curl "https://community.tribe.so/api/v1/answers/5e3d8df499d91a48d101d8e2/poll"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+  -H 'Content-Type: application/json; charset=utf-8'
+  --DATA '{"poll":"5e3d8df499d91a48d101d8e4"}'
+```
+
+```javascript
+  const tribe = require('tribe');
+
+  let api = tribe.authorize('{access_token}');
+  let result = api.questions.answerPoll("5c7bfc7a157c2c34f735a53e", "5e3d8df499d91a48d101d8e4")
+```
+
+The endpoint creates a poll answer for a specific question.
+
+### HTTP Request
+
+<code class="request">POST /api/v1/answers/:questionId/poll</code>
+
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+questionId | `String` | The ID of the question
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+poll | `String` | ID of the selected poll option
+
+
 ## Update a Specific Answer
 
 

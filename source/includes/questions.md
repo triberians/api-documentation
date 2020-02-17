@@ -390,10 +390,10 @@ The endpoint uploads to Amazon S3 and returns the url of the original video.
 
 
 You can pass an array of `url`s to the question creation end-point (`POST /api/v1/questions`).
-You should pass the array in the body with `files` key.
+You should pass the array in the body with `videos` key.
 
-Once the Question is created, the video is queued for processing. If the original video is in MP4 format, it will be readily available for the users to view it. In case the video is in any other format, the video player will be under a "processing" state.
-Upon completion, the video player gets updated with the processed video. 
+Once the Question is created, the video is queued for processing. If the original video is in MP4 format, it will be readily available for the users to view it. In case the video is in any other format, the video's status will be set to "processing" under `videos` key.
+Upon completion, the video's status is updated to "complete" and `poster`, `duration`, and `src` with different compressions will be added to the video object.
 
 
 
