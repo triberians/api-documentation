@@ -418,10 +418,10 @@ You should pass the array in the body with <code>images</code> or <code>files</c
 The endpoint uploads to Amazon S3 and returns the url of the original video.</p>
 
 <p>You can pass an array of <code>url</code>s to the question creation end-point (<code>POST /api/v1/questions</code>).
-You should pass the array in the body with <code>files</code> key.</p>
+You should pass the array in the body with <code>videos</code> key.</p>
 
-<p>Once the Question is created, the video is queued for processing. If the original video is in MP4 format, it will be readily available for the users to view it. In case the video is in any other format, the video player will be under a &quot;processing&quot; state.
-Upon completion, the video player gets updated with the processed video. </p>
+<p>Once the Question is created, the video is queued for processing. If the original video is in MP4 format, it will be readily available for the users to view it. In case the video is in any other format, the video&#39;s status will be set to &quot;processing&quot; under <code>videos</code> key.
+Upon completion, the video&#39;s status is updated to &quot;complete&quot; and <code>poster</code>, <code>duration</code>, and <code>src</code> with different compressions will be added to the video object.</p>
 <h2 id='update-a-specific-question'>Update a Specific Question</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d"</span>
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
