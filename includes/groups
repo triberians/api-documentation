@@ -9,7 +9,8 @@
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code></code></pre>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre>
 <p>This endpoint creates a new group. Only for admins.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/groups</code></p>
@@ -72,39 +73,256 @@
 <td>Registration of the group. It can be one of the followings: [<code>open</code>, <code>invitation</code>, <code>approval</code>, <code>none</code>]</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-group'>Delete a Group</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id"</span>
+<h2 id='get-a-specific-group'>Get a Specific Group</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/5dbc4c34560ef636c0f66172"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-  -X DELETE
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
 
 <span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">group</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="p">...</span> <span class="p">});</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbc4c34560ef636c0f66172"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"shortId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KdlVm"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-01T17:20:25.750Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-01T15:16:04.500Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"community-owners-hub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Community Owners Hub"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;p&gt;Welcome community owners hub! &lt;/p&gt;&lt;p&gt;Building a community is not about the platform but rather the right strategy, plan and execution. This group is a place to learn the best community management techniques, sharing your challenges and learnings to build a successful and engaging community. &lt;/p&gt;&lt;p&gt;Happy community!&lt;/p&gt;"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"portal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5a73b1fcc48071e4c4dc1cae"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"user"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5b881b2a90ecbe6751123d7e"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"__v"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/files/groups/172/5dbc4c34560ef636c0f66172_90175.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"/files/groups/172/5dbc4c34560ef636c0f66172_92570.jpg"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"pinned"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"resourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"posts"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"resourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5df104da7c0d09330836b2bc"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5df104ee83dddf38d37754cf"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"featured"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"topics"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbc53520494fcc995454b9f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Basics for Building a Community"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"basics-for-building-a-community"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbc53520494fcc995454b9f"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbc61380494fcc9954e6f8f"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Share What You Have Done In Your Community"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"share-what-you-have-done-in-your-community"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbc61380494fcc9954e6f8f"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbc61740494fcc9954e7f9a"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Promote Your Community"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"slug"</span><span class="p">:</span><span class="w"> </span><span class="s2">"promote-your-community"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbc61740494fcc9954e7f9a"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"users"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"notificationsDefaults"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"inapp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"enabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"members"</span><span class="p">:</span><span class="w"> </span><span class="mi">82</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"registration"</span><span class="p">:</span><span class="w"> </span><span class="s2">"open"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"privacy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"active"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"contentTypes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"general"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"summary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Welcome community owners hub! </span><span class="se">\n\n</span><span class="s2">Building a community is not about the platform but rather the right strategy, plan and execution. This group is a place to learn the best community management..."</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5dbc4c34560ef636c0f66172"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"joinStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joined"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This endpoint retrieves a specific group using ID.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code class="request">GET api/v1/groups/:id</code></p>
+<h2 id='delete-a-group'>Delete a Group</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X DELETE
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
 <span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w"> 
-  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> 
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint removes a specific group. Only for admins.</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h3 id='http-request-3'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/groups/:id</code></p>
-<h2 id='add-a-member'>Add a Member</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id/members"</span>
+<h2 id='get-list-of-members'>Get List of Members</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id/members"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-  -X POST
-  --DATA <span class="s2">"{}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">addMember</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span><span class="nx">member</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">members</span><span class="p">(</span><span class="nx">id</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code></code></pre>
+<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5de208b557fd4f3748a7d815"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"receivedLikes"</span><span class="p">:</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"requests"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"edits"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questionsFollowers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answersWords"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answersVotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followings"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"badge"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"silver"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://lh3.googleusercontent.com/a-/AAuE7mDKbsqrfN6UncLd_7UwTuDaR3NS8qvyi2W5wCzXzA"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5de208b557fd4f3748a7d815"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5e580a6856cbdb5c735d9aaa"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profile"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"counts"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"receivedLikes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"replies"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"requests"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"edits"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questionsFollowers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"responses"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"posts"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"questions"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"comments"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answersWords"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answersVotes"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"answers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"views"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followings"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"followers"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"badge"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"silver"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"banner"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"picture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://gravatar.com/avatar/7919f07546893656cb0beb7a3d4e25f3?s=200&amp;d=retro"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"username"</span><span class="p">:</span><span class="w"> </span><span class="err">...</span><span class="p">,</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="err">...</span><span class="p">],</span><span class="w">
+    </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"member"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5e580a6856cbdb5c735d9aaa"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"followed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<p>This endpoint retreives members of a group using ID.</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code class="request">GET /api/v1/groups/:id/members</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>page</td>
+<td><code>Number</code></td>
+<td><code>1</code></td>
+<td>Intended page</td>
+</tr>
+<tr>
+<td>limit</td>
+<td><code>Number</code></td>
+<td><code>20</code></td>
+<td>Number of items per page</td>
+</tr>
+<tr>
+<td>sort</td>
+<td><code>String</code></td>
+<td><code>groups.createdAt.desc</code></td>
+<td>The field to sort on. You can use <code>recent</code> and <code>oldest</code> as well as other sort parameters.</td>
+</tr>
+</tbody></table>
+<h2 id='add-a-member'>Add a Member</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id/members"</span>
+  -H <span class="s2">"Authorization: Bearer {access_token}"</span>
+  -X POST
+  --DATA <span class="s2">"{}"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
+
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">addMember</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">member</span><span class="p">);</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre>
 <p>This endpoint adds a user to a specific group. Only for admins.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h3 id='http-request-5'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/groups/:id/members</code></p>
 
 <table><thead>
@@ -123,23 +341,24 @@
 <h2 id='remove-a-member'>Remove a Member</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id/members/:userId"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X DELETE
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">removeMember</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span><span class="nx">member</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">removeMember</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">member</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code></code></pre>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre>
 <p>This endpoint removes a user from a specific group. Only for admins.</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h3 id='http-request-6'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/groups/:id/members/:userId</code></p>
 <h2 id='get-group-39-s-activity-feed'>Get Group&#39;s Activity Feed</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id/feed"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">questions</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">feed</span><span class="p">();</span>
 </code></pre>
 <blockquote>
@@ -173,7 +392,7 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves group&#39;s activity feed.</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h3 id='http-request-7'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/groups/:id/feed</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
@@ -227,17 +446,18 @@
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X DELETE
   --DATA <span class="s2">"{...}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">addTopic</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span><span class="nx">topic</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">addTopic</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">topic</span><span class="p">);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code></code></pre>
+<pre class="highlight json tab-json"><code><span class="w">
+</span></code></pre>
 <p>This endpoint adds a topic to a specific group. Only for admins.</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h3 id='http-request-8'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/groups/:id/topics</code></p>
 
 <table><thead>
@@ -254,10 +474,10 @@
 </tr>
 </tbody></table>
 <h2 id='get-all-groups'>Get All Groups</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups?topicName=First%20Topic"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">topicName</span><span class="p">:</span> <span class="p">[</span><span class="s1">'First Topic'</span><span class="p">]</span> <span class="p">});</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span> <span class="na">topicName</span><span class="p">:</span> <span class="p">[</span><span class="s2">"First Topic"</span><span class="p">]</span> <span class="p">});</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -295,7 +515,7 @@
 </span><span class="p">]</span><span class="w">
 </span></code></pre>
 <p>This endpoint retrieves all groups.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/groups</code></p>
 <h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
@@ -341,10 +561,10 @@
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X POST
   --DATA <span class="s2">"{...}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">user</span><span class="p">,[</span><span class="s1">''</span><span class="p">]);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">user</span><span class="p">,</span> <span class="p">[</span><span class="s2">""</span><span class="p">]);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -413,7 +633,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint join user to multiple groups. It can also be used for community admins to add a user to multiple groups.</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h3 id='http-request-10'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/users/:id/groups</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
@@ -447,10 +667,10 @@
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X POST
   --DATA <span class="s2">"{...}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">join</span><span class="p">([</span><span class="s1">'groupId'</span><span class="p">]);</span>
+<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
+<span class="nx">api</span><span class="p">.</span><span class="nx">group</span><span class="p">.</span><span class="nx">join</span><span class="p">([</span><span class="s2">"groupId"</span><span class="p">]);</span>
 </code></pre>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -519,7 +739,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This endpoint joins the authenticated user to multiple groups.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h3 id='http-request-11'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/user/groups</code></p>
 <h3 id='request-parameters-2'>Request Parameters</h3>
 <table><thead>
