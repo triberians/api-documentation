@@ -2,7 +2,6 @@
 
 ## Create a Group
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/groups"
   -H "Authorization: Bearer {access_token}"
@@ -19,6 +18,7 @@ let group = api.group.create({ ... });
 > The above command returns JSON structured like this:
 
 ```json
+
 ```
 
 This endpoint creates a new group. Only for admins.
@@ -29,23 +29,117 @@ This endpoint creates a new group. Only for admins.
 
 ### Query Parameters
 
+| Parameter    | Default   | Description                                                                                            |
+| ------------ | --------- | ------------------------------------------------------------------------------------------------------ |
+| name         |           | Name of the group to create                                                                            |
+| slug         |           | Slug of the group to create                                                                            |
+| color        |           | Color of the group to create                                                                           |
+| type         | `general` | Type of the group to create. It can be one the followings: [`blog`, `general`, `feedback`]             |
+| description  |           | Description of the group to create                                                                     |
+| privacy      | `public`  | Group privacy. It can be one of the followings: [`public`, `private`, `secret`]                        |
+| verified     |           | Is group verified?                                                                                     |
+| picture      |           | Picture URL of the group                                                                               |
+| banner       |           | Banner URL of the group                                                                                |
+| registration | `open`    | Registration of the group. It can be one of the followings: [`open`, `invitation`, `approval`, `none`] |
 
-Parameter | Default | Description
---------- | --------- | -----------
-name |  | Name of the group to create
-slug |  | Slug of the group to create
-color |  | Color of the group to create
-type | `general` | Type of the group to create. It can be one the followings: [`blog`, `general`, `feedback`]
-description |  | Description of the group to create
-privacy | `public` | Group privacy. It can be one of the followings: [`public`, `private`, `secret`]
-verified |  | Is group verified?
-picture |  | Picture URL of the group
-banner |  | Banner URL of the group
-registration | `open` | Registration of the group. It can be one of the followings: [`open`, `invitation`, `approval`, `none`]
+## Get a Specific Group
 
+```shell
+curl "https://community.tribe.so/api/v1/groups/5dbc4c34560ef636c0f66172"
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let group = api.group.get({ ... });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "_id": "5dbc4c34560ef636c0f66172",
+  "shortId": "KdlVm",
+  "updatedAt": "2020-03-01T17:20:25.750Z",
+  "createdAt": "2019-11-01T15:16:04.500Z",
+  "slug": "community-owners-hub",
+  "name": "Community Owners Hub",
+  "description": "<p>Welcome community owners hub! </p><p>Building a community is not about the platform but rather the right strategy, plan and execution. This group is a place to learn the best community management techniques, sharing your challenges and learnings to build a successful and engaging community. </p><p>Happy community!</p>",
+  "portal": "5a73b1fcc48071e4c4dc1cae",
+  "user": "5b881b2a90ecbe6751123d7e",
+  "__v": 5,
+  "picture": "/files/groups/172/5dbc4c34560ef636c0f66172_90175.jpg",
+  "banner": "/files/groups/172/5dbc4c34560ef636c0f66172_92570.jpg",
+  "pinned": [
+    {
+      "resourceType": "posts",
+      "resourceId": "5df104da7c0d09330836b2bc",
+      "_id": "5df104ee83dddf38d37754cf"
+    }
+  ],
+  "topics": [],
+  "featured": {
+    "posts": [],
+    "topics": [
+      {
+        "_id": "5dbc53520494fcc995454b9f",
+        "name": "Basics for Building a Community",
+        "slug": "basics-for-building-a-community",
+        "id": "5dbc53520494fcc995454b9f"
+      },
+      {
+        "_id": "5dbc61380494fcc9954e6f8f",
+        "name": "Share What You Have Done In Your Community",
+        "slug": "share-what-you-have-done-in-your-community",
+        "id": "5dbc61380494fcc9954e6f8f"
+      },
+      {
+        "_id": "5dbc61740494fcc9954e7f9a",
+        "name": "Promote Your Community",
+        "slug": "promote-your-community",
+        "id": "5dbc61740494fcc9954e7f9a"
+      }
+    ],
+    "users": [],
+    "questions": []
+  },
+  "notificationsDefaults": {
+    "inapp": {
+      "enabled": false
+    },
+    "email": {
+      "enabled": false
+    }
+  },
+  "score": 0,
+  "counts": {
+    "members": 82,
+    "posts": 19,
+    "comments": 0,
+    "answers": 20,
+    "questions": 3
+  },
+  "registration": "open",
+  "privacy": "public",
+  "status": "active",
+  "contentTypes": [],
+  "type": "general",
+  "verified": false,
+  "summary": "Welcome community owners hub! \n\nBuilding a community is not about the platform but rather the right strategy, plan and execution. This group is a place to learn the best community management...",
+  "id": "5dbc4c34560ef636c0f66172",
+  "joinStatus": "joined"
+}
+```
+
+This endpoint retrieves a specific group using ID.
+
+### HTTP Request
+
+<code class="request">GET api/v1/groups/:id</code>
 
 ## Delete a Group
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/groups/:id"
@@ -54,17 +148,17 @@ curl "https://community.tribe.so/api/v1/groups/:id"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
+let api = tribe.authorize("{access_token}");
 api.group.remove(id);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-{ 
-  "success": true 
+{
+  "success": true
 }
 ```
 
@@ -76,7 +170,6 @@ This endpoint removes a specific group. Only for admins.
 
 ## Add a Member
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/groups/:id/members"
   -H "Authorization: Bearer {access_token}"
@@ -85,15 +178,16 @@ curl "https://community.tribe.so/api/v1/groups/:id/members"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-api.group.addMember(id,member);
+let api = tribe.authorize("{access_token}");
+api.group.addMember(id, member);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
+
 ```
 
 This endpoint adds a user to a specific group. Only for admins.
@@ -102,12 +196,11 @@ This endpoint adds a user to a specific group. Only for admins.
 
 <code class="request">POST /api/v1/groups/:id/members</code>
 
-Parameter | Default | Description
---------- | --------- | -----------
-user |  | ID of the user to add
+| Parameter | Default | Description           |
+| --------- | ------- | --------------------- |
+| user      |         | ID of the user to add |
 
 ## Remove a Member
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/groups/:id/members/:userId"
@@ -116,15 +209,16 @@ curl "https://community.tribe.so/api/v1/groups/:id/members/:userId"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-api.group.removeMember(id,member);
+let api = tribe.authorize("{access_token}");
+api.group.removeMember(id, member);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
+
 ```
 
 This endpoint removes a user from a specific group. Only for admins.
@@ -133,10 +227,7 @@ This endpoint removes a user from a specific group. Only for admins.
 
 <code class="request">DELETE /api/v1/groups/:id/members/:userId</code>
 
-
-
 ## Get Group's Activity Feed
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/groups/:id/feed"
@@ -144,9 +235,9 @@ curl "https://community.tribe.so/api/v1/groups/:id/feed"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
+let api = tribe.authorize("{access_token}");
 let questions = api.user.feed();
 ```
 
@@ -189,22 +280,20 @@ This endpoint retrieves group's activity feed.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the group
+| Parameter | Type     | Description         |
+| --------- | -------- | ------------------- |
+| id        | `String` | The ID of the group |
 
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-type | `String` |  | Comma separated list of types to filter on. Types can be `post`, `question`, `discussion`, and `article`
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
-
+| Parameter | Type     | Default          | Description                                                                                              |
+| --------- | -------- | ---------------- | -------------------------------------------------------------------------------------------------------- |
+| type      | `String` |                  | Comma separated list of types to filter on. Types can be `post`, `question`, `discussion`, and `article` |
+| page      | `Number` | `1`              | Intended page                                                                                            |
+| limit     | `Number` | `20`             | Number of items per page                                                                                 |
+| sort      | `String` | `createdAt.desc` | The field to sort on                                                                                     |
 
 ## Add a Topic to Group
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/groups/:id/topics"
@@ -214,15 +303,16 @@ curl "https://community.tribe.so/api/v1/groups/:id/topics"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-api.group.addTopic(id,topic);
+let api = tribe.authorize("{access_token}");
+api.group.addTopic(id, topic);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
+
 ```
 
 This endpoint adds a topic to a specific group. Only for admins.
@@ -231,9 +321,9 @@ This endpoint adds a topic to a specific group. Only for admins.
 
 <code class="request">POST /api/v1/groups/:id/topics</code>
 
-Parameter | Default | Description
---------- | --------- | -----------
-name |  | Name of the topic to add
+| Parameter | Default | Description              |
+| --------- | ------- | ------------------------ |
+| name      |         | Name of the topic to add |
 
 ## Get All Groups
 
@@ -242,10 +332,10 @@ curl "https://community.tribe.so/api/v1/groups?topicName=First%20Topic"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-api.group.get({ topicName: ['First Topic'] });
+let api = tribe.authorize("{access_token}");
+api.group.get({ topicName: ["First Topic"] });
 ```
 
 > The above command returns JSON structured like this:
@@ -292,14 +382,13 @@ This endpoint retrieves all groups.
 
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
-query | `String` | `""` | Keywords or name of a group
-topicName | `String` | | Topics' exact names separated by comma
-
+| Parameter | Type     | Default          | Description                            |
+| --------- | -------- | ---------------- | -------------------------------------- |
+| page      | `Number` | `1`              | Intended page                          |
+| limit     | `Number` | `20`             | Number of items per page               |
+| sort      | `String` | `createdAt.desc` | The field to sort on                   |
+| query     | `String` | `""`             | Keywords or name of a group            |
+| topicName | `String` |                  | Topics' exact names separated by comma |
 
 ## Add A User to Multiple Groups
 
@@ -311,10 +400,10 @@ curl "https://community.tribe.so/api/v1/users/:id/groups"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-api.group.join(user,['']);
+let api = tribe.authorize("{access_token}");
+api.group.join(user, [""]);
 ```
 
 > The above command returns JSON structured like this:
@@ -392,16 +481,15 @@ This endpoint join user to multiple groups. It can also be used for community ad
 
 ### URL Parameters
 
-Parameter | Default | Description
---------- | --------- | -----------
-id |  | The ID of user to join (add)
+| Parameter | Default | Description                  |
+| --------- | ------- | ---------------------------- |
+| id        |         | The ID of user to join (add) |
 
 ### Request Parameters
 
-Parameter | Default | Description
---------- | --------- | -----------
-groupIds |  | List of the groups' IDs to join
-
+| Parameter | Default | Description                     |
+| --------- | ------- | ------------------------------- |
+| groupIds  |         | List of the groups' IDs to join |
 
 ## Join Multiple Groups
 
@@ -413,10 +501,10 @@ curl "https://community.tribe.so/api/v1/user/groups"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-api.group.join(['groupId']);
+let api = tribe.authorize("{access_token}");
+api.group.join(["groupId"]);
 ```
 
 > The above command returns JSON structured like this:
@@ -494,6 +582,6 @@ This endpoint joins the authenticated user to multiple groups.
 
 ### Request Parameters
 
-Parameter | Default | Description
---------- | --------- | -----------
-groupIds |  | List of the group IDs to join
+| Parameter | Default | Description                   |
+| --------- | ------- | ----------------------------- |
+| groupIds  |         | List of the group IDs to join |
