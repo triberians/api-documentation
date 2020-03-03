@@ -137,7 +137,13 @@ This endpoint retrieves a specific group using ID.
 
 ### HTTP Request
 
-<code class="request">GET api/v1/groups/:id</code>
+<code class="request">GET /api/v1/groups/:id</code>
+
+### URL Parameters
+
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| id        | `String` | The ID of the item |
 
 ## Delete a Group
 
