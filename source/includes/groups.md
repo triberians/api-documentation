@@ -168,6 +168,125 @@ This endpoint removes a specific group. Only for admins.
 
 <code class="request">DELETE /api/v1/groups/:id</code>
 
+## Get List of Members
+
+```shell
+curl "https://community.tribe.so/api/v1/groups/:id/members"
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+api.group.members(id);
+```
+
+> The above command returns JSON structured like this:
+
+```json
+[
+  {
+    "_id": "5de208b557fd4f3748a7d815",
+    "email": ...,
+    "profile": {
+      "counts": {
+        "receivedLikes": 21,
+        "replies": 5,
+        "groups": 0,
+        "requests": 0,
+        "edits": 0,
+        "questionsFollowers": 0,
+        "responses": 0,
+        "posts": 0,
+        "questions": 1,
+        "comments": 6,
+        "answersWords": 123,
+        "answersVotes": 0,
+        "answers": 4,
+        "views": 0,
+        "followings": 0,
+        "followers": 0
+      },
+      "score": 131,
+      "verified": false,
+      "badge": {
+        "type": "silver"
+      },
+      "description": "",
+      "title": "",
+      "banner": "",
+      "picture": "https://lh3.googleusercontent.com/a-/AAuE7mDKbsqrfN6UncLd_7UwTuDaR3NS8qvyi2W5wCzXzA",
+      "website": "",
+      "location": "",
+      "gender": "",
+      "name": ...,
+      "username": ...
+    },
+    "groups": [...],
+    "externalId": null,
+    "role": "member",
+    "id": "5de208b557fd4f3748a7d815",
+    "followed": false
+  },
+  {
+    "_id": "5e580a6856cbdb5c735d9aaa",
+    "email": ...,
+    "profile": {
+      "counts": {
+        "receivedLikes": 0,
+        "replies": 0,
+        "groups": 0,
+        "requests": 0,
+        "edits": 0,
+        "questionsFollowers": 0,
+        "responses": 0,
+        "posts": 0,
+        "questions": 1,
+        "comments": 0,
+        "answersWords": 0,
+        "answersVotes": 0,
+        "answers": 0,
+        "views": 0,
+        "followings": 0,
+        "followers": 0
+      },
+      "score": 12,
+      "verified": false,
+      "badge": {
+        "type": "silver"
+      },
+      "description": "",
+      "title": "",
+      "banner": "",
+      "picture": "https://gravatar.com/avatar/7919f07546893656cb0beb7a3d4e25f3?s=200&d=retro",
+      "website": "",
+      "location": "",
+      "gender": "",
+      "name": ...,
+      "username": ...,
+    },
+    "groups": [...],
+    "externalId": null,
+    "role": "member",
+    "id": "5e580a6856cbdb5c735d9aaa",
+    "followed": false
+  }
+]
+```
+
+This endpoint retreives members of a group using ID.
+
+### HTTP Request
+
+<code class="request">GET /api/v1/groups/:id/members</code>
+
+| Parameter | Type     | Default                 | Description                                                                               |
+| --------- | -------- | ----------------------- | ----------------------------------------------------------------------------------------- |
+| page      | `Number` | `1`                     | Intended page                                                                             |
+| limit     | `Number` | `20`                    | Number of items per page                                                                  |
+| sort      | `String` | `groups.createdAt.desc` | The field to sort on. You can use `recent` and `oldest` as well as other sort parameters. |
+
 ## Add a Member
 
 ```shell
