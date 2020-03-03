@@ -2,16 +2,15 @@
 
 ## Get User Notification
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/notifications"
   -H "Authorization: Bearer {access_token}"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
+let api = tribe.authorize("{access_token}");
 let notifications = api.notifications.list();
 ```
 
@@ -134,18 +133,14 @@ This endpoint retrieves user notifications.
 
 <code class="request">GET /api/v1/notifications</code>
 
-
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-
-
+| Parameter | Type     | Default | Description              |
+| --------- | -------- | ------- | ------------------------ |
+| page      | `Number` | `1`     | Intended page            |
+| limit     | `Number` | `20`    | Number of items per page |
 
 ## Get User Notification Summary
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/notifications/summary"
@@ -153,9 +148,9 @@ curl "https://community.tribe.so/api/v1/notifications/summary"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
+let api = tribe.authorize("{access_token}");
 let summaries = api.notifications.summary();
 ```
 
@@ -173,11 +168,7 @@ This endpoint retrieves user notifications count.
 
 <code class="request">GET /api/v1/notifications/summary</code>
 
-
-
-
 ## Mark All Notifications as Read
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/notifications/summary"
@@ -185,9 +176,9 @@ curl "https://community.tribe.so/api/v1/notifications/summary"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
+let api = tribe.authorize("{access_token}");
 api.notifications.read();
 ```
 
@@ -205,22 +196,21 @@ This endpoint marks all user notifications as read.
 
 <code class="request">POST /api/v1/notifications/read</code>
 
-
-
 ## Mark a Specific Notification as Read
-
 
 ```shell
   curl "https://community.tribe.so/api/v1/notifications/5b913111f19a473232026877/read"
   -X POST
   -H "Authorization: Bearer {access_token}"
 ```
-```javascript
-const tribe = require('tribe');
 
-let api = tribe.authorize('{access_token}');
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
 api.notifications.read("5b913111f19a473232026877");
 ```
+
 > The above command returns JSON structured like this:
 
 ```json
@@ -237,6 +227,74 @@ This endpoint marks a specific notification as read.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the notification to mark as read
+| Parameter | Type     | Description                                |
+| --------- | -------- | ------------------------------------------ |
+| id        | `String` | The ID of the notification to mark as read |
+
+## Firebase Notification
+
+```shell
+  curl "https://community.tribe.so/api/v1/user/devices"
+  -X POST
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require("tribe");
+const token = ...
+api.notifications.registerDevice({ token, type: 'ios', name: 'My Phone' });
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "success": true
+}
+```
+
+If you are using Firebase app, you can receive the firebase notification on user devices. After installing the app, you should paste your JSON configuration file in the app's settings section.
+
+<aside class="notice">
+You must include <a href="https://firebase.google.com/docs/admin/setup#initialize-sdk"><code>&lt;Private Key&gt;</code></a> inside the JSON.
+</aside>
+After finishing the configuration, you need you need to register the device tokens.
+
+### HTTP Request
+
+This endpoint register the token to a specific user.
+
+<code class="request">POST /api/v1/user/devices</code>
+
+### URL Parameters
+
+| Parameter | Type     | Description                                    |
+| --------- | -------- | ---------------------------------------------- |
+| type      | `String` | Type of the device. It can be `android`, `ios` |
+| token     | `String` | The device token to register                   |
+| name      | `String` | Name associated to the device                  |
+
+### HTTP Request
+
+This endpoint discards the token from a specific user.
+
+<code class="request">DELETE /api/v1/user/devices</code>
+
+### URL Parameters
+
+| Parameter | Type     | Description                 |
+| --------- | -------- | --------------------------- |
+| token     | `String` | The device token to discard |
+
+### Notification Object
+
+The notification object you receive in the device have the following structure.
+
+| Key   | Value                                        |
+| ----- | -------------------------------------------- |
+| title | Name of the portal                           |
+| body  | Message of the notification                  |
+| name  | Name of the user                             |
+| icon  | Icon of the notification                     |
+| url   | URL associated with the notification         |
+| tag   | A static string with `notification` as value |
