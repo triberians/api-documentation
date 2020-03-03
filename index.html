@@ -7802,7 +7802,21 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 </span></code></pre>
 <p>This endpoint retrieves a specific group using ID.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
-<p><code class="request">GET api/v1/groups/:id</code></p>
+<p><code class="request">GET /api/v1/groups/:id</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td><code>String</code></td>
+<td>The ID of the item</td>
+</tr>
+</tbody></table>
 <h2 id='delete-a-group'>Delete a Group</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/groups/:id"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X DELETE
@@ -8038,7 +8052,7 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 <p>This endpoint retrieves group&#39;s activity feed.</p>
 <h3 id='http-request-7'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/groups/:id/feed</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -8279,7 +8293,7 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 <p>This endpoint join user to multiple groups. It can also be used for community admins to add a user to multiple groups.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/users/:id/groups</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
