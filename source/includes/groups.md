@@ -18,7 +18,107 @@ let group = api.group.create({ ... });
 > The above command returns JSON structured like this:
 
 ```json
-
+{
+  "__v": 0,
+  "shortId": "GRmdo",
+  "updatedAt": "2020-03-04T17:41:01.656Z",
+  "createdAt": "2020-03-04T17:41:01.656Z",
+  "slug": "a-good-car",
+  "name": "A good car",
+  "portal": "5b8f50eff731cf14c8b40bac",
+  "user": {
+    "_id": "5d41ef5c16eaa51dbfb47fbf",
+    "updatedAt": "2020-03-04T17:40:58.469Z",
+    "createdAt": "2019-07-31T19:43:24.999Z",
+    "portal": "5b8f50eff731cf14c8b40bac",
+    "email": "amir@tribe.so",
+    "deviceTokens": [],
+    "slack": null,
+    "messenger": null,
+    "telegram": null,
+    "facebook": null,
+    "linkedin": null,
+    "google": null,
+    "lastPostAt": "2020-01-08T20:56:51.142Z",
+    "lastActionAt": "2020-03-02T13:57:38.331Z",
+    "lastSeenAt": "2020-03-04T17:40:58.469Z",
+    "notifications": {
+      "email": {
+        "newFollowersFrequency": "default",
+        "followedUsersFrequency": "default",
+        "upvotesFrequency": "default",
+        "followedPostsFrequency": "default",
+        "followedTopicsFrequency": "default",
+        "mentionsFrequency": "default",
+        "topicFollowMethod": "default",
+        "autoFollow": true,
+        "enabled": true
+      },
+      "telegram": {
+        "comment_upvote": true,
+        "upvote": true,
+        "request_answer": true,
+        "comment": true,
+        "ask": true,
+        "answer": true,
+        "follow_question": true,
+        "mention": true,
+        "follow_user": true
+      }
+    },
+    "profile": ...,
+    "groups": [...],
+    "devices": [],
+    "externalId": null,
+    "followedUsers": [],
+    "followedTopics": [
+      "5d769dd30494fcc995cd84d9"
+    ],
+    "credit": 0,
+    "status": "active",
+    "role": "admin",
+    "emailStatus": "verified",
+    "bankAccount": {
+      "routingNumber": "",
+      "accountNumber": ""
+    },
+    "id": "5d41ef5c16eaa51dbfb47fbf"
+  },
+  "_id": "5e5fe82d90ab955f09ca40fd",
+  "pinned": [],
+  "topics": [],
+  "featured": {
+    "posts": [],
+    "topics": [],
+    "users": [],
+    "questions": []
+  },
+  "notificationsDefaults": {
+    "inapp": {
+      "enabled": false
+    },
+    "email": {
+      "enabled": false
+    }
+  },
+  "score": 0,
+  "counts": {
+    "members": 1,
+    "posts": 0,
+    "comments": 0,
+    "answers": 0,
+    "questions": 0
+  },
+  "registration": "open",
+  "privacy": "public",
+  "status": "active",
+  "contentTypes": [],
+  "type": "general",
+  "verified": false,
+  "summary": "",
+  "id": "5e5fe82d90ab955f09ca40fd",
+  "joinStatus": "none"
+}
 ```
 
 This endpoint creates a new group. Only for admins.
@@ -29,18 +129,163 @@ This endpoint creates a new group. Only for admins.
 
 ### Query Parameters
 
-| Parameter    | Default   | Description                                                                                            |
-| ------------ | --------- | ------------------------------------------------------------------------------------------------------ |
-| name         |           | Name of the group to create                                                                            |
-| slug         |           | Slug of the group to create                                                                            |
-| color        |           | Color of the group to create                                                                           |
-| type         | `general` | Type of the group to create. It can be one the followings: [`blog`, `general`, `feedback`]             |
-| description  |           | Description of the group to create                                                                     |
-| privacy      | `public`  | Group privacy. It can be one of the followings: [`public`, `private`, `secret`]                        |
-| verified     |           | Is group verified?                                                                                     |
-| picture      |           | Picture URL of the group                                                                               |
-| banner       |           | Banner URL of the group                                                                                |
-| registration | `open`    | Registration of the group. It can be one of the followings: [`open`, `invitation`, `approval`, `none`] |
+| Parameter       | Default   | Description                                                                                            |
+| --------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| name            |           | Name of the group to create                                                                            |
+| slug            |           | Slug of the group to create                                                                            |
+| color           |           | Color of the group to create                                                                           |
+| type            | `general` | Type of the group to create. It can be one the followings: [`blog`, `general`, `feedback`]             |
+| description     |           | Description of the group to create                                                                     |
+| privacy         | `public`  | Group privacy. It can be one of the followings: [`public`, `private`, `secret`]                        |
+| verified        |           | Is group verified?                                                                                     |
+| picture         |           | Picture URL of the group                                                                               |
+| banner          |           | Banner URL of the group                                                                                |
+| registration    | `open`    | Registration of the group. It can be one of the followings: [`open`, `invitation`, `approval`, `none`] |
+| featured.topics |           | Array of highlighte topics' IDs                                                                        |
+
+## Update a Specific Group
+
+```shell
+curl "https://community.tribe.so/api/v1/groups"
+  -H "Authorization: Bearer {access_token}"
+  -X PUT
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let group = api.group.create({ ... });
+group.update()
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "__v": 0,
+  "shortId": "GRmdo",
+  "updatedAt": "2020-03-04T17:41:01.656Z",
+  "createdAt": "2020-03-04T17:41:01.656Z",
+  "slug": "a-good-car",
+  "name": "A good car",
+  "portal": "5b8f50eff731cf14c8b40bac",
+  "user": {
+    "_id": "5d41ef5c16eaa51dbfb47fbf",
+    "updatedAt": "2020-03-04T17:40:58.469Z",
+    "createdAt": "2019-07-31T19:43:24.999Z",
+    "portal": "5b8f50eff731cf14c8b40bac",
+    "email": "amir@tribe.so",
+    "deviceTokens": [],
+    "slack": null,
+    "messenger": null,
+    "telegram": null,
+    "facebook": null,
+    "linkedin": null,
+    "google": null,
+    "lastPostAt": "2020-01-08T20:56:51.142Z",
+    "lastActionAt": "2020-03-02T13:57:38.331Z",
+    "lastSeenAt": "2020-03-04T17:40:58.469Z",
+    "notifications": {
+      "email": {
+        "newFollowersFrequency": "default",
+        "followedUsersFrequency": "default",
+        "upvotesFrequency": "default",
+        "followedPostsFrequency": "default",
+        "followedTopicsFrequency": "default",
+        "mentionsFrequency": "default",
+        "topicFollowMethod": "default",
+        "autoFollow": true,
+        "enabled": true
+      },
+      "telegram": {
+        "comment_upvote": true,
+        "upvote": true,
+        "request_answer": true,
+        "comment": true,
+        "ask": true,
+        "answer": true,
+        "follow_question": true,
+        "mention": true,
+        "follow_user": true
+      }
+    },
+    "profile": ...,
+    "groups": [...],
+    "devices": [],
+    "externalId": null,
+    "followedUsers": [],
+    "followedTopics": [
+      "5d769dd30494fcc995cd84d9"
+    ],
+    "credit": 0,
+    "status": "active",
+    "role": "admin",
+    "emailStatus": "verified",
+    "bankAccount": {
+      "routingNumber": "",
+      "accountNumber": ""
+    },
+    "id": "5d41ef5c16eaa51dbfb47fbf"
+  },
+  "_id": "5e5fe82d90ab955f09ca40fd",
+  "pinned": [],
+  "topics": [],
+  "featured": {
+    "posts": [],
+    "topics": [],
+    "users": [],
+    "questions": []
+  },
+  "notificationsDefaults": {
+    "inapp": {
+      "enabled": false
+    },
+    "email": {
+      "enabled": false
+    }
+  },
+  "score": 0,
+  "counts": {
+    "members": 1,
+    "posts": 0,
+    "comments": 0,
+    "answers": 0,
+    "questions": 0
+  },
+  "registration": "open",
+  "privacy": "public",
+  "status": "active",
+  "contentTypes": [],
+  "type": "general",
+  "verified": false,
+  "summary": "",
+  "id": "5e5fe82d90ab955f09ca40fd",
+  "joinStatus": "none"
+}
+```
+
+This endpoint updates a specific group using ID
+
+### HTTP Request
+
+<code class="request">PUT /api/v1/groups/:id</code>
+
+### Query Parameters
+
+| Parameter       | Default   | Description                                                                                            |
+| --------------- | --------- | ------------------------------------------------------------------------------------------------------ |
+| name            |           | Name of the group to create                                                                            |
+| slug            |           | Slug of the group to create                                                                            |
+| color           |           | Color of the group to create                                                                           |
+| type            | `general` | Type of the group to create. It can be one the followings: [`blog`, `general`, `feedback`]             |
+| description     |           | Description of the group to create                                                                     |
+| privacy         | `public`  | Group privacy. It can be one of the followings: [`public`, `private`, `secret`]                        |
+| verified        |           | Is group verified?                                                                                     |
+| picture         |           | Picture URL of the group                                                                               |
+| banner          |           | Banner URL of the group                                                                                |
+| registration    | `open`    | Registration of the group. It can be one of the followings: [`open`, `invitation`, `approval`, `none`] |
+| featured.topics |           | Array of highlighte topics' IDs                                                                        |
 
 ## Get a Specific Group
 
