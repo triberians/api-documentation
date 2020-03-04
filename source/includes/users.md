@@ -382,8 +382,82 @@ Parameter | Type | Description
 id | `String` | The ID of the user to delete
 
 
+## Get User's Groups
+
+```shell
+curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/groups"
+  -H "Authorization: Bearer {access_token}"
+```
+
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.users.groups('5b1f99a7478dd3768d84b646');
+```
+
+> The above comand returns JSON structured like this:
+
+```json
+[
+  {
+    "_id": "5ddc1f29b8015f67d2059aeb",
+    "shortId": "P87Ny",
+    "updatedAt": "2019-11-25T18:36:25.921Z",
+    "createdAt": "2019-11-25T18:36:25.921Z",
+    "slug": "my-group",
+    "name": "My Group",
+    "portal": "5dc1c8c8ee91b9d39b6cc422",
+    "user": "5b1f99a7478dd3768d84b646",
+    "__v": 0,
+    "pinned": [],
+    "topics": [],
+    "featured": {
+      "posts": [],
+      "topics": [],
+      "users": [],
+      "questions": []
+    },
+    "notificationsDefaults": {
+      "inapp": {
+        "enabled": false
+      },
+      "email": {
+        "enabled": false
+      }
+    },
+    "score": 0,
+    "counts": {
+      "members": 1,
+      "posts": 0,
+      "comments": 0,
+      "answers": 0,
+      "questions": 0
+    },
+    "registration": "open",
+    "privacy": "public",
+    "status": "active",
+    "contentTypes": [],
+    "type": "general",
+    "verified": false,
+    "summary": "",
+    "id": "5ddc1f29b8015f67d2059aeb"
+  }
+]
+```
+
+This endpoint retrieves a specific user's groups using ID.
+
+### HTTP Request
+
+<code class="request">GET /api/v1/users/{id}/groups</code>
 
 
+### URL Parameters
+
+Parameter | Type | Description
+--------- | ----------- | -----------
+id | `String` | The ID of the user
 
 ## Get User's Followers
 
