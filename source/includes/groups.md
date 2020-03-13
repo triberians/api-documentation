@@ -141,7 +141,7 @@ This endpoint creates a new group. Only for admins.
 | picture         |           | Picture URL of the group                                                                               |
 | banner          |           | Banner URL of the group                                                                                |
 | registration    | `open`    | Registration of the group. It can be one of the followings: [`open`, `invitation`, `approval`, `none`] |
-| featured.topics |           | Array of highlighte topics' IDs                                                                        |
+| featured.topics |           | Array of highlighted topics' IDs                                                                       |
 
 ## Update a Specific Group
 
