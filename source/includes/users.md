@@ -2,16 +2,15 @@
 
 ## Get All Users
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/users"
   -H "Authorization: Bearer {access_token}"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
+let api = tribe.authorize("{access_token}");
 let users = api.users.get();
 ```
 
@@ -62,23 +61,21 @@ This endpoint retrieves all users.
 
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `Number` | `createdAt.desc` | The field to sort on
-query | `String` |  | Query to filter on name, username, and title
+| Parameter | Type     | Default          | Description                                  |
+| --------- | -------- | ---------------- | -------------------------------------------- |
+| page      | `Number` | `1`              | Intended page                                |
+| limit     | `Number` | `20`             | Number of items per page                     |
+| sort      | `Number` | `createdAt.desc` | The field to sort on                         |
+| query     | `String` |                  | Query to filter on name, username, and title |
 
 ### Extra Query Parameters for Moderators
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-role | `String` |  | Filter users based on role. Can be `admin`, `moderator`, `member`, and `bot`
-email | `String` |  | Comma separated list of emails to filter on
-
+| Parameter | Type     | Default | Description                                                                  |
+| --------- | -------- | ------- | ---------------------------------------------------------------------------- |
+| role      | `String` |         | Filter users based on role. Can be `admin`, `moderator`, `member`, and `bot` |
+| email     | `String` |         | Comma separated list of emails to filter on                                  |
 
 ## Create a new User
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users"
@@ -86,6 +83,7 @@ curl "https://community.tribe.so/api/v1/users"
   -H "Authorization: Bearer {access_token}"
   --DATA '{data}'
 ```
+
 ```javascript
 const tribe = require('tribe');
 
@@ -107,24 +105,23 @@ This endpoint creates a new user.
 
 ### Request Parameters
 
-Parameter | Type | Description | Required
---------- | ----------- | ----------- | -----------
-username | `String` | Username of the user | `Yes`
-name | `String` | Name of the user | `Yes`
-email | `String` | Email of the user | `Yes`
-password | `String` | Password of the user | `Yes`
-confirmPassword | `String` | Confirm password of the user | `No`
+| Parameter       | Type     | Description                  | Required |
+| --------------- | -------- | ---------------------------- | -------- |
+| username        | `String` | Username of the user         | `Yes`    |
+| name            | `String` | Name of the user             | `Yes`    |
+| email           | `String` | Email of the user            | `Yes`    |
+| password        | `String` | Password of the user         | `Yes`    |
+| confirmPassword | `String` | Confirm password of the user | `No`     |
 
 ### Extra Request Parameters for Admins
-Parameter | Type | Description | Required
---------- | ----------- | ----------- | -----------
-externalId | `String` | The ID of user in the external service | `No`
-role | `String` | The role of the user. Can be `member`, `moderator`, or `admin` | `No`
-source | `String` | The source of the user (e.g. API, SSO, Google, etc.) Can be used for analytics. | `No`
 
+| Parameter  | Type     | Description                                                                     | Required |
+| ---------- | -------- | ------------------------------------------------------------------------------- | -------- |
+| externalId | `String` | The ID of user in the external service                                          | `No`     |
+| role       | `String` | The role of the user. Can be `member`, `moderator`, or `admin`                  | `No`     |
+| source     | `String` | The source of the user (e.g. API, SSO, Google, etc.) Can be used for analytics. | `No`     |
 
 ## Invite new Users
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/user/email/invitations"
@@ -132,25 +129,26 @@ curl "https://community.tribe.so/api/v1/user/email/invitations"
   -H "Authorization: Bearer {access_token}"
   --DATA '{data}'
 ```
-```javascript
-const tribe = require('tribe');
 
-let api = tribe.authorize('{access_token}');
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
 let users = [
   {
-    name:"Mr Support",
+    name: "Mr Support",
     email: "info@tribe.so",
   },
   {
-    name:"Mr Tech",
+    name: "Mr Tech",
     email: "tech@tribe.so",
   },
 ];
 let data = {
   users,
-  role: 'member',
-}
-api.users.invite(data)
+  role: "member",
+};
+api.users.invite(data);
 ```
 
 > The above command returns JSON structured like this:
@@ -170,20 +168,20 @@ This endpoint send invitation email to people. The free plan is limited to 50 in
 
 ### Request Parameters
 
-Parameter | Type | Description | Required
---------- | ----------- | ----------- | -----------
-role | `String` | Role of the users | `Yes`
-users | `Array<Object>` | List of users | `Yes`
-message | `String` | Custom message for the invitation | `No`
+| Parameter | Type            | Description                       | Required |
+| --------- | --------------- | --------------------------------- | -------- |
+| role      | `String`        | Role of the users                 | `Yes`    |
+| users     | `Array<Object>` | List of users                     | `Yes`    |
+| message   | `String`        | Custom message for the invitation | `No`     |
 
 ### User Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-name | `String` | Name of the user
-email | `String` | Email of the user
+
+| Parameter | Type     | Description       |
+| --------- | -------- | ----------------- |
+| name      | `String` | Name of the user  |
+| email     | `String` | Email of the user |
 
 ## Get a Specific User
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
@@ -191,10 +189,10 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let users = api.users.get('5b1f99a7478dd3768d84b646');
+let api = tribe.authorize("{access_token}");
+let users = api.users.get("5b1f99a7478dd3768d84b646");
 ```
 
 > The above command returns JSON structured like this:
@@ -220,7 +218,7 @@ let users = api.users.get('5b1f99a7478dd3768d84b646');
       "responses": 1,
       "groups": 2,
       "replies": 2,
-      "receivedLikes": 3   
+      "receivedLikes": 3
     },
     "score": 52,
     "externalId": null,
@@ -245,12 +243,11 @@ This endpoint retrieves a specific user using ID.
 
 <code class="request">GET /api/v1/users/{id}</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the user
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| id        | `String` | The ID of the user |
 
 <aside class="notice">
 You can pass `external:{externalId}` as the id to find a specific user using an external ID.
@@ -260,7 +257,6 @@ If you want to find users based on their email address, you can use [Get All Use
 
 ## Update a Specific User
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
   -X PUT
@@ -269,11 +265,11 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let users = api.users.update("5b1f99a7478dd3768d84b646",{
-  name:"Ms. Support"
+let api = tribe.authorize("{access_token}");
+let users = api.users.update("5b1f99a7478dd3768d84b646", {
+  name: "Ms. Support",
 });
 ```
 
@@ -283,69 +279,73 @@ This endpoint updates a specific user using ID.
 
 <code class="request">PUT /api/v1/users/{id}</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | -----------  | -----------
-id | `String` | The ID of the user to update
+| Parameter | Type     | Description                  |
+| --------- | -------- | ---------------------------- |
+| id        | `String` | The ID of the user to update |
 
 ### Request Parameters
 
-Parameter | Type | Description | Required
---------- | ----------- | ----------- | -----------
-username | `String` | Username of the user | `Yes`
-name | `String` | Name of the user | `Yes`
-email | `String` | Email of the user | `Yes`
-password | `String` | Password of the user | `Yes`
-confirmPassword | `String` | Confirm password of the user | `No`
-links | `Object` | List of user's social network accounts | `No`
-bankAccount | `Object` | User's bank account | `No`
-location | `String` | Location of the user | `No`
-website | `String` | Website owned by user | `No`
-gender | `String` | Gender of the user | `No`
-title | `String` | Title of the user | `No`
-description | `String` | A short description of user | `No`
+| Parameter       | Type     | Description                            | Required |
+| --------------- | -------- | -------------------------------------- | -------- |
+| username        | `String` | Username of the user                   | `Yes`    |
+| name            | `String` | Name of the user                       | `Yes`    |
+| email           | `String` | Email of the user                      | `Yes`    |
+| password        | `String` | Password of the user                   | `Yes`    |
+| confirmPassword | `String` | Confirm password of the user           | `No`     |
+| links           | `Object` | List of user's social network accounts | `No`     |
+| bankAccount     | `Object` | User's bank account                    | `No`     |
+| location        | `String` | Location of the user                   | `No`     |
+| website         | `String` | Website owned by user                  | `No`     |
+| gender          | `String` | Gender of the user                     | `No`     |
+| title           | `String` | Title of the user                      | `No`     |
+| description     | `String` | A short description of user            | `No`     |
 
 ### Bank Account Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-holderName | `String` | Name of the holder
-accountNumber | `String` | Account number
-type | `String` | Type of the account. Can be `card`, `checking`, `saving`
-routingNumber | `String` | Routing number for the bank account
-bankName | `String` | Name of the bank related to account
+
+| Parameter     | Type     | Description                                              |
+| ------------- | -------- | -------------------------------------------------------- |
+| holderName    | `String` | Name of the holder                                       |
+| accountNumber | `String` | Account number                                           |
+| type          | `String` | Type of the account. Can be `card`, `checking`, `saving` |
+| routingNumber | `String` | Routing number for the bank account                      |
+| bankName      | `String` | Name of the bank related to account                      |
 
 ### Links Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-telegram | `String` | Telegram account of the user
-instagram | `String` | Instagram account of the user
-twitter | `String` | Twitter account of the user
-facebook | `String` | Facebook account of the user
-linkedin | `String` | Twitter account of the user
-homepage | `String` | The url of homepage of user
+
+| Parameter | Type     | Description                   |
+| --------- | -------- | ----------------------------- |
+| telegram  | `String` | Telegram account of the user  |
+| instagram | `String` | Instagram account of the user |
+| twitter   | `String` | Twitter account of the user   |
+| facebook  | `String` | Facebook account of the user  |
+| linkedin  | `String` | Twitter account of the user   |
+| homepage  | `String` | The url of homepage of user   |
 
 ### Extra Request Parameters for Moderators
-Parameter | Type | Description
---------- | ----------- | -----------
-verified | `Boolean` | Is the user verified or not
-status | `String` | Status of the user
-badge | `Object` | User's badge | `No`
+
+| Parameter | Type      | Description                 |
+| --------- | --------- | --------------------------- |
+| verified  | `Boolean` | Is the user verified or not |
+| status    | `String`  | Status of the user          |
+| badge     | `Object`  | User's badge                | `No` |
 
 ### Extra Request Parameters for Admin
-Parameter | Type | Description
---------- | ----------- | -----------
-role | `String` | Role of the user
+
+| Parameter   | Type      | Description                                                                     |
+| ----------- | --------- | ------------------------------------------------------------------------------- |
+| role        | `String`  | Role of the user                                                                |
+| verifyEmail | `Boolean` | If `true` user's email is changed right away without sending verification email |
 
 ### Badge Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-text | `Boolean` | Text of the badge
-type | `String` | Type of the badge. It can be one of the followings: [`gold`, `silver`, `bronze`]
+
+| Parameter | Type      | Description                                                                      |
+| --------- | --------- | -------------------------------------------------------------------------------- |
+| text      | `Boolean` | Text of the badge                                                                |
+| type      | `String`  | Type of the badge. It can be one of the followings: [`gold`, `silver`, `bronze`] |
 
 ## Delete a Specific User
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
@@ -354,10 +354,10 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let result = api.users.delete('5b1f99a7478dd3768d84b646');
+let api = tribe.authorize("{access_token}");
+let result = api.users.delete("5b1f99a7478dd3768d84b646");
 ```
 
 > The above command returns JSON structured like this:
@@ -374,13 +374,11 @@ This endpoint deletes a specific user.
 
 <code class="request">DELETE /api/v1/users/{id}</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the user to delete
-
+| Parameter | Type     | Description                  |
+| --------- | -------- | ---------------------------- |
+| id        | `String` | The ID of the user to delete |
 
 ## Get User's Groups
 
@@ -390,10 +388,10 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/groups"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let users = api.users.groups('5b1f99a7478dd3768d84b646');
+let api = tribe.authorize("{access_token}");
+let users = api.users.groups("5b1f99a7478dd3768d84b646");
 ```
 
 > The above comand returns JSON structured like this:
@@ -452,15 +450,13 @@ This endpoint retrieves a specific user's groups using ID.
 
 <code class="request">GET /api/v1/users/{id}/groups</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the user
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| id        | `String` | The ID of the user |
 
 ## Get User's Followers
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"
@@ -468,10 +464,10 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let users = api.users.followers('5b1f99a7478dd3768d84b646');
+let api = tribe.authorize("{access_token}");
+let users = api.users.followers("5b1f99a7478dd3768d84b646");
 ```
 
 > The above command returns JSON structured like this:
@@ -498,7 +494,7 @@ let users = api.users.followers('5b1f99a7478dd3768d84b646');
         "responses": 1,
         "groups": 2,
         "replies": 2,
-        "receivedLikes": 3   
+        "receivedLikes": 3
       },
       "score": 58,
       "externalId": null,
@@ -524,16 +520,13 @@ This endpoint retrieves a specific user's followers using ID.
 
 <code class="request">GET /api/v1/users/{id}/followers</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the user
-
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| id        | `String` | The ID of the user |
 
 ## Get User's Following
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followings"
@@ -541,10 +534,10 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/following
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let users = api.users.following('5b1f99a7478dd3768d84b646');
+let api = tribe.authorize("{access_token}");
+let users = api.users.following("5b1f99a7478dd3768d84b646");
 ```
 
 > The above command returns JSON structured like this:
@@ -592,29 +585,25 @@ This endpoint retrieves a specific user's followings using ID.
 
 <code class="request">GET /api/v1/users/{id}/followings</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the user
-
-
-
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| id        | `String` | The ID of the user |
 
 ## Follow a user
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"
   -X POST
   -H "Authorization: Bearer {access_token}"
 ```
-```javascript
-const tribe = require('tribe');
 
-let api = tribe.authorize('{access_token}');
-let user = api.users.follow('5b1f99a7478dd3768d84b646');
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let user = api.users.follow("5b1f99a7478dd3768d84b646");
 ```
 
 This endpoint follows a user.
@@ -623,20 +612,19 @@ This endpoint follows a user.
 
 <code class="request">POST /api/v1/users/{id}/followers</code>
 
-
 ## Unfollow a user
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"
   -X DELETE
   -H "Authorization: Bearer {access_token}"
 ```
-```javascript
-const tribe = require('tribe');
 
-let api = tribe.authorize('{access_token}');
-let user = api.users.unfollow('5b1f99a7478dd3768d84b646');
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let user = api.users.unfollow("5b1f99a7478dd3768d84b646");
 ```
 
 This endpoint unfollows a user.
@@ -645,9 +633,7 @@ This endpoint unfollows a user.
 
 <code class="request">DELETE /api/v1/users/{id}/followers</code>
 
-
 ## Get User's Expertise
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/expertise"
@@ -655,10 +641,10 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/expertise
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let users = api.users.expertise('5b1f99a7478dd3768d84b646');
+let api = tribe.authorize("{access_token}");
+let users = api.users.expertise("5b1f99a7478dd3768d84b646");
 ```
 
 > The above command returns JSON structured like this:
@@ -735,18 +721,13 @@ This endpoint retrieves a specific user's expertise using ID.
 
 <code class="request">GET /api/v1/users/{id}/expertise</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the user
-
-
-
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| id        | `String` | The ID of the user |
 
 ## Get User's Questions
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/questions"
@@ -754,10 +735,10 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/questions
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let users = api.users.questions('5b1f99a7478dd3768d84b646');
+let api = tribe.authorize("{access_token}");
+let users = api.users.questions("5b1f99a7478dd3768d84b646");
 ```
 
 > The above command returns JSON structured like this:
@@ -830,20 +811,16 @@ This endpoint retrieves a specific user's questions using ID.
 
 <code class="request">GET /api/v1/users/{id}/questions</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-id | `String` | | The ID of the user
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
-
-
+| Parameter | Type     | Default          | Description              |
+| --------- | -------- | ---------------- | ------------------------ |
+| id        | `String` |                  | The ID of the user       |
+| page      | `Number` | `1`              | Intended page            |
+| limit     | `Number` | `20`             | Number of items per page |
+| sort      | `String` | `createdAt.desc` | The field to sort on     |
 
 ## Get User's Answers
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/answers"
@@ -851,10 +828,10 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/answers"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
-let users = api.users.answers('5b1f99a7478dd3768d84b646');
+let api = tribe.authorize("{access_token}");
+let users = api.users.answers("5b1f99a7478dd3768d84b646");
 ```
 
 > The above command returns JSON structured like this:
@@ -914,18 +891,16 @@ This endpoint retrieves a specific user's answers using ID.
 
 <code class="request">GET /api/v1/users/{id}/answers</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-id | `String` | | The ID of the user
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
+| Parameter | Type     | Default          | Description              |
+| --------- | -------- | ---------------- | ------------------------ |
+| id        | `String` |                  | The ID of the user       |
+| page      | `Number` | `1`              | Intended page            |
+| limit     | `Number` | `20`             | Number of items per page |
+| sort      | `String` | `createdAt.desc` | The field to sort on     |
 
 ## Get User's Posts
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/users/5c7037e168356d17013df39b/posts?type=discussion"
@@ -933,13 +908,13 @@ curl "https://community.tribe.so/api/v1/users/5c7037e168356d17013df39b/posts?typ
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
+let api = tribe.authorize("{access_token}");
 let data = {
-  type: 'discussion'
-}
-let users = api.users.posts('5c7037e168356d17013df39b', data);
+  type: "discussion",
+};
+let users = api.users.posts("5c7037e168356d17013df39b", data);
 ```
 
 > The above command returns JSON structured like this:
@@ -1022,16 +997,15 @@ This endpoint retrieves a specific user's posts (Discussions, Blogs, Quick Post,
 
 <code class="request">GET /api/v1/users/{id}/posts</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-id | `String` | | The ID of the user
-type | `String` | | Type of posts. It can be empty (for all types) or a string of types of posts (`post`, `discussion`, `article`, `response`) seprated by comma 
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
+| Parameter | Type     | Default          | Description                                                                                                                                  |
+| --------- | -------- | ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| id        | `String` |                  | The ID of the user                                                                                                                           |
+| type      | `String` |                  | Type of posts. It can be empty (for all types) or a string of types of posts (`post`, `discussion`, `article`, `response`) seprated by comma |
+| page      | `Number` | `1`              | Intended page                                                                                                                                |
+| limit     | `Number` | `20`             | Number of items per page                                                                                                                     |
+| sort      | `String` | `createdAt.desc` | The field to sort on                                                                                                                         |
 
 ## Add device token
 
@@ -1065,17 +1039,17 @@ This endpoint add device token to the authenticated user.
 
 ### URL Parameters
 
-Parameter | Default | Description
---------- | --------- | -----------
-id |  | The ID of user to add the device token
+| Parameter | Default | Description                            |
+| --------- | ------- | -------------------------------------- |
+| id        |         | The ID of user to add the device token |
 
 ### Request Parameters
 
-Parameter | Default | Description
---------- | --------- | -----------
-token |  | Device token
-type |  | Type of the device. It can be one of [`web` , `ios`, `android`]
-name |  | Optional name for the device 
+| Parameter | Default | Description                                                     |
+| --------- | ------- | --------------------------------------------------------------- |
+| token     |         | Device token                                                    |
+| type      |         | Type of the device. It can be one of [`web` , `ios`, `android`] |
+| name      |         | Optional name for the device                                    |
 
 ## Remove device token
 
@@ -1109,20 +1083,17 @@ This endpoint remove device token from the authenticated user.
 
 ### URL Parameters
 
-Parameter | Default | Description
---------- | --------- | -----------
-id |  | The ID of user to add the device token
+| Parameter | Default | Description                            |
+| --------- | ------- | -------------------------------------- |
+| id        |         | The ID of user to add the device token |
 
 ### Request Parameters
 
-Parameter | Default | Description
---------- | --------- | -----------
-token |  | Device token
-
-
+| Parameter | Default | Description  |
+| --------- | ------- | ------------ |
+| token     |         | Device token |
 
 ## Get Users Leaderboard
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/stats/users/leaderboard"
@@ -1130,9 +1101,9 @@ curl "https://community.tribe.so/api/v1/stats/users/leaderboard"
 ```
 
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('{access_token}');
+let api = tribe.authorize("{access_token}");
 let users = api.users.getLeaderboard();
 ```
 
@@ -1194,6 +1165,6 @@ This endpoint retrieves users leaderboard for a specific period. It includes an 
 
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-period | `String` | `all` | Can be `all`, `month`, or `week`
+| Parameter | Type     | Default | Description                      |
+| --------- | -------- | ------- | -------------------------------- |
+| period    | `String` | `all`   | Can be `all`, `month`, or `week` |
