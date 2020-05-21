@@ -1,10 +1,15 @@
 <h1 id='notification'>Notification</h1><h2 id='get-user-notification'>Get User Notification</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/notifications"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">notifications</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">list</span><span class="p">();</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let notifications = api.notifications.list();
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -144,11 +149,16 @@
 </tbody></table>
 <h2 id='get-user-notification-summary'>Get User Notification Summary</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/notifications/summary"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">summaries</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">summary</span><span class="p">();</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let summaries = api.notifications.summary();
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -161,11 +171,16 @@
 <p><code class="request">GET /api/v1/notifications/summary</code></p>
 <h2 id='mark-all-notifications-as-read'>Mark All Notifications as Read</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/notifications/summary"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">read</span><span class="p">();</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+api.notifications.read();
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -179,11 +194,16 @@
 <h2 id='mark-a-specific-notification-as-read'>Mark a Specific Notification as Read</h2><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://community.tribe.so/api/v1/notifications/5b913111f19a473232026877/read"</span>
   -X POST
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">read</span><span class="p">(</span><span class="s2">"5b913111f19a473232026877"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+api.notifications.read("5b913111f19a473232026877");
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -211,10 +231,15 @@
 <h2 id='firebase-notification'>Firebase Notification</h2><pre class="highlight shell tab-shell"><code>  curl <span class="s2">"https://community.tribe.so/api/v1/user/devices"</span>
   -X POST
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-<span class="kr">const</span> <span class="nx">token</span> <span class="o">=</span> <span class="p">...</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">notifications</span><span class="p">.</span><span class="nx">registerDevice</span><span class="p">({</span> <span class="nx">token</span><span class="p">,</span> <span class="na">type</span><span class="p">:</span> <span class="s1">'ios'</span><span class="p">,</span> <span class="na">name</span><span class="p">:</span> <span class="s1">'My Phone'</span> <span class="p">});</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+const token = ...
+api.notifications.registerDevice({ token, type: 'ios', name: 'My Phone' });
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>

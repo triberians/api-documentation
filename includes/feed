@@ -1,10 +1,15 @@
 <h1 id='feed'>Feed</h1><h2 id='get-user-feed'>Get User Feed</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/feed"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">questions</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">user</span><span class="p">.</span><span class="nx">feed</span><span class="p">();</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let questions = api.user.feed();
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>

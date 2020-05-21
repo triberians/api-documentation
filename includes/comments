@@ -2,13 +2,18 @@
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   --DATA <span class="s2">"{data}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">comment</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"5c0621864cb2b119dc174a63"</span><span class="p">,{</span> 
-  <span class="na">body</span><span class="p">:</span> <span class="s2">"New Comment"</span><span class="p">,</span>
-<span class="p">});</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let comment = api.comments.update("5c0621864cb2b119dc174a63",{
+  body: "New Comment",
+});
+```
+-->
+
 <p>This endpoint updates a specific comment.</p>
 <h3 id='http-request'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/comments/:id</code></p>
@@ -43,11 +48,16 @@
 <h2 id='delete-a-specific-comment'>Delete a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5c0621864cb2b119dc174a63"</span>
   -X DELETE
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s1">'5c0621864cb2b119dc174a63'</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let result = api.comments.delete('5c0621864cb2b119dc174a63');
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -75,11 +85,16 @@
 <h2 id='upvote-for-a-specific-comment'>Upvote for a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5c0621864cb2b119dc174a63/votes"</span>
   -X POST
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">upvote</span><span class="p">(</span><span class="s1">'5c0621864cb2b119dc174a63'</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.comments.upvote('5c0621864cb2b119dc174a63');
+```
+-->
+
 <p>This endpoint upvotes a specific comment.</p>
 <h3 id='http-request-3'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/comments/{id}/votes</code></p>
@@ -100,11 +115,16 @@
 <h2 id='remove-an-upvote-for-a-specific-comment'>Remove an Upvote for a Specific Comment</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/comments/5c0621864cb2b119dc174a63/votes"</span>
   -X DELETE
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">comments</span><span class="p">.</span><span class="nx">unvote</span><span class="p">(</span><span class="s1">'5c0621864cb2b119dc174a63'</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.comments.unvote('5c0621864cb2b119dc174a63');
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>

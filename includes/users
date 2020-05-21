@@ -1,10 +1,15 @@
 <h1 id='users'>Users</h1><h2 id='get-all-users'>Get All Users</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.get();
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -106,17 +111,22 @@
   -X POST
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   --DATA <span class="s1">'{data}'</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
-  <span class="na">username</span><span class="p">:</span> <span class="s2">"info"</span><span class="p">,</span>
-  <span class="na">name</span><span class="p">:</span><span class="s2">"Mr Support"</span><span class="p">,</span>
-  <span class="na">email</span><span class="p">:</span> <span class="s2">"info@tribe.so"</span><span class="p">,</span>
-  <span class="na">password</span><span class="p">:</span> <span class="p">...,</span>
-  <span class="na">confirmPassword</span><span class="p">:</span> <span class="p">...</span>
-<span class="p">});</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+let users = api.users.create({
+  username: "info",
+  name:"Mr Support",
+  email: "info@tribe.so",
+  password: ...,
+  confirmPassword: ...
+});
+```
+-->
+
 <p>This endpoint creates a new user.</p>
 <h3 id='http-request-2'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/users/</code></p>
@@ -192,25 +202,30 @@
   -X POST
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   --DATA <span class="s1">'{data}'</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="p">[</span>
-  <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s2">"Mr Support"</span><span class="p">,</span>
-    <span class="na">email</span><span class="p">:</span> <span class="s2">"info@tribe.so"</span><span class="p">,</span>
-  <span class="p">},</span>
-  <span class="p">{</span>
-    <span class="na">name</span><span class="p">:</span> <span class="s2">"Mr Tech"</span><span class="p">,</span>
-    <span class="na">email</span><span class="p">:</span> <span class="s2">"tech@tribe.so"</span><span class="p">,</span>
-  <span class="p">},</span>
-<span class="p">];</span>
-<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="nx">users</span><span class="p">,</span>
-  <span class="na">role</span><span class="p">:</span> <span class="s2">"member"</span><span class="p">,</span>
-<span class="p">};</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">invite</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = [
+  {
+    name: "Mr Support",
+    email: "info@tribe.so",
+  },
+  {
+    name: "Mr Tech",
+    email: "tech@tribe.so",
+  },
+];
+let data = {
+  users,
+  role: "member",
+};
+api.users.invite(data);
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -271,11 +286,16 @@
 </tbody></table>
 <h2 id='get-a-specific-user'>Get a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.get("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -344,13 +364,18 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
   -X PUT
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   --DATA <span class="s1">'{data}'</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">,</span> <span class="p">{</span>
-  <span class="na">name</span><span class="p">:</span> <span class="s2">"Ms. Support"</span><span class="p">,</span>
-<span class="p">});</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.update("5b1f99a7478dd3768d84b646", {
+  name: "Ms. Support",
+});
+```
+-->
+
 <p>This endpoint updates a specific user using ID.</p>
 <h3 id='http-request-5'>HTTP Request</h3>
 <p><code class="request">PUT /api/v1/users/{id}</code></p>
@@ -588,11 +613,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 <h2 id='delete-a-specific-user'>Delete a Specific User</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"</span>
   -X DELETE
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">result</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let result = api.users.delete("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -619,11 +649,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 </tbody></table>
 <h2 id='get-user-39-s-groups'>Get User&#39;s Groups</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/groups"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">groups</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.groups("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <blockquote>
 <p>The above comand returns JSON structured like this:</p>
 </blockquote>
@@ -692,11 +727,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 </tbody></table>
 <h2 id='get-user-39-s-followers'>Get User&#39;s Followers</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">followers</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.followers("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -759,11 +799,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 </tbody></table>
 <h2 id='get-user-39-s-following'>Get User&#39;s Following</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followings"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">following</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.following("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -822,32 +867,47 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 <h2 id='follow-a-user'>Follow a user</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"</span>
   -X POST
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">follow</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let user = api.users.follow("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <p>This endpoint follows a user.</p>
 <h3 id='http-request-10'>HTTP Request</h3>
 <p><code class="request">POST /api/v1/users/{id}/followers</code></p>
 <h2 id='unfollow-a-user'>Unfollow a user</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers"</span>
   -X DELETE
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">user</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">unfollow</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let user = api.users.unfollow("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <p>This endpoint unfollows a user.</p>
 <h3 id='http-request-11'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/users/{id}/followers</code></p>
 <h2 id='get-user-39-s-expertise'>Get User&#39;s Expertise</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/expertise"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">expertise</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.expertise("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -934,11 +994,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 </tbody></table>
 <h2 id='get-user-39-s-questions'>Get User&#39;s Questions</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/questions"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">questions</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.questions("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1041,11 +1106,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 </tbody></table>
 <h2 id='get-user-39-s-answers'>Get User&#39;s Answers</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/answers"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">answers</span><span class="p">(</span><span class="s2">"5b1f99a7478dd3768d84b646"</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.answers("5b1f99a7478dd3768d84b646");
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1135,14 +1205,19 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 </tbody></table>
 <h2 id='get-user-39-s-posts'>Get User&#39;s Posts</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5c7037e168356d17013df39b/posts?type=discussion"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span>
-  <span class="na">type</span><span class="p">:</span> <span class="s2">"discussion"</span><span class="p">,</span>
-<span class="p">};</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">posts</span><span class="p">(</span><span class="s2">"5c7037e168356d17013df39b"</span><span class="p">,</span> <span class="nx">data</span><span class="p">);</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let data = {
+  type: "discussion",
+};
+let users = api.users.posts("5c7037e168356d17013df39b", data);
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1263,11 +1338,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X POST
   --DATA <span class="s2">"{...}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">authUser</span><span class="p">().</span><span class="nx">addDevice</span><span class="p">({...})</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.authUser().addDevice({...})
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1320,11 +1400,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
   -X DELETE
   --DATA <span class="s2">"{...}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'tribe'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'{access_token}'</span><span class="p">);</span>
-<span class="nx">api</span><span class="p">.</span><span class="nx">authUser</span><span class="p">().</span><span class="nx">removeDevice</span><span class="p">({...})</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require('tribe');
+
+let api = tribe.authorize('{access_token}');
+api.authUser().removeDevice({...})
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
@@ -1365,11 +1450,16 @@ You can pass `external:{externalId}` as the id to find a specific user using an 
 </tbody></table>
 <h2 id='get-users-leaderboard'>Get Users Leaderboard</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/stats/users/leaderboard"</span>
   -H <span class="s2">"Authorization: Bearer {access_token}"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">tribe</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"tribe"</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">tribe</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s2">"{access_token}"</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">users</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">users</span><span class="p">.</span><span class="nx">getLeaderboard</span><span class="p">();</span>
 </code></pre>
+<!--
+```javascript
+const tribe = require("tribe");
+
+let api = tribe.authorize("{access_token}");
+let users = api.users.getLeaderboard();
+```
+-->
+
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
