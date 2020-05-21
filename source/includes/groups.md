@@ -8,12 +8,14 @@ curl "https://community.tribe.so/api/v1/groups"
   -X POST
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let group = api.group.create({ ... });
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -151,6 +153,7 @@ curl "https://community.tribe.so/api/v1/groups"
   -X PUT
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
@@ -158,6 +161,7 @@ let api = tribe.authorize('{access_token}');
 let group = api.group.create({ ... });
 group.update()
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -294,12 +298,14 @@ curl "https://community.tribe.so/api/v1/groups/5dbc4c34560ef636c0f66172"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let group = api.group.get({ ... });
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -398,12 +404,14 @@ curl "https://community.tribe.so/api/v1/groups/:id"
   -X DELETE
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.group.remove(id);
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -426,12 +434,14 @@ curl "https://community.tribe.so/api/v1/groups/:id/members"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.group.members(id);
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -547,12 +557,14 @@ curl "https://community.tribe.so/api/v1/groups/:id/members"
   --DATA "{}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.group.addMember(id, member);
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -578,12 +590,14 @@ curl "https://community.tribe.so/api/v1/groups/:id/members/:userId"
   -X DELETE
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.group.removeMember(id, member);
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -604,12 +618,14 @@ curl "https://community.tribe.so/api/v1/groups/:id/feed"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let questions = api.user.feed();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -672,12 +688,14 @@ curl "https://community.tribe.so/api/v1/groups/:id/topics"
   --DATA "{...}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.group.addTopic(id, topic);
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -701,12 +719,14 @@ This endpoint adds a topic to a specific group. Only for admins.
 curl "https://community.tribe.so/api/v1/groups?topicName=First%20Topic"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.group.get({ topicName: ["First Topic"] });
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -769,12 +789,14 @@ curl "https://community.tribe.so/api/v1/users/:id/groups"
   --DATA "{...}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.group.join(user, [""]);
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -870,12 +892,14 @@ curl "https://community.tribe.so/api/v1/user/groups"
   --DATA "{...}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.group.join(["groupId"]);
 ```
+-->
 
 > The above command returns JSON structured like this:
 

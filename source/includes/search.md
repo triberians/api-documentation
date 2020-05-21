@@ -2,18 +2,19 @@
 
 ## Global Search
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/search?query=amir"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.search({ query: 'Amir' })
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -228,13 +229,12 @@ This endpoint retrieves search results.
 
 <code class="request">GET /api/v1/search</code>
 
-
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
-type | `String` | `all` | Type of the result. It can be one of [`question` , `group`, `topic`, `post`, `user`, `all`]
-query | `String` | | Query to search
+| Parameter | Type     | Default          | Description                                                                                 |
+| --------- | -------- | ---------------- | ------------------------------------------------------------------------------------------- |
+| page      | `Number` | `1`              | Intended page                                                                               |
+| limit     | `Number` | `20`             | Number of items per page                                                                    |
+| sort      | `String` | `createdAt.desc` | The field to sort on                                                                        |
+| type      | `String` | `all`            | Type of the result. It can be one of [`question` , `group`, `topic`, `post`, `user`, `all`] |
+| query     | `String` |                  | Query to search                                                                             |

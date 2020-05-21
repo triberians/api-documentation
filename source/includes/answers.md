@@ -2,18 +2,19 @@
 
 ## Get All Answers
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/answers"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let answers = api.answers.get();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -171,9 +172,7 @@ let answers = api.answers.get();
     "publishedAt": "2018-11-18T04:25:42.037Z",
     "shortId": "PEVpN",
     "downvotes": [],
-    "upvotes": [
-      "5bc64d97a8c76d6d771ae914"
-    ],
+    "upvotes": ["5bc64d97a8c76d6d771ae914"],
     "comments": [],
     "rewards": [],
     "images": [],
@@ -210,27 +209,27 @@ This endpoint retrieves all answers.
 
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
-
+| Parameter | Type     | Default          | Description              |
+| --------- | -------- | ---------------- | ------------------------ |
+| page      | `Number` | `1`              | Intended page            |
+| limit     | `Number` | `20`             | Number of items per page |
+| sort      | `String` | `createdAt.desc` | The field to sort on     |
 
 ## Get a Specific Answer
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let answers = api.answers.get('5bf0e89ada3be54c190b78ba');
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -387,9 +386,7 @@ let answers = api.answers.get('5bf0e89ada3be54c190b78ba');
   "publishedAt": "2018-11-18T04:25:42.037Z",
   "shortId": "PEVpN",
   "downvotes": [],
-  "upvotes": [
-    "5bc64d97a8c76d6d771ae914"
-  ],
+  "upvotes": ["5bc64d97a8c76d6d771ae914"],
   "comments": [],
   "rewards": [],
   "images": [],
@@ -423,15 +420,13 @@ This endpoint retrieves a specific answer using ID.
 
 <code class="request">GET /api/v1/answers/{id}</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the item
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| id        | `String` | The ID of the item |
 
-
-<!-- 
+<!--
 ## Get All Answers for a Specific Topic
 
 ```shell
@@ -452,8 +447,6 @@ Parameter | Description
 --------- | -----------
 topicId | The ID of the topic -->
 
-
-
 ## Create an Answer
 
 ```shell
@@ -464,17 +457,19 @@ curl "https://community.tribe.so/api/v1/questions/5c7bfc7a157c2c34f735a53e/answe
   --DATA '{"content":""<p>Very good answer!</p>","anonymous": false,"status":"published"}'
 ```
 
+<!--
 ```javascript
   const tribe = require('tribe');
 
   let api = tribe.authorize('{access_token}');
   let result = api.questions.answer("5c7bfc7a157c2c34f735a53e",{conent: "Very good answer", anonymous: false, status: "published"})
 ```
+-->
 
 > The above command returns JSON structured like this:
 
 ```json
-  {
+{
   "_id": "5c7c04de68b07737dec0b39e",
   "updatedAt": "2019-03-03T16:49:29.077Z",
   "createdAt": "2019-03-03T16:46:22.281Z",
@@ -657,26 +652,24 @@ The endpoint creates an answer for a specific question.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-questionId | `String` | The ID of the question
+| Parameter  | Type     | Description            |
+| ---------- | -------- | ---------------------- |
+| questionId | `String` | The ID of the question |
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-content | `String` | The content of the answer
-anonymous | `Boolean` | Is it an anonymous answer or not
-status | `String` | Status of the answer. Can be: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new`
+| Parameter | Type      | Description                                                                                                        |
+| --------- | --------- | ------------------------------------------------------------------------------------------------------------------ |
+| content   | `String`  | The content of the answer                                                                                          |
+| anonymous | `Boolean` | Is it an anonymous answer or not                                                                                   |
+| status    | `String`  | Status of the answer. Can be: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new` |
 
 ### Extra Request Parameters for Moderators
 
-Parameter | Type | Description
---------- | ----------- | -----------
-verified | `Boolean` | Is this answer verified or not
-user | `String` | The ID of the user to create an answer on behalf
-
-
+| Parameter | Type      | Description                                      |
+| --------- | --------- | ------------------------------------------------ |
+| verified  | `Boolean` | Is this answer verified or not                   |
+| user      | `String`  | The ID of the user to create an answer on behalf |
 
 ## Answer a poll
 
@@ -688,12 +681,14 @@ curl "https://community.tribe.so/api/v1/answers/5e3d8df499d91a48d101d8e2/poll"
   --DATA '{"poll":"5e3d8df499d91a48d101d8e4"}'
 ```
 
+<!--
 ```javascript
   const tribe = require('tribe');
 
   let api = tribe.authorize('{access_token}');
   let result = api.questions.answerPoll("5c7bfc7a157c2c34f735a53e", "5e3d8df499d91a48d101d8e4")
 ```
+-->
 
 The endpoint creates a poll answer for a specific question.
 
@@ -703,19 +698,17 @@ The endpoint creates a poll answer for a specific question.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-questionId | `String` | The ID of the question
+| Parameter  | Type     | Description            |
+| ---------- | -------- | ---------------------- |
+| questionId | `String` | The ID of the question |
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-poll | `String` | ID of the selected poll option
-
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
+| poll      | `String` | ID of the selected poll option |
 
 ## Update a Specific Answer
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"
@@ -725,12 +718,14 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"
   --DATA '{"content":"Test answer","anonymous": false,"status":"published"}'
 ```
 
+<!--
 ```javascript
   const tribe = require('tribe');
 
   let api = tribe.authorize('{access_token}');
   let result = api.answers.update("5c7bfc7a157c2c34f735a53e",{conent: "Very good answer", anonymous: false)
 ```
+-->
 
 This endpoint update a specific answer.
 
@@ -738,29 +733,27 @@ This endpoint update a specific answer.
 
 <code class="request">PUT /api/v1/answers/{id}</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the answer to update
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
+| id        | `String` | The ID of the answer to update |
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-content | `String` | The content of the answer
-anonymous | `String` | Is it an anonymous answer or not
+| Parameter | Type     | Description                      |
+| --------- | -------- | -------------------------------- |
+| content   | `String` | The content of the answer        |
+| anonymous | `String` | Is it an anonymous answer or not |
 
 ### Extra Request Parameters for Moderators
 
-Parameter | Type | Description
---------- | ----------- | ------
-verified | `String` | Is this a verified answer or not
-status | `String` | Status of the answer. Can be: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new`
+| Parameter | Type     | Description                                                                                                        |
+| --------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
+| verified  | `String` | Is this a verified answer or not                                                                                   |
+| status    | `String` | Status of the answer. Can be: `archived` `collapsed` `draft` `published` `unapproved` `unlisted` `scheduled` `new` |
 
 ## Delete a Specific Answer
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"
@@ -768,12 +761,14 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.answers.delete('5bf0e89ada3be54c190b78ba');
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -789,15 +784,13 @@ This endpoint deletes a specific answer.
 
 <code class="request">DELETE /api/v1/answers/{id}</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the answer to delete
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
+| id        | `String` | The ID of the answer to delete |
 
 ## Delete a Specific Draft Answer
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/draft"
@@ -805,12 +798,14 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/draft"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.answers.drafts.delete('5bf0e89ada3be54c190b78ba');
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -826,16 +821,13 @@ This endpoint deletes a specific draft answer.
 
 <code class="request">DELETE /api/v1/answers/{id}/draft</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the answer to delete
-
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
+| id        | `String` | The ID of the answer to delete |
 
 ## Upvote a Specific Answer
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
@@ -843,13 +835,15 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.answers.upvote('5bf0e89ada3be54c190b78ba');
 ```
-<!-- 
+-->
+<!--
 > The above command returns JSON structured like this:
 
 ```json
@@ -864,15 +858,13 @@ This endpoint upvotes for a specific answer.
 
 <code class="request">POST /api/v1/answers/:id/votes</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the answer to add a vote
+| Parameter | Type     | Description                        |
+| --------- | -------- | ---------------------------------- |
+| id        | `String` | The ID of the answer to add a vote |
 
 ## Remove Upvote for a Specific Answer
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
@@ -880,12 +872,14 @@ curl "https://community.tribe.so/api/v1/answers/5bf0e89ada3be54c190b78ba/votes"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.answers.downvote('5bf0e89ada3be54c190b78ba');
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -901,12 +895,11 @@ This endpoint removes an upvote for a specific answer.
 
 <code class="request">DELETE /api/v1/answers/:id/votes</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the answer to remove a vote
+| Parameter | Type     | Description                           |
+| --------- | -------- | ------------------------------------- |
+| id        | `String` | The ID of the answer to remove a vote |
 
 ## Get List of Votes for a Specific Answer
 
@@ -915,17 +908,19 @@ id | `String` | The ID of the answer to remove a vote
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.answers.votes.get('5bf0e89ada3be54c190b78ba');
 ```
+-->
 
 > The above command returns JSON structured like this:
 
 ```json
-  {
+{
   "upvotes": [
     {
       "_id": "5bc64d97a8c76d6d771ae914",
@@ -1000,11 +995,9 @@ This endpoint retrieves all answers for a specific answer.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the answer to receive the votes
-
-
+| Parameter | Type     | Description                               |
+| --------- | -------- | ----------------------------------------- |
+| id        | `String` | The ID of the answer to receive the votes |
 
 ## Add a Comment for a Specific Answer
 
@@ -1015,14 +1008,16 @@ id | `String` | The ID of the answer to receive the votes
   --DATA "{'body':'New comment'}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let result = api.answers.comment('5bf0e89ada3be54c190b78ba',{ 
-  body: "New comment" 
+let result = api.answers.comment('5bf0e89ada3be54c190b78ba',{
+  body: "New comment"
 });
 ```
+-->
 
 This endpoint adds a comment for a specific answer.
 
@@ -1032,21 +1027,21 @@ This endpoint adds a comment for a specific answer.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the answer to add a comment
+| Parameter | Type     | Description                           |
+| --------- | -------- | ------------------------------------- |
+| id        | `String` | The ID of the answer to add a comment |
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-body | `String` | The content of the comment
+| Parameter | Type     | Description                |
+| --------- | -------- | -------------------------- |
+| body      | `String` | The content of the comment |
 
 ### Extra Request Parameters for Moderators
 
-Parameter | Type | Description
---------- | ----------- | -----------
-user | `String` | The ID of the user to comment on behalf
+| Parameter | Type     | Description                             |
+| --------- | -------- | --------------------------------------- |
+| user      | `String` | The ID of the user to comment on behalf |
 
 ## Update a Specific Comment for a Specific Answer
 
@@ -1056,14 +1051,17 @@ user | `String` | The ID of the user to comment on behalf
   -H "Authorization: Bearer {access_token}"
   --DATA "{'body':'Updated comment'}"
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let result = api.answers.comments.update('5bf0e89ada3be54c190b78ba',"4sf0e89ada3be54c190b78b2",{ 
-  body: "Updated comment" 
+let result = api.answers.comments.update('5bf0e89ada3be54c190b78ba',"4sf0e89ada3be54c190b78b2",{
+  body: "Updated comment"
 });
 ```
+-->
 
 This endpoint updates a specific comment.
 
@@ -1073,16 +1071,16 @@ This endpoint updates a specific comment.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the comment to update
-answerId | `String` | The ID of the answer to add a comment
+| Parameter | Type     | Description                           |
+| --------- | -------- | ------------------------------------- |
+| id        | `String` | The ID of the comment to update       |
+| answerId  | `String` | The ID of the answer to add a comment |
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-body | `String` | The content of the comment
+| Parameter | Type     | Description                |
+| --------- | -------- | -------------------------- |
+| body      | `String` | The content of the comment |
 
 ## Remove a Specific Comment from a Specific Answer
 
@@ -1091,12 +1089,15 @@ body | `String` | The content of the comment
   -X DELETE
   -H "Authorization: Bearer {access_token}"
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.answers.comments.delete('5bf0e89ada3be54c190b78ba',"4sf0e89ada3be54c190b78b2");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -1114,10 +1115,10 @@ This endpoint removes a specific comment.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the comment to remove
-answerId | `String` | The ID of the answer to remove a comment
+| Parameter | Type     | Description                              |
+| --------- | -------- | ---------------------------------------- |
+| id        | `String` | The ID of the comment to remove          |
+| answerId  | `String` | The ID of the answer to remove a comment |
 
 ## Add Log for Specific Answers
 
@@ -1127,12 +1128,15 @@ answerId | `String` | The ID of the answer to remove a comment
   -H "Authorization: Bearer {access_token}"
   --DATA '{ ids: ["5bf0e89ada3be54c190b78ba"] }'
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.answers.log(['5bf0e89ada3be54c190b78ba'])
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -1150,9 +1154,9 @@ This endpoint adds a log for a specific answer.
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-logs | `Array<String>` | The ID of answers to add log
+| Parameter | Type            | Description                  |
+| --------- | --------------- | ---------------------------- |
+| logs      | `Array<String>` | The ID of answers to add log |
 
 ## Get Stats of Specific User for Answers
 
@@ -1160,12 +1164,15 @@ logs | `Array<String>` | The ID of answers to add log
   curl "https://community.tribe.so/api/v1/user/stats/answers/views"
   -H "Authorization: Bearer {access_token}"
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.user.stats('answer','views')
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -1216,14 +1223,11 @@ This endpoint returns statistics of a specific user for answers.
 
 <code class="request">GET /api/v1/user/stats/answers/:metric</code>
 
-
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-metric | `String` | Metric for the statistics. Can be `views`,`votes`,`follows`
-
-
+| Parameter | Type     | Description                                                 |
+| --------- | -------- | ----------------------------------------------------------- |
+| metric    | `String` | Metric for the statistics. Can be `views`,`votes`,`follows` |
 
 ## Reporting a Specific Answer
 
@@ -1241,13 +1245,13 @@ This endpoint reports (flags) a specific answer to admins and moderators.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the answer to report
+| Parameter | Type     | Description                    |
+| --------- | -------- | ------------------------------ |
+| id        | `String` | The ID of the answer to report |
 
 ### Query Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-type | `String` | The type of the report. Can be `Harrasment`, `Spam`, `DoesntAnswerQuestion`, `Plagiarism`, `JokeAnswer`, `OutOfDate`, `PoorlyWritten`, `FactuallyIncorrect`, or `AgainstRules`
-description | `String` | The optional description of the report shown to admins and moderators
+| Parameter   | Type     | Description                                                                                                                                                                    |
+| ----------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| type        | `String` | The type of the report. Can be `Harrasment`, `Spam`, `DoesntAnswerQuestion`, `Plagiarism`, `JokeAnswer`, `OutOfDate`, `PoorlyWritten`, `FactuallyIncorrect`, or `AgainstRules` |
+| description | `String` | The optional description of the report shown to admins and moderators                                                                                                          |

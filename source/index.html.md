@@ -3,7 +3,7 @@ title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
   - shell
-  - javascript
+#  - javascript
 
 toc_footers:
   - <a href='mailto:hi@tribe.so?subject=Request API Credentials'>Request API Credentials</a>
@@ -24,8 +24,6 @@ includes:
   - errors
   - widgets.md.erb
 
-
-
 search: true
 ---
 
@@ -35,10 +33,9 @@ Welcome to the Tribe API!
 
 We have language bindings in Shell and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
-
 # Authentication
 
-Tribe supports multiple authorization methods suitable for different scenarios. 
+Tribe supports multiple authorization methods suitable for different scenarios.
 
 The two most common methods are:
 
@@ -46,7 +43,6 @@ The two most common methods are:
 - Tribe Access Token
 
 ## JWT Access Token
-
 
 > To authorize, use this code:
 
@@ -56,14 +52,15 @@ curl "api_endpoint_here"
   -H "Authorization: Bearer <YourAccessToken>"
 ```
 
+<!--
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('<YourAccessToken>');
+let api = tribe.authorize("<YourAccessToken>");
 ```
+-->
 
 > Make sure to replace `<YourAccessToken>` with your JWT access token.
-
 
 If your product's authentication already provides JWT access tokens, the easiest way is to use the same access token in Tribe.
 
@@ -95,6 +92,7 @@ Then, you'll be able to generate access token and refresh token using one of the
   "refresh_token": ""
 }
 ```
+
 > To authorize, use this code:
 
 ```shell
@@ -103,11 +101,13 @@ curl "api_endpoint_here"
   -H "Authorization: Bearer <YourAccessToken>"
 ```
 
+<!--
 ```javascript
-const tribe = require('tribe');
+const tribe = require("tribe");
 
-let api = tribe.authorize('<YourAccessToken>');
+let api = tribe.authorize("<YourAccessToken>");
 ```
+-->
 
 > Make sure to replace `<YourAccessToken>` with the generated access token.
 
@@ -117,27 +117,26 @@ To get an access token for a user using their username/email and password you ca
 
 To do so, you should send a POST request to https://YOUR_COMMUNITY_URL/api/v1/oauth/token. It should include the following payload as <code>application/x-www-form-urlencoded</code>:
 
-Key | Value
---------- | -----------
-grant_type | <code>password</code>
-client_id | The client ID provided by Tribe
-client_secret |  The client secret provided by Tribe
-username | The username you want to authenticate with
-password | The password you want to authenticate with
-
+| Key           | Value                                      |
+| ------------- | ------------------------------------------ |
+| grant_type    | <code>password</code>                      |
+| client_id     | The client ID provided by Tribe            |
+| client_secret | The client secret provided by Tribe        |
+| username      | The username you want to authenticate with |
+| password      | The password you want to authenticate with |
 
 ### 2. Tribe Custom Grant Type
 
-Tribe also have a custom grant_type called <code>tribe:client_secret_credentials</code>. With this grant type, you will be able to get the access_token and refresh_token for any user by their email, user_id (Tribe user id), or external_id (Your product's user_id that was passed in OAuth2 authentication). 
+Tribe also have a custom grant_type called <code>tribe:client_secret_credentials</code>. With this grant type, you will be able to get the access_token and refresh_token for any user by their email, user_id (Tribe user id), or external_id (Your product's user_id that was passed in OAuth2 authentication).
 
 To do so, you should send a POST request to https://YOUR_COMMUNITY_URL/api/v1/oauth/token. It should include the following payload as <code>application/x-www-form-urlencoded</code>:
 
-Key | Value
---------- | -----------
-grant_type | <code>tribe:client_secret_credentials</code>
-client_id | The client ID provided by Tribe
-client_secret |  The client secret provided by Tribe
-email, user_id or external_id | The unique identifier of the user
+| Key                           | Value                                        |
+| ----------------------------- | -------------------------------------------- |
+| grant_type                    | <code>tribe:client_secret_credentials</code> |
+| client_id                     | The client ID provided by Tribe              |
+| client_secret                 | The client secret provided by Tribe          |
+| email, user_id or external_id | The unique identifier of the user            |
 
 By default, this grant_type is open to all IP addresses, but for security reasons, we suggest that you give us a list of IP addresses and we'll limit it to those.
 
@@ -148,4 +147,3 @@ Tribe expects the access token to be included in API requests to the server in a
 <aside class="notice">
 You must replace <code>&lt;YourAccessToken&gt;</code> with the generated access token.
 </aside>
-

@@ -2,18 +2,19 @@
 
 ## Get User Feed
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/feed"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let questions = api.user.feed();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -52,12 +53,11 @@ This endpoint retrieves user feed.
 
 <code class="request">GET /api/v1/feed</code>
 
-
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-type | `String` |  | Comma separated list of types to filter on. Types can be `post`, `question`, `discussion`, and `article`
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
+| Parameter | Type     | Default          | Description                                                                                              |
+| --------- | -------- | ---------------- | -------------------------------------------------------------------------------------------------------- |
+| type      | `String` |                  | Comma separated list of types to filter on. Types can be `post`, `question`, `discussion`, and `article` |
+| page      | `Number` | `1`              | Intended page                                                                                            |
+| limit     | `Number` | `20`             | Number of items per page                                                                                 |
+| sort      | `String` | `createdAt.desc` | The field to sort on                                                                                     |

@@ -7,12 +7,14 @@ curl "https://community.tribe.so/api/v1/users"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.get();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -84,6 +86,7 @@ curl "https://community.tribe.so/api/v1/users"
   --DATA '{data}'
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
@@ -96,6 +99,7 @@ let users = api.users.create({
   confirmPassword: ...
 });
 ```
+-->
 
 This endpoint creates a new user.
 
@@ -130,6 +134,7 @@ curl "https://community.tribe.so/api/v1/user/email/invitations"
   --DATA '{data}'
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
@@ -150,6 +155,7 @@ let data = {
 };
 api.users.invite(data);
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -188,12 +194,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.get("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -264,6 +272,7 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
   --DATA '{data}'
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
@@ -272,6 +281,7 @@ let users = api.users.update("5b1f99a7478dd3768d84b646", {
   name: "Ms. Support",
 });
 ```
+-->
 
 This endpoint updates a specific user using ID.
 
@@ -353,12 +363,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let result = api.users.delete("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -387,12 +399,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/groups"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.groups("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 > The above comand returns JSON structured like this:
 
@@ -463,12 +477,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.followers("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -533,12 +549,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/following
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.following("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -599,12 +617,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let user = api.users.follow("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 This endpoint follows a user.
 
@@ -620,12 +640,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/followers
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let user = api.users.unfollow("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 This endpoint unfollows a user.
 
@@ -640,12 +662,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/expertise
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.expertise("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -734,12 +758,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/questions
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.questions("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -827,12 +853,14 @@ curl "https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/answers"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.answers("5b1f99a7478dd3768d84b646");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -907,6 +935,7 @@ curl "https://community.tribe.so/api/v1/users/5c7037e168356d17013df39b/posts?typ
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
@@ -916,6 +945,7 @@ let data = {
 };
 let users = api.users.posts("5c7037e168356d17013df39b", data);
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -1016,12 +1046,14 @@ curl "https://community.tribe.so/api/v1/user/devices"
   --DATA "{...}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 api.authUser().addDevice({...})
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -1060,12 +1092,14 @@ curl "https://community.tribe.so/api/v1/user/devices"
   --DATA "{...}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 api.authUser().removeDevice({...})
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -1100,12 +1134,14 @@ curl "https://community.tribe.so/api/v1/stats/users/leaderboard"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let users = api.users.getLeaderboard();
 ```
+-->
 
 > The above command returns JSON structured like this:
 

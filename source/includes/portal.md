@@ -2,18 +2,19 @@
 
 ## Get Portal Information
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/portal"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let portals = api.portal.get();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -94,9 +95,7 @@ let portals = api.portal.get();
   "featured": {
     "posts": [],
     "events": [],
-    "answers": [
-      "5babcf33630b876a1e9785cd"
-    ],
+    "answers": ["5babcf33630b876a1e9785cd"],
     "topics": [
       "5b912fcb3d9228aa7c4220dc",
       "5b9002da3d9228aa7c421ec4",
@@ -312,18 +311,19 @@ This endpoint retrieves portal information.
 
 ## Get Portal Health Stats
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/stats/portal"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let stats = api.portal.stats();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -346,21 +346,21 @@ This endpoint retrieves portal health stats.
 
 <code class="request">GET /api/v1/stats/portal</code>
 
-
 ## Get Portal Leaderboard
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/stats/users/leaderboard"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let leaderboard = api.portal.leaderboard();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -428,9 +428,7 @@ This endpoint retrieves users leaderboard in portal.
 
 <code class="request">GET /api/v1/stats/users/leaderboard</code>
 
-
 ## Update the Portal
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/portal"
@@ -439,15 +437,17 @@ curl "https://community.tribe.so/api/v1/portal"
   --DATA '{"name": "Test Portal","domain":"test.com"}'
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
-let portal = api.portal.update({ 
+let portal = api.portal.update({
   name: "Test Portal",
   domain: "test.com"
 });
 ```
+-->
 
 This endpoint updates the portal.
 
@@ -457,93 +457,97 @@ This endpoint updates the portal.
 
 ### Request Parameters
 
-Parameter | Type | Description | Required
---------- | ----------- | ----------- | -----------
-name | `String` | The name of the portal | `Yes`
-domain | `String` | The domain of the portal | `Yes`
-subdomain | `String` | The subdomain of the portal | `No`
-announcement | `Object` | The announcement visible to all users on the homepage. | `No`
-banner | `String` | The path to the banner image. This image is used as the default og:image. | `No`
-description | `String` | Description of the portal | `No`
-email | `String` | Email of the portal | `No`
-englishName | `String` | Name of the portal in English | `No`
-favicon | `String` | Icon of the portal | `No`
-keywords | `Array<String>` | Keywords related to the portal | `No`
-links | `Object` | Community links used in the sidebar and emails. | `No`
-logo | `String` | Logo of the portal | `No`
-longName | `String` | The full name of the community. This is being used as the title of community home. | `No`
-messages | `String` | Custom messages for the community. | `No`
-policies | `Object` | Policies of community. | `No`
-stage | `String` | Define the stage of the community. Can be: `inception``establishment``maturity``mitosis`. | `No`
-template | `Object` | Template of the portal | `No`
+| Parameter    | Type            | Description                                                                                        | Required |
+| ------------ | --------------- | -------------------------------------------------------------------------------------------------- | -------- |
+| name         | `String`        | The name of the portal                                                                             | `Yes`    |
+| domain       | `String`        | The domain of the portal                                                                           | `Yes`    |
+| subdomain    | `String`        | The subdomain of the portal                                                                        | `No`     |
+| announcement | `Object`        | The announcement visible to all users on the homepage.                                             | `No`     |
+| banner       | `String`        | The path to the banner image. This image is used as the default og:image.                          | `No`     |
+| description  | `String`        | Description of the portal                                                                          | `No`     |
+| email        | `String`        | Email of the portal                                                                                | `No`     |
+| englishName  | `String`        | Name of the portal in English                                                                      | `No`     |
+| favicon      | `String`        | Icon of the portal                                                                                 | `No`     |
+| keywords     | `Array<String>` | Keywords related to the portal                                                                     | `No`     |
+| links        | `Object`        | Community links used in the sidebar and emails.                                                    | `No`     |
+| logo         | `String`        | Logo of the portal                                                                                 | `No`     |
+| longName     | `String`        | The full name of the community. This is being used as the title of community home.                 | `No`     |
+| messages     | `String`        | Custom messages for the community.                                                                 | `No`     |
+| policies     | `Object`        | Policies of community.                                                                             | `No`     |
+| stage        | `String`        | Define the stage of the community. Can be: ` inception``establishment``maturity``mitosis `. | `No` |
+| template     | `Object`        | Template of the portal                                                                             | `No`     |
 
 ### Announcement Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-action | `String` | The action button text
-content | `String` | Content of the announcement
-enabled | `String` | Is announcement enabled?
-layout | `String` | The layout of the announcement. Can be: `imageTop``imageSide``imageSidePadded``imageBackground``imageTopBackground``darkImageBackground`
-link | `String` | Link related to the announcement
-picture | `String` | Url to the picture of the announcement
-title | `String` | Title of the announcement
 
+| Parameter | Type     | Description                                                                                                                                |
+| --------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| action    | `String` | The action button text                                                                                                                     |
+| content   | `String` | Content of the announcement                                                                                                                |
+| enabled   | `String` | Is announcement enabled?                                                                                                                   |
+| layout    | `String` | The layout of the announcement. Can be: ` imageTop``imageSide``imageSidePadded``imageBackground``imageTopBackground``darkImageBackground ` |
+| link      | `String` | Link related to the announcement                                                                                                           |
+| picture   | `String` | Url to the picture of the announcement                                                                                                     |
+| title     | `String` | Title of the announcement                                                                                                                  |
 
 ### Links Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-bug | `String` | Name of the holder
-facebook | `String` | Facebook handle of the portal
-faq | `String` | FAQ url of the portal
-feature | `String` | Request for feature url.
-homepage | `String` | Homepage of the portal
-instagram | `String` | Instagram handle of the portal
-linkedin | `String` | Linkedin handle of the portal
-privacy | `String` | Url to portal's privacy policy
-telegram | `String` | Telegram handle of the portal
-terms | `String` | Url to portal's terms and condition
-twitter | `String` | Twitter handle of the portal
+
+| Parameter | Type     | Description                         |
+| --------- | -------- | ----------------------------------- |
+| bug       | `String` | Name of the holder                  |
+| facebook  | `String` | Facebook handle of the portal       |
+| faq       | `String` | FAQ url of the portal               |
+| feature   | `String` | Request for feature url.            |
+| homepage  | `String` | Homepage of the portal              |
+| instagram | `String` | Instagram handle of the portal      |
+| linkedin  | `String` | Linkedin handle of the portal       |
+| privacy   | `String` | Url to portal's privacy policy      |
+| telegram  | `String` | Telegram handle of the portal       |
+| terms     | `String` | Url to portal's terms and condition |
+| twitter   | `String` | Twitter handle of the portal        |
 
 ### Messages Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-askRules | `String` | Rules of asking questions
-motto | `String` | Motto of the portal
-questionIntro | `String` | Introduction for questions
-signupRules | `String` | Rules of signing up
-topicIntro | `String` | Introduction for topics
-userIntro | `String` |Introduction for users
+
+| Parameter     | Type     | Description                |
+| ------------- | -------- | -------------------------- |
+| askRules      | `String` | Rules of asking questions  |
+| motto         | `String` | Motto of the portal        |
+| questionIntro | `String` | Introduction for questions |
+| signupRules   | `String` | Rules of signing up        |
+| topicIntro    | `String` | Introduction for topics    |
+| userIntro     | `String` | Introduction for users     |
 
 ### Template Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-body | `String` | Body tag of the template
-colors.default | `String` | Default Color
-colors.defaultLink | `String` | Default link
-colors.link | `String` | Color of links
-colors.menuLink | `String` | Color of menu
-colors.primary | `String` | Primary Color
-colors.secondary | `String` | Secondary Color
-css | `String` | Custom CSS appended to the end of the code as style tag.
-menu.background | `String` | Background Color of menu
-menu.border | `Number` | Border size of the menu
-menu.height | `Number` | Border height of the menu
-navbar.background | `String` | Background Color of the navigation bar
-navbar.border | `Number` | Border size of the navigation bar
-navbar.color | `String` | Color of the navigation bar
-navbar.enabled | `Boolean` | Is navigation bar enabled?
-navbar.height | `Number` | Height the navigation bar
-navbar.links | `Array<String>` | Links of the navigation bar
-navbar.linksString | `String` | Links of the navigation bar in String format.
-sidebar | `String` | The HTML code used inside the sidebar box.
+
+| Parameter          | Type            | Description                                              |
+| ------------------ | --------------- | -------------------------------------------------------- |
+| body               | `String`        | Body tag of the template                                 |
+| colors.default     | `String`        | Default Color                                            |
+| colors.defaultLink | `String`        | Default link                                             |
+| colors.link        | `String`        | Color of links                                           |
+| colors.menuLink    | `String`        | Color of menu                                            |
+| colors.primary     | `String`        | Primary Color                                            |
+| colors.secondary   | `String`        | Secondary Color                                          |
+| css                | `String`        | Custom CSS appended to the end of the code as style tag. |
+| menu.background    | `String`        | Background Color of menu                                 |
+| menu.border        | `Number`        | Border size of the menu                                  |
+| menu.height        | `Number`        | Border height of the menu                                |
+| navbar.background  | `String`        | Background Color of the navigation bar                   |
+| navbar.border      | `Number`        | Border size of the navigation bar                        |
+| navbar.color       | `String`        | Color of the navigation bar                              |
+| navbar.enabled     | `Boolean`       | Is navigation bar enabled?                               |
+| navbar.height      | `Number`        | Height the navigation bar                                |
+| navbar.links       | `Array<String>` | Links of the navigation bar                              |
+| navbar.linksString | `String`        | Links of the navigation bar in String format.            |
+| sidebar            | `String`        | The HTML code used inside the sidebar box.               |
 
 ### Policies Parameters
-Parameter | Type | Description
---------- | ----------- | -----------
-access | `String` | Access privacy of the community. Can be: `public`, `private`.
-cookieConsent | `String` | Display cookie consent? Can be: `enabled`, `disabled`.
-email | `String` | Defines the types of emails to be sent from the community. Can be: `important`, `disabled`, `enabled`.
-registration | `String` | The registration policy of the community. Can be: `public`, `approval`, `invitation`.
+
+| Parameter     | Type     | Description                                                                                            |
+| ------------- | -------- | ------------------------------------------------------------------------------------------------------ |
+| access        | `String` | Access privacy of the community. Can be: `public`, `private`.                                          |
+| cookieConsent | `String` | Display cookie consent? Can be: `enabled`, `disabled`.                                                 |
+| email         | `String` | Defines the types of emails to be sent from the community. Can be: `important`, `disabled`, `enabled`. |
+| registration  | `String` | The registration policy of the community. Can be: `public`, `approval`, `invitation`.                  |
 
 ## Install an App
 
@@ -554,12 +558,14 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
   -H 'Content-Type: application/json; charset=utf-8'
 ```
 
+<!--
 ```javascript
   const tribe = require('tribe');
 
   let api = tribe.authorize('{access_token}');
   let result = api.admin.apps.install('5c7ff860c389b77bdf1f272b')
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -615,9 +621,7 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
           "installs": 0
         },
         "screenshots": [],
-        "categories": [
-          "Functionality"
-        ],
+        "categories": ["Functionality"],
         "author": {
           "link": "https://tribe.so",
           "name": "Tribe Technologies, Inc"
@@ -696,9 +700,7 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
           "installs": 0
         },
         "screenshots": [],
-        "categories": [
-          "Functionality"
-        ],
+        "categories": ["Functionality"],
         "author": {
           "link": "https://tribe.so",
           "name": "Tribe Technologies, Inc"
@@ -761,9 +763,7 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
           "installs": 0
         },
         "screenshots": [],
-        "categories": [
-          "Functionality"
-        ],
+        "categories": ["Functionality"],
         "author": {
           "link": "https://tribe.so",
           "name": "Tribe Technologies, Inc"
@@ -843,9 +843,9 @@ The endpoint installs an app in the portal.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of app to install
+| Parameter | Type     | Description              |
+| --------- | -------- | ------------------------ |
+| id        | `String` | The ID of app to install |
 
 ## Uninstall an App
 
@@ -856,12 +856,14 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
   -H 'Content-Type: application/json; charset=utf-8'
 ```
 
+<!--
 ```javascript
   const tribe = require('tribe');
 
   let api = tribe.authorize('{access_token}');
   let result = api.admin.apps.uninstall('5c7ff860c389b77bdf1f272b')
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -917,9 +919,7 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
           "installs": 0
         },
         "screenshots": [],
-        "categories": [
-          "Functionality"
-        ],
+        "categories": ["Functionality"],
         "author": {
           "link": "https://tribe.so",
           "name": "Tribe Technologies, Inc"
@@ -998,9 +998,7 @@ curl "https://community.tribe.so/api/v1/apps/5c7ff860c389b77bdf1f272b/settings"
           "installs": 0
         },
         "screenshots": [],
-        "categories": [
-          "Functionality"
-        ],
+        "categories": ["Functionality"],
         "author": {
           "link": "https://tribe.so",
           "name": "Tribe Technologies, Inc"
@@ -1080,6 +1078,6 @@ The endpoint uninstalls an app in the portal.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of app to uninstall
+| Parameter | Type     | Description                |
+| --------- | -------- | -------------------------- |
+| id        | `String` | The ID of app to uninstall |

@@ -7,12 +7,14 @@ curl "https://community.tribe.so/api/v1/notifications"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let notifications = api.notifications.list();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -147,12 +149,14 @@ curl "https://community.tribe.so/api/v1/notifications/summary"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 let summaries = api.notifications.summary();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -175,12 +179,14 @@ curl "https://community.tribe.so/api/v1/notifications/summary"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.notifications.read();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -204,12 +210,14 @@ This endpoint marks all user notifications as read.
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 
 let api = tribe.authorize("{access_token}");
 api.notifications.read("5b913111f19a473232026877");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -239,11 +247,13 @@ This endpoint marks a specific notification as read.
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require("tribe");
 const token = ...
 api.notifications.registerDevice({ token, type: 'ios', name: 'My Phone' });
 ```
+-->
 
 > The above command returns JSON structured like this:
 

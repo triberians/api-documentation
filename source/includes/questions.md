@@ -2,18 +2,19 @@
 
 ## Get All Questions
 
-
 ```shell
 curl "https://community.tribe.so/api/v1/questions"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let questions = api.questions.get();
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -62,27 +63,27 @@ This endpoint retrieves all questions.
 
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `String` | `createdAt.desc` | The field to sort on
-
+| Parameter | Type     | Default          | Description              |
+| --------- | -------- | ---------------- | ------------------------ |
+| page      | `Number` | `1`              | Intended page            |
+| limit     | `Number` | `20`             | Number of items per page |
+| sort      | `String` | `createdAt.desc` | The field to sort on     |
 
 ## Get a Specific Question
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let questions = api.questions.get('5a816275f8030b3bdd655b0d');
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -127,16 +128,13 @@ This endpoint retrieves a specific question using ID.
 
 <code class="request">GET /api/v1/questions/{id}</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the item
-
+| Parameter | Type     | Description        |
+| --------- | -------- | ------------------ |
+| id        | `String` | The ID of the item |
 
 ## Delete a Specific Question
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d"
@@ -144,12 +142,14 @@ curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.questions.delete('5a816275f8030b3bdd655b0d');
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -165,124 +165,113 @@ This endpoint deletes a specific question.
 
 <code class="request">DELETE /api/v1/questions/{id}</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the question to delete
-
-
+| Parameter | Type     | Description                      |
+| --------- | -------- | -------------------------------- |
+| id        | `String` | The ID of the question to delete |
 
 ## Get Question's Answers
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d/answers"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let users = api.questions.answers('5a816275f8030b3bdd655b0d');
 ```
-
+-->
 
 ### HTTP Request
 
 <code class="request">GET /api/v1/questions/{id}/answers</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the question
+| Parameter | Type     | Description            |
+| --------- | -------- | ---------------------- |
+| id        | `String` | The ID of the question |
 
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ----------- | ------- | -----------
-page | `Number` | `1` | Intended page
-limit | `Number` | `20` | Number of items per page
-sort | `Number` | `createdAt.desc` | The field to sort on
-
-
-
+| Parameter | Type     | Default          | Description              |
+| --------- | -------- | ---------------- | ------------------------ |
+| page      | `Number` | `1`              | Intended page            |
+| limit     | `Number` | `20`             | Number of items per page |
+| sort      | `Number` | `createdAt.desc` | The field to sort on     |
 
 ## Get Question's Experts
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d/experts"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let users = api.questions.experts('5a816275f8030b3bdd655b0d');
 ```
-
+-->
 
 ### HTTP Request
 
 <code class="request">GET /api/v1/questions/{id}/experts</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the question
-
-
+| Parameter | Type     | Description            |
+| --------- | -------- | ---------------------- |
+| id        | `String` | The ID of the question |
 
 ## Get a Question's Recommendations
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d/recommendations"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let users = api.questions.recommendations('5a816275f8030b3bdd655b0d');
 ```
-
+-->
 
 ### HTTP Request
 
 <code class="request">GET /api/v1/questions/{id}/recommendations</code>
 
-
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the question
-
+| Parameter | Type     | Description            |
+| --------- | -------- | ---------------------- |
+| id        | `String` | The ID of the question |
 
 ## Get Similar Questions
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/similars"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let users = api.questions.similars('This is a test question title');
 ```
+-->
 
 This endpoint find related questions to keywords or a question title.
 
@@ -290,18 +279,13 @@ This endpoint find related questions to keywords or a question title.
 
 <code class="request">GET /api/v1/questions/similars</code>
 
-
 ### Query Parameters
 
-Parameter | Type | Default | Description
---------- | ------- | ----------- | -----------
-query | `String` | `""` | Keywords or title of a question
-
-
-
+| Parameter | Type     | Default | Description                     |
+| --------- | -------- | ------- | ------------------------------- |
+| query     | `String` | `""`    | Keywords or title of a question |
 
 ## Create a Question
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions"
@@ -309,12 +293,14 @@ curl "https://community.tribe.so/api/v1/questions"
   -H "Authorization: Bearer {access_token}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let question = api.questions.create({ title: 'What is life?', options: [ { text: 'Life is life' }, { text: 'I have no idea' } ] });
 ```
+-->
 
 This endpoint creates a new question.
 
@@ -324,33 +310,32 @@ This endpoint creates a new question.
 
 ### Query Parameters
 
-Parameter | Type | Description
---------- | ----------- | ----------- | -----------
-title | `String` | The title of the question to create
-description | `String` | The description of the question to create
-anonymous | `Boolean` | Is this an anonymous question?
-from | `String` | The ID of the user who has beend asked from
-topics | `[String]` | The IDs of the topics related to the question
-group | `String` | The ID of the group to post
-options | `[{ text: String }]` (Optional) | An array of poll options in `[{ text: 'Option text' }]` format
+| Parameter   | Type                            | Description                                                    |
+| ----------- | ------------------------------- | -------------------------------------------------------------- |
+| title       | `String`                        | The title of the question to create                            |
+| description | `String`                        | The description of the question to create                      |
+| anonymous   | `Boolean`                       | Is this an anonymous question?                                 |
+| from        | `String`                        | The ID of the user who has beend asked from                    |
+| topics      | `[String]`                      | The IDs of the topics related to the question                  |
+| group       | `String`                        | The ID of the group to post                                    |
+| options     | `[{ text: String }]` (Optional) | An array of poll options in `[{ text: 'Option text' }]` format |
 
 ### Extra Query Parameters for Moderators
 
-Parameter | Type | Description
---------- | ----------- | -----------
-type | `String` | The type of the question to create
-locked | `Boolean` | Is the question locked?
-verified | `Boolean` | Is the question verified?
-status | `String` | Status of the question to create. Can be: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
-user | `String` | The ID of the user to ask a question on behalf 
-
+| Parameter | Type      | Description                                                                                                                 |
+| --------- | --------- | --------------------------------------------------------------------------------------------------------------------------- |
+| type      | `String`  | The type of the question to create                                                                                          |
+| locked    | `Boolean` | Is the question locked?                                                                                                     |
+| verified  | `Boolean` | Is the question verified?                                                                                                   |
+| status    | `String`  | Status of the question to create. Can be: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled` |
+| user      | `String`  | The ID of the user to ask a question on behalf                                                                              |
 
 ## Add Image, File or Video to a Question
 
 This endpoint uploads a new file that can be attached to a Question.
 
-
 ### HTTP Request
+
 <strong>@deprecated</strong>
 <del><code class="request">POST /api/v1/questions/image</code></del>
 <small>This endpoint has been deprecated and will be removed in a future version.</small>
@@ -368,26 +353,24 @@ This endpoint uploads a new file that can be attached to a Question.
 
 ### Request Parameters
 
-Parameter | Type | Description 
---------- | ----------- | -----------
-upload | `File` | The image, file or video in `multipart/form-data` format.
+| Parameter | Type   | Description                                               |
+| --------- | ------ | --------------------------------------------------------- |
+| upload    | `File` | The image, file or video in `multipart/form-data` format. |
+
 <a href="https://docs.aws.amazon.com/mediaconvert/latest/ug/reference-codecs-containers-input.html" target="_blank">Supported video formats</a>
 
-
-
 ### For Image or File
+
 To attach an image or a file to a question, first we need to send the file to this endpoint.
 The endpoint resizes the images, scans files, and returns the url of the image or file.
 
 You can pass an array of `url`s to the question creation end-point (`POST /api/v1/questions`).
 You should pass the array in the body with `images` or `files` key.
 
-
-
 ### For Video
-To attach a video to a question, first we need to send the video to this endpoint. 
-The endpoint uploads to Amazon S3 and returns the url of the original video.
 
+To attach a video to a question, first we need to send the video to this endpoint.
+The endpoint uploads to Amazon S3 and returns the url of the original video.
 
 You can pass an array of `url`s to the question creation end-point (`POST /api/v1/questions`).
 You should pass the array in the body with `videos` key.
@@ -395,10 +378,7 @@ You should pass the array in the body with `videos` key.
 Once the Question is created, the video is queued for processing. If the original video is in MP4 format, it will be readily available for the users to view it. In case the video is in any other format, the video's status will be set to "processing" under `videos` key.
 Upon completion, the video's status is updated to "complete" and `poster`, `duration`, and `src` with different compressions will be added to the video object.
 
-
-
 ## Update a Specific Question
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5a816275f8030b3bdd655b0d"
@@ -414,27 +394,27 @@ This endpoint updates a specific question.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the question to update
+| Parameter | Type     | Description                      |
+| --------- | -------- | -------------------------------- |
+| id        | `String` | The ID of the question to update |
 
 ### Query Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-title | `String` | The title of the question to create
-description | `String` | The description of the question to create
-anonymous | `Boolean` | Is this an anonymous question?
-options | `[{ text: String, _id: ID }]` (Optional) | An array of poll options in `[{ text: 'Option text', _id: "5e2...ab" }]` format. `_id` is the ID of the option passed while fetching a question object.
+| Parameter   | Type                                     | Description                                                                                                                                             |
+| ----------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| title       | `String`                                 | The title of the question to create                                                                                                                     |
+| description | `String`                                 | The description of the question to create                                                                                                               |
+| anonymous   | `Boolean`                                | Is this an anonymous question?                                                                                                                          |
+| options     | `[{ text: String, _id: ID }]` (Optional) | An array of poll options in `[{ text: 'Option text', _id: "5e2...ab" }]` format. `_id` is the ID of the option passed while fetching a question object. |
 
 ### Extra Query Parameters for Moderators
 
-Parameter | Type | Description
---------- | ----------- | -----------
-type | `String` | The type of the question to create
-locked | `Boolean` | Is the question locked?
-verified | `Boolean` | Is the question verified?
-status | `String` | Status of the question to create. Can be: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled`
+| Parameter | Type      | Description                                                                                                                 |
+| --------- | --------- | --------------------------------------------------------------------------------------------------------------------------- |
+| type      | `String`  | The type of the question to create                                                                                          |
+| locked    | `Boolean` | Is the question locked?                                                                                                     |
+| verified  | `Boolean` | Is the question verified?                                                                                                   |
+| status    | `String`  | Status of the question to create. Can be: `archived` `collapsed` `published` `unapproved` `unlisted` `featured` `scheduled` |
 
 ## Add a Comment for a Specific Question
 
@@ -444,6 +424,8 @@ status | `String` | Status of the question to create. Can be: `archived` `collap
   -H "Authorization: Bearer {access_token}"
   --DATA "{'body':'New comment'}"
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
@@ -452,6 +434,7 @@ let users = api.questions.comments.create('5c0621864cb2b119dc174a63',"4sf0e89ada
   body: "New Comment"
 });
 ```
+-->
 
 This endpoint adds a comment for a specific question.
 
@@ -461,21 +444,21 @@ This endpoint adds a comment for a specific question.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the question to add a comment
+| Parameter | Type     | Description                             |
+| --------- | -------- | --------------------------------------- |
+| id        | `String` | The ID of the question to add a comment |
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-body | `String` | The content of the comment
+| Parameter | Type     | Description                |
+| --------- | -------- | -------------------------- |
+| body      | `String` | The content of the comment |
 
 ### Extra Request Parameters for Moderators
 
-Parameter | Type | Description
---------- | ----------- | -----------
-user | `String` | The ID of the user to comment on behalf
+| Parameter | Type     | Description                             |
+| --------- | -------- | --------------------------------------- |
+| user      | `String` | The ID of the user to comment on behalf |
 
 ## Update a Specific Comment for a Specific Question
 
@@ -486,6 +469,7 @@ user | `String` | The ID of the user to comment on behalf
   --DATA "{'body':'Updated comment'}"
 ```
 
+<!--
 ```javascript
 const tribe = require('tribe');
 
@@ -494,6 +478,7 @@ let users = api.questions.comments.update('5c0621864cb2b119dc174a63',"4sf0e89ada
   body: "Updated Comment"
 });
 ```
+-->
 
 This endpoint updates a specific comment.
 
@@ -503,16 +488,16 @@ This endpoint updates a specific comment.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the comment to update
-questionId | `String` | The ID of the question to add a comment
+| Parameter  | Type     | Description                             |
+| ---------- | -------- | --------------------------------------- |
+| id         | `String` | The ID of the comment to update         |
+| questionId | `String` | The ID of the question to add a comment |
 
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-body | `String` | The content of the comment
+| Parameter | Type     | Description                |
+| --------- | -------- | -------------------------- |
+| body      | `String` | The content of the comment |
 
 ## Remove a Specific Comment from Specific Question
 
@@ -521,12 +506,15 @@ body | `String` | The content of the comment
   -X DELETE
   -H "Authorization: Bearer {access_token}"
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let users = api.questions.comments.delete('5c0621864cb2b119dc174a63',"4sf0e89ada3be54c190b78b2");
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -544,10 +532,10 @@ This endpoint removes a specific comment.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the comment to remove
-questionId | `String` | The ID of the question to remove a comment
+| Parameter  | Type     | Description                                |
+| ---------- | -------- | ------------------------------------------ |
+| id         | `String` | The ID of the comment to remove            |
+| questionId | `String` | The ID of the question to remove a comment |
 
 ## Get Stats of Specific User for Questions
 
@@ -555,12 +543,15 @@ questionId | `String` | The ID of the question to remove a comment
   curl "https://community.tribe.so/api/v1/user/stats/questions/views"
   -H "Authorization: Bearer {access_token}"
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let result = api.user.stats('question','views')
 ```
+-->
 
 > The above command returns JSON structured like this:
 
@@ -611,28 +602,28 @@ This endpoint returns statistics of a specific user for questions.
 
 <code class="request">GET /api/v1/user/stats/questions/:metric</code>
 
-
 ### Request Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-metric | `String` | Metric for the statistics. Can be: `views`,`votes`,`follows`
-
+| Parameter | Type     | Description                                                  |
+| --------- | -------- | ------------------------------------------------------------ |
+| metric    | `String` | Metric for the statistics. Can be: `views`,`votes`,`follows` |
 
 ## Follow a question
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/followers"
   -X POST
   -H "Authorization: Bearer {access_token}"
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let question = api.questions.follow('5bf0e89ada3be54c190b78ba');
 ```
+-->
 
 This endpoint follows a question.
 
@@ -640,28 +631,28 @@ This endpoint follows a question.
 
 <code class="request">POST /api/v1/questions/{id}/followers</code>
 
-
 ## Unfollow a question
-
 
 ```shell
 curl "https://community.tribe.so/api/v1/questions/5bf0e89ada3be54c190b78ba/followers"
   -X DELETE
   -H "Authorization: Bearer {access_token}"
 ```
+
+<!--
 ```javascript
 const tribe = require('tribe');
 
 let api = tribe.authorize('{access_token}');
 let question = api.questions.unfollow('5bf0e89ada3be54c190b78ba');
 ```
+-->
 
 This endpoint unfollows a question.
 
 ### HTTP Request
 
 <code class="request">DELETE /api/v1/questions/{id}/followers</code>
-
 
 ## Reporting a Specific Question
 
@@ -679,13 +670,13 @@ This endpoint reports (flags) a specific question to admins and moderators.
 
 ### URL Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-id | `String` | The ID of the question to report
+| Parameter | Type     | Description                      |
+| --------- | -------- | -------------------------------- |
+| id        | `String` | The ID of the question to report |
 
 ### Query Parameters
 
-Parameter | Type | Description
---------- | ----------- | -----------
-type | `String` | The type of the report. Can be `Harrasment`, `Spam`, `Insincere`, `PoorlyWritten`, `IncorrectTopics`, or `AgainstRules`
-description | `String` | The optional description of the report shown to admins and moderators
+| Parameter   | Type     | Description                                                                                                             |
+| ----------- | -------- | ----------------------------------------------------------------------------------------------------------------------- |
+| type        | `String` | The type of the report. Can be `Harrasment`, `Spam`, `Insincere`, `PoorlyWritten`, `IncorrectTopics`, or `AgainstRules` |
+| description | `String` | The optional description of the report shown to admins and moderators                                                   |
