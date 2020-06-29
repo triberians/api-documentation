@@ -7239,7 +7239,7 @@ let result = api.users.delete("5b1f99a7478dd3768d84b646");
   </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint deletes a specific user.</p>
+<p>This endpoint deletes a specific user. Admins and moderators of the community can delete any users. The authenticated user can delete their users account if the setting is enabled in admin panel.</p>
 <h3 id='http-request-6'>HTTP Request</h3>
 <p><code class="request">DELETE /api/v1/users/{id}</code></p>
 <h3 id='url-parameters-3'>URL Parameters</h3>
@@ -7254,6 +7254,22 @@ let result = api.users.delete("5b1f99a7478dd3768d84b646");
 <td>id</td>
 <td><code>String</code></td>
 <td>The ID of the user to delete</td>
+</tr>
+</tbody></table>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>deleteContent</td>
+<td><code>Boolean</code></td>
+<td>null</td>
+<td>If the value is set to <code>true</code> or any other turthy value, all user&#39;s content will be removed as well.</td>
 </tr>
 </tbody></table>
 <h2 id='get-user-39-s-groups'>Get User&#39;s Groups</h2><pre class="highlight shell tab-shell"><code>curl <span class="s2">"https://community.tribe.so/api/v1/users/5b1f99a7478dd3768d84b646/groups"</span>
@@ -8121,7 +8137,7 @@ let users = api.users.getLeaderboard();
 <p>This endpoint retrieves users leaderboard for a specific period. It includes an array of user object (<code>target</code>) and their score (<code>total</code>).</p>
 <h3 id='http-request-18'>HTTP Request</h3>
 <p><code class="request">GET /api/v1/stats/users/leaderboard</code></p>
-<h3 id='query-parameters-2'>Query Parameters</h3>
+<h3 id='query-parameters-3'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
