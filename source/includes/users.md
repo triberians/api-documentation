@@ -380,7 +380,7 @@ let result = api.users.delete("5b1f99a7478dd3768d84b646");
 }
 ```
 
-This endpoint deletes a specific user.
+This endpoint deletes a specific user. Admins and moderators of the community can delete any users. The authenticated user can delete their users account if the setting is enabled in admin panel.
 
 ### HTTP Request
 
@@ -391,6 +391,12 @@ This endpoint deletes a specific user.
 | Parameter | Type     | Description                  |
 | --------- | -------- | ---------------------------- |
 | id        | `String` | The ID of the user to delete |
+
+### Query Parameters
+
+| Parameter     | Type      | Default | Description                                                                                          |
+| ------------- | --------- | ------- | ---------------------------------------------------------------------------------------------------- |
+| deleteContent | `Boolean` | null    | If the value is set to `true` or any other turthy value, all user's content will be removed as well. |
 
 ## Get User's Groups
 
